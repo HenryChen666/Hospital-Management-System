@@ -1,0 +1,13 @@
+<div class = "auth-div">
+    <mat-card>
+    <mat-toolbar color="primary">
+      <span>{{tabType}}</span>
+    </mat-toolbar>
+    <div class="auth-container">
+        <mat-tab-group mat-align-tabs="center" (selectedTabChange) = tabChanged($event)>
+            <mat-tab label="Login"> <app-login></app-login> </mat-tab>
+            <mat-tab label="Register"> <app-register></app-register> </mat-tab>
+        </mat-tab-group>
+    </div>
+    </mat-card>
+</div>

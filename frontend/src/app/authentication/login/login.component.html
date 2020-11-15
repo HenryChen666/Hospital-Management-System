@@ -1,0 +1,24 @@
+<div class = "login-container" *ngIf="!isLoggedIn">
+  <div class="login-inner-container">
+    <mat-form-field class="example-full-width">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" name="username" [(ngModel)]="username">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" [(ngModel)]="password">
+    </mat-form-field>
+  </div>
+  <button (click)=checkLogin() mat-raised-button color="primary">
+    Login
+  </button>
+</div>
+
+<div class="well" *ngIf="isLoggedIn">
+  <p>Logged in as <b>{{ loggedUser }}</b></p>
+  <p>Role is <b>{{ loggedRole }}</b></p>
+  <button (click)=logout() class="btn btn-danger">
+    Log out
+  </button>
+</div>

@@ -1,0 +1,26 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
+.register-container{
+    padding: 5% 0;
+    display: flex;
+    width: 50vw;
+    flex-direction: column;
+}
+.pw-group{
+    display: flex;
+    flex-direction: column;
+}
+.pw-not-match{
+    color: red;
+    text-align: center;
+}
+mat-radio-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }

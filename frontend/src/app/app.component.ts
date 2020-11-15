@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from './security/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'WHMS';
+  isAuthenticated = this.authService.isLoggedIn()
+  constructor(private authService: AuthenticationService) {}
 }

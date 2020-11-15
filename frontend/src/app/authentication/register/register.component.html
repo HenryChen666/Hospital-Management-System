@@ -1,0 +1,49 @@
+<form [formGroup]="signupForm" (ngSubmit)="register()">
+
+    <div class = "register-container">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" id="username" required  formControlName="username">
+        <mat-error *ngIf="username.pristine || username.valid">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div formGroupName="pwGroup" class = "pw-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" required
+                  formControlName="password">
+          <mat-error *ngIf="password.pristine || password.valid">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" id="pwconfirm" required
+                  formControlName="confirmPassword">
+          <mat-error *ngIf="confirmPassword.pristine || confirmPassword.valid">
+            A Confirmation Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-radio-group aria-label="user type" formControlName = "usertype">
+        <mat-radio-button value="nurse">Nurse</mat-radio-button>
+        <mat-radio-button value="doctor">Doctor</mat-radio-button>
+        <mat-radio-button value="medical_doctor">Medical Doctor</mat-radio-button>
+        <mat-radio-button value="personnel_officer"> Personnel Officer</mat-radio-button>
+      </mat-radio-group>
+
+    </div>
+
+    <div [hidden]="(password.pristine || confirmPassword.pristine) || pwGroup.valid"
+          class="pw-not-match">
+      The passwords do not match.
+    </div>
+
+  <button type="submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">Register</button>
+</form>
+
