@@ -25,6 +25,7 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { ContactComponent } from './contact/contact.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DivisionComponent } from './division/division.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterPatientComponent,
     ContactComponent,
     LayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    DivisionComponent
   ],
   imports: [
     BrowserModule,
