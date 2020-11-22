@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-division',
-  templateUrl: './division.component.html',
-  styleUrls: ['./division.component.css']
+  selector: 'app-divisions',
+  templateUrl: './divisions.component.html',
+  styleUrls: ['./divisions.component.css']
 })
 export class DivisionComponent implements OnInit {
 

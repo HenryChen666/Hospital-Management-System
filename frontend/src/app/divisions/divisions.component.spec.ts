@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DivisionComponent } from './division.component';
+import { DivisionComponent } from './divisions.component';
 
-describe('DivisionComponent', () => {
+describe('DivisionsComponent', () => {
   let component: DivisionComponent;
   let fixture: ComponentFixture<DivisionComponent>;
 
