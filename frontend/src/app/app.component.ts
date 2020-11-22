@@ -7,6 +7,7 @@ import {AuthenticationService} from './security/authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = "Patient Management System";
   isAuthenticated = this.authService.isLoggedIn()
   constructor(private authService: AuthenticationService) {}
 }
