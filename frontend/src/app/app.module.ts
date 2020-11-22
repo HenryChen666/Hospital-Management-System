@@ -23,6 +23,7 @@ import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { ContactComponent } from './contact/contact.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ContactComponent } from './contact/contact.component';
     PatientsComponent,
     RequestListComponent,
     RegisterPatientComponent,
-    ContactComponent
+    ContactComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
