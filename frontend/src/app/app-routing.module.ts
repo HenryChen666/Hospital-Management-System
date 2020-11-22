@@ -5,6 +5,7 @@ import { PatientsComponent } from './patients/patients.component';
 import { AuthenticationComponent } from './authentication/authentication/authentication.component';
 import { RequestListComponent } from './request-list/request-list.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {path: 'auth', component: AuthenticationComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'patients', component: PatientsComponent},
   {path: 'requestList', component: RequestListComponent},
   {path: 'registerPatient', component: RegisterPatientComponent},
+  {path: 'contact', component: ContactComponent},
   {path: '', component: AuthenticationComponent}
 ];
 
