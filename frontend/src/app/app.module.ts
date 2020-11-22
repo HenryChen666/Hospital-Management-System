@@ -18,13 +18,23 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { HomeComponent } from './home/home.component';
+import { PatientsComponent } from './patients/patients.component';
+import { RequestListComponent } from './request-list/request-list.component';
+import { RegisterPatientComponent } from './register-patient/register-patient.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomeComponent,
+    PatientsComponent,
+    RequestListComponent,
+    RegisterPatientComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
