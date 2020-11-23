@@ -4,3 +4,6 @@
 mat-toolbar{
     background-color: inherit;
 }
+.main-body{
+    margin: 25px 10%;
+}

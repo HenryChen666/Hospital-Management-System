@@ -10,7 +10,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(private router: Router) { }
   links = ['home', 'patients', 'requestlist','registerpatient','contact','profile'];
-  activeLink = this.links[0];
+  activeLink = this.router.url.split("/")[1];
 
   ngOnInit(): void {
     if(this.router.url === "/"){

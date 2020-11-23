@@ -1,1 +1,7 @@
-<p>profile works!</p>
+<mat-card>
+    <p>Logged in as <b>{{ loggedUser }}</b></p>
+    <p>Role is <b>{{ loggedRole }}</b></p>
+    <button mat-raised-button color="primary" (click)=logout() class="btn btn-danger">
+        Log out
+    </button>
+</mat-card>
