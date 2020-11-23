@@ -6,15 +6,20 @@ import { AuthenticationComponent } from './authentication/authentication/authent
 import { RequestListComponent } from './request-list/request-list.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {path: 'auth', component: AuthenticationComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'patients', component: PatientsComponent},
-  {path: 'requestList', component: RequestListComponent},
-  {path: 'registerPatient', component: RegisterPatientComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: '', component: AuthenticationComponent}
+  {path: '', component: LayoutComponent,
+    children: [
+      {path: 'home', component: HomeComponent},
+      {path: 'patients', component: PatientsComponent},
+      {path: 'requestlist', component: RequestListComponent},
+      {path: 'registerpatient', component: RegisterPatientComponent},
+      {path: 'contact', component: ContactComponent},
+      {path: 'profile', component: ProfileComponent},
+    ]}
 ];
 
 @NgModule({

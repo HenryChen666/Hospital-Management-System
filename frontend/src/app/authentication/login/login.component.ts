@@ -9,26 +9,33 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
   username = '';
   password = '';
-  loggedIn = false;
 
   constructor(private router: Router,
               private loginService: AuthenticationService,
               private tokenService: TokenService,
               private _snackBar: MatSnackBar) { }
 
-              
+  //if user is logged in, navigate to /home
+  ngOnInit(){
+    /*if(this.isLoggedIn){
+      this.router.navigate(['home']);
+    }*/
+  }              
 
+  //check jwt token if user is logged in
   get isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();
   }
 
+  //get user data
   get loggedUser(): string {
     return this.loginService.getUser();
   }
 
+  //get user role
   get loggedRole(): string {
     return this.loginService.getRole();
   }
@@ -40,11 +47,9 @@ export class LoginComponent{
         this.tokenService.saveToken(data.token);
         this.tokenService.saveUserName(data.username);
         this.tokenService.saveUserRole(data.role);
-        this.loggedIn = true;
-        //this.router.navigate(['patient'])
+        this.router.navigate(['home']);
       },
       err => {
-        this.loggedIn = false;
         this._snackBar.open('Invalid Login' + err.error.message, 'Close', {
           duration: 3000
         });

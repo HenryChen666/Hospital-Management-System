@@ -5,12 +5,20 @@
       </mat-toolbar>
     </p>
     <div class="nav-link">
-      <nav mat-tab-nav-bar>
-        <a mat-tab-link [routerLink]="['/home']" label="Home">Home </a>
-        <a mat-tab-link [routerLink]="['/patients']" label="patients">Patients </a>
-        <a mat-tab-link [routerLink]="['/requestList']" label="requestList">Request List</a>
-        <a mat-tab-link [routerLink]="['/registerPatient']" label="registerPatient">Register Patient</a>
-        <a mat-tab-link [routerLink]="['/contact']" label="contact">Contact IT</a>
-      </nav>
+      <mat-toolbar>
+        <span class="toolbar-flex"></span>
+        <nav mat-tab-nav-bar>
+          <a mat-tab-link *ngFor="let link of links"
+            (click)="route(link)"
+            [active]="activeLink == link">
+              {{
+                link === "requestlist" ? "Request List" :
+                link === "registerpatient" ? "Register Patient" :
+                link === "contact" ? "Contact IT":
+                link.charAt(0).toUpperCase() + link.slice(1)}} </a>
+        </nav>
+        <span class="toolbar-flex"></span>
+      </mat-toolbar>
     </div>
+    <router-outlet></router-outlet>
   </div>
