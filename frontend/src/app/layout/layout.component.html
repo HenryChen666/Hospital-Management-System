@@ -22,5 +22,13 @@
     </div>
     <div class = "main-body">
       <router-outlet></router-outlet>
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link [routerLink]="['/home']" label="Home">Home </a>
+        <a mat-tab-link [routerLink]="['/patients']" label="patients">Patients </a>
+        <a mat-tab-link [routerLink]="['/requestList']" label="requestList">Request List</a>
+        <a mat-tab-link [routerLink]="['/registerPatient']" label="registerPatient">Register Patient</a>
+        <a mat-tab-link [routerLink]="['/divisions']" label="divisions">Divisions</a>
+        <a mat-tab-link [routerLink]="['/contact']" label="contact">Contact IT</a>
+      </nav>
     </div>
   </div>
