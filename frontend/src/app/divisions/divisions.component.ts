@@ -12,10 +12,34 @@ export const divisionsRoutes: Routes = [
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
+  selectedDivison: 'IntensiveCareDivision';
+  isIntensiveCareDivisionSelected: Boolean;
+  isNonIntensiveCareDivisionSelected: Boolean;
+  isSpecialityDivisionSelected: Boolean
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  handleChipChange(chipName): void {
+    switch(chipName) {
+      case "IntensiveCareDivision":
+        this.isIntensiveCareDivisionSelected = true;
+        this.isNonIntensiveCareDivisionSelected = false;
+        this.isSpecialityDivisionSelected = false;
+        break;
+      case "NonIntensiveCareDivision":
+        this.isIntensiveCareDivisionSelected = false;
+        this.isNonIntensiveCareDivisionSelected = true;
+        this.isSpecialityDivisionSelected = false;
+        break;
+      case "SpecialityDivision":
+        this.isIntensiveCareDivisionSelected = false;
+        this.isNonIntensiveCareDivisionSelected = false;
+        this.isSpecialityDivisionSelected = true;
+        break;
+    }
   }
 
   submit(value: string): void {

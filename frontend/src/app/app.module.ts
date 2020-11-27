@@ -18,6 +18,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatChipsModule} from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
@@ -56,7 +57,8 @@ import { DivisionsComponent } from './divisions/divisions.component';
     MatTabsModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatChipsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
