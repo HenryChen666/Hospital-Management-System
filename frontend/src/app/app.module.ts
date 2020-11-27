@@ -28,6 +28,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DivisionsComponent } from './divisions/divisions.component';
+import { DivisionComponent } from './divisions/division/division.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DivisionsComponent } from './divisions/divisions.component';
     ContactComponent,
     LayoutComponent,
     ProfileComponent,
-    DivisionsComponent
+    DivisionsComponent,
+    DivisionComponent
   ],
   imports: [
     BrowserModule,
