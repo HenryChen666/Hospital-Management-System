@@ -12,6 +12,10 @@ export const divisionsRoutes: Routes = [
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
+  selectedHeaderDivision: String;
+  selectedDivison: String;
+  divisionIdValue: Number;
+
   // First Layer of Divisions
   isIntensiveCareDivisionSelected: Boolean;
   isNonIntensiveCareDivisionSelected: Boolean;
@@ -53,16 +57,19 @@ export class DivisionsComponent implements OnInit {
         this.isIntensiveCareDivisionSelected = true;
         this.isNonIntensiveCareDivisionSelected = false;
         this.isSpecialityDivisionSelected = false;
+        this.selectedHeaderDivision = "Intensive Care Division";
         break;
       case "NonIntensiveCareDivision":
         this.isIntensiveCareDivisionSelected = false;
         this.isNonIntensiveCareDivisionSelected = true;
         this.isSpecialityDivisionSelected = false;
+        this.selectedHeaderDivision = "Non Intensive Care Division";
         break;
       case "SpecialityDivision":
         this.isIntensiveCareDivisionSelected = false;
         this.isNonIntensiveCareDivisionSelected = false;
         this.isSpecialityDivisionSelected = true;
+        this.selectedHeaderDivision = "Specialty Division";
         break;
     }
   }
@@ -76,6 +83,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = false;
         this.isMICUs = false;
         this.isLTAC = false;
+        this.selectedDivison = "Neonatal (NICUs)";
+        this.divisionIdValue = 10;
       break;
       case "Pediatric":
         this.isNICUs = false;
@@ -84,6 +93,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = false;
         this.isMICUs = false;
         this.isLTAC = false;
+        this.selectedDivison = "Pediatric (PICUs)";
+        this.divisionIdValue = 11;
       break;
       case "Coronary":
         this.isNICUs = false;
@@ -92,6 +103,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = false;
         this.isMICUs = false;
         this.isLTAC = false;
+        this.selectedDivison = "Coronary & Cardiothoracic (CCUs/CTUs)";
+        this.divisionIdValue = 12;
       break;
       case "Surgical":
         this.isNICUs = false;
@@ -100,6 +113,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = true;
         this.isMICUs = false;
         this.isLTAC = false;
+        this.selectedDivison = "Surgical (SICUs)";
+        this.divisionIdValue = 13;
       break;
       case "Medical":
         this.isNICUs = false;
@@ -108,6 +123,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = false;
         this.isMICUs = true;
         this.isLTAC = false;
+        this.selectedDivison = "Medical (MICUs)";
+        this.divisionIdValue = 14;
       break;
       case "Long":
         this.isNICUs = false;
@@ -116,6 +133,8 @@ export class DivisionsComponent implements OnInit {
         this.isSICUs = false;
         this.isMICUs = false;
         this.isLTAC = true;
+        this.selectedDivison = "Long Term (LTAC ICUs)";
+        this.divisionIdValue = 15;
       break;
     }
   }
@@ -132,6 +151,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Neonatal";
+        this.divisionIdValue = 20;
       break;
       case "Women":
         this.isNNICUs = false;
@@ -143,6 +164,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Women and infant";
+        this.divisionIdValue = 21;
       break;
       case "Pediatric":
         this.isNNICUs = false;
@@ -154,6 +177,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Pediatric";
+        this.divisionIdValue = 22;
       break;
       case "Post-Critical":
         this.isNNICUs = false;
@@ -165,6 +190,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Post-Critical";
+        this.divisionIdValue = 23;
       break;
       case "Oncology":
         this.isNNICUs = false;
@@ -176,6 +203,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Oncology";
+        this.divisionIdValue = 24;
       break;
       case "Surgical":
         this.isNNICUs = false;
@@ -187,6 +216,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Surgical";
+        this.divisionIdValue = 25;
       break;
       case "Medical":
         this.isNNICUs = false;
@@ -198,6 +229,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = true;
         this.isRehabilitation = false;
         this.isNLTAC = false;
+        this.selectedDivison = "Medical";
+        this.divisionIdValue = 26;
       break;
       case "Rehabilitation":
         this.isNNICUs = false;
@@ -209,6 +242,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = true;
         this.isNLTAC = false;
+        this.selectedDivison = "Rehabilitation";
+        this.divisionIdValue = 27;
       break;
       case "Long":
         this.isNNICUs = false;
@@ -220,6 +255,8 @@ export class DivisionsComponent implements OnInit {
         this.isMNICUs = false;
         this.isRehabilitation = false;
         this.isNLTAC = true;
+        this.selectedDivison = "Long Term";
+        this.divisionIdValue = 28;
       break;
     }
   }
@@ -231,24 +268,32 @@ export class DivisionsComponent implements OnInit {
         this.isSOncology = false;
         this.isSTrauma = false;
         this.isSNeurological = false;
+        this.selectedDivison = "Burn";
+        this.divisionIdValue = 30;
       break;
       case "Oncology":
         this.isSBurn = false;
         this.isSOncology = true;
         this.isSTrauma = false;
         this.isSNeurological = false;
+        this.selectedDivison = "Oncology";
+        this.divisionIdValue = 31;
       break;
       case "Trauma":
         this.isSBurn = false;
         this.isSOncology = false;
         this.isSTrauma = true;
         this.isSNeurological = false;
+        this.selectedDivison = "Trauma";
+        this.divisionIdValue = 32;
       break;
       case "Neurological":
         this.isSBurn = false;
         this.isSOncology = false;
         this.isSTrauma = false;
         this.isSNeurological = true;
+        this.selectedDivison = "Neurological";
+        this.divisionIdValue = 33;
       break;
     }
   }
