@@ -5,36 +5,36 @@
       Divisions Page
     </h1>
     <mat-chip-list aria-label="Division selection">
-      <mat-chip (click)="handleChipChange('IntensiveCareDivision')" [selected]="isIntensiveCareDivisionSelected">Intensive Care Division</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Non-Intensive Care Division</mat-chip>
-      <mat-chip (click)="handleChipChange('SpecialityDivision')" [selected]="isSpecialityDivisionSelected">Speciality Division</mat-chip>
+      <mat-chip (click)="handleChipChangeFirstLevel('IntensiveCareDivision')" [selected]="isIntensiveCareDivisionSelected">Intensive Care Division</mat-chip>
+      <mat-chip (click)="handleChipChangeFirstLevel('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Non-Intensive Care Division</mat-chip>
+      <mat-chip (click)="handleChipChangeFirstLevel('SpecialityDivision')" [selected]="isSpecialityDivisionSelected">Speciality Division</mat-chip>
     </mat-chip-list>
   </div>
   <div>
     <mat-chip-list *ngIf="isIntensiveCareDivisionSelected">
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Neonatal (NICUs)</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Pediatric (PICUs)</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Coronary & Cardiothoracic (CCUs/CTUs)</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Surgical (SICUs)</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Medical (MICUs)</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Long Term (LTAC ICUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Neonatal')" [selected]="isNICUs">Neonatal (NICUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Pediatric')" [selected]="isPICUs">Pediatric (PICUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Coronary')" [selected]="isCCUs">Coronary & Cardiothoracic (CCUs/CTUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Surgical')" [selected]="isSICUs">Surgical (SICUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Medical')" [selected]="isMICUs">Medical (MICUs)</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelIntensive('Long')" [selected]="isLTAC">Long Term (LTAC ICUs)</mat-chip>
     </mat-chip-list>
     <mat-chip-list *ngIf="isNonIntensiveCareDivisionSelected">
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Neonatal</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Women and infant</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Pediatric</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Post-Critical</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Oncology</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Surgical</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Medical</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Rehabilitation</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Long Term</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Neonatal')" [selected]="isNNICUs">Neonatal</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Women')" [selected]="isWomen">Women and infant</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Pediatric')" [selected]="isPNICUs">Pediatric</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Post-Critical')" [selected]="isPost">Post-Critical</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Oncology')" [selected]="isOncology">Oncology</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Surgical')" [selected]="isSNICUs">Surgical</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Medical')" [selected]="isMNICUs">Medical</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Rehabilitation')" [selected]="isRehabilitation">Rehabilitation</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelNonIntensive('Long')" [selected]="isNLTAC">Long Term</mat-chip>
     </mat-chip-list>
     <mat-chip-list *ngIf="isSpecialityDivisionSelected">
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Burn</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Oncology</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Trauma</mat-chip>
-      <mat-chip (click)="handleChipChange('NonIntensiveCareDivision')" [selected]="isNonIntensiveCareDivisionSelected">Neurological</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelSpeciality('Burn')" [selected]="isSBurn">Burn</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelSpeciality('Oncology')" [selected]="isSOncology">Oncology</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelSpeciality('Trauma')" [selected]="isSTrauma">Trauma</mat-chip>
+      <mat-chip (click)="handleChipChangeSecondLevelSpeciality('Neurological')" [selected]="isSNeurological">Neurological</mat-chip>
     </mat-chip-list>
   </div>
   <div>
