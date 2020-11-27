@@ -18,6 +18,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
@@ -25,6 +27,7 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { ContactComponent } from './contact/contact.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DivisionsComponent } from './divisions/divisions.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterPatientComponent,
     ContactComponent,
     LayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    DivisionsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatTabsModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
