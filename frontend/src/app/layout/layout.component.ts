@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 export class LayoutComponent implements OnInit {
 
   constructor(private router: Router) { }
-  links = ['home', 'patients', 'requestlist','registerpatient','contact','profile'];
+  links = ['home', 'patients', 'requestlist','registerpatient','contact','divisions','profile'];
   activeLink = this.router.url.split("/")[1];
 
   ngOnInit(): void {
