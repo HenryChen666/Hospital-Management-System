@@ -1,10 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { DivisionComponent } from './division/division.component';
+import { Division } from './model/division';
 
 export const divisionsRoutes: Routes = [
   {path: ':id', component: DivisionComponent}
 ]
+
+const divisions = [{
+    "divisionName": "Intensive Care",
+    "units": ["Neonatal (NICUs)", "Pediatric (PICUs)", "Coronary & Cardiothoracic (CCUs/CTUs)", "Surgical (SICUs)", "Medical (MICUs)", "Long Term (LTAC ICUs)"]
+  },
+  {
+    "divisionName": "Non Intensive Care",
+    "units": ["Neonatal", "Women & Infant", "Pediatric", "Post-Critical", "Oncology", "Surgical","Medical","Rehabilitation","Long Term"]
+  },
+  {
+    "divisionName": "Specialty",
+    "units": ["Burn", "Oncology", "Trauma", "Neurological"]
+  }]; 
 
 @Component({
   selector: 'app-divisions',
@@ -15,6 +29,7 @@ export class DivisionsComponent implements OnInit {
   selectedHeaderDivision: String;
   selectedDivison: String;
   divisionIdValue: Number;
+  divisions: Division[] = [];
 
   // First Layer of Divisions
   isIntensiveCareDivisionSelected: Boolean;
@@ -46,7 +61,13 @@ export class DivisionsComponent implements OnInit {
   isSTrauma: Boolean
   isSNeurological: Boolean
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+    for(let i=0; i<divisions.length; i++) {
+      let tempDivisionObject = divisions[i];
+      let tempDivision = new Division(i, tempDivisionObject.divisionName, tempDivisionObject.units);
+      this.divisions.push(tempDivision);
+    }
+  }
 
   ngOnInit(): void {
   }
