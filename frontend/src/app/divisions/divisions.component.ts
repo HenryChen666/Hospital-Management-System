@@ -34,6 +34,7 @@ export class DivisionsComponent implements OnInit {
     for(let i=0; i<this.divisions.length; i++) {
       if(this.divisions[i].category === divisionName) {
         this.selectedDivison =  this.divisions[i];
+        this.divisionsService.setDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
       }
     }
@@ -55,6 +56,7 @@ export class DivisionsComponent implements OnInit {
 
   handleSelectedUnit(unitObject): void {
     this.selectedUnit = unitObject;
+    this.divisionsService.setSelectedDivisionUnit(unitObject);
     this.divisionIdValue = this.selectedUnit.id;
   }
 

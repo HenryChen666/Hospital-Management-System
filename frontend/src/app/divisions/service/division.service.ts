@@ -200,7 +200,9 @@ const divisions = [{
 })
 export class DivisionService {
   divisions: Division[] = [];
+  selectedDivision: Division;
   selectedDivisionUnits: Unit[] = [];
+  selectedDivisionUnit: Unit;
 
   constructor(private http: HttpClient) {
     // Parse the Data.
@@ -221,6 +223,14 @@ export class DivisionService {
     return this.divisions;
   }
 
+  public getSelectedDivision(): Division {
+    return this.selectedDivision;
+  }
+
+  public getSelectedDivisionUnit(): Unit {
+    return this.selectedDivisionUnit
+  }
+
   public getUnitsForDivision(divisionName): Unit[] {
     for(let i=0; i < this.divisions.length; i++) {
       if(this.divisions[i].category === divisionName) {
@@ -228,4 +238,13 @@ export class DivisionService {
       }
     }
   }
+
+  public setDivision(divisionObject): void {
+    this.selectedDivision = divisionObject;
+  }
+
+  public setSelectedDivisionUnit(unitObject): void {
+    this.selectedDivisionUnit = unitObject;
+  }
+
 }
