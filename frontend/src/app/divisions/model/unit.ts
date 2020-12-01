@@ -1,7 +1,7 @@
 export class Unit {
   constructor(
     public id: number,
-    public category: string,
+    public name: string,
     public numOfBedsShortTerm: number,
     public numOfBedsLongTerm: number,
     public numOfPatients: number,

@@ -1,27 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { DivisionService } from './service/division.service';
+import { Subscription } from 'rxjs';
 import { DivisionComponent } from './division/division.component';
 import { Division } from './model/division';
+import { Unit } from './model/unit';
 
 export const divisionsRoutes: Routes = [
   {path: ':id', component: DivisionComponent}
 ]
-
-const divisions = [{
-    "id": 1000,
-    "category": "Intensive Care",
-    "units": ["Neonatal (NICUs)", "Pediatric (PICUs)", "Coronary & Cardiothoracic (CCUs/CTUs)", "Surgical (SICUs)", "Medical (MICUs)", "Long Term (LTAC ICUs)"]
-  },
-  {
-    "id": 2000,
-    "category": "Non Intensive Care",
-    "units": ["Neonatal", "Women & Infant", "Pediatric", "Post-Critical", "Oncology", "Surgical","Medical","Rehabilitation","Long Term"]
-  },
-  {
-    "id": 3000,
-    "category": "Specialty",
-    "units": ["Burn", "Oncology", "Trauma", "Neurological"]
-  }]; 
 
 @Component({
   selector: 'app-divisions',
@@ -29,21 +16,17 @@ const divisions = [{
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
+  private subscription: Subscription;
   selectedDivison: Division = null;
   isDivisionSelected: Boolean = false;
   divisionIdValue: Number;
   divisions: Division[] = [];
-  selectedUnit: String;
+  selectedUnit: Unit = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    for(let i=0; i<divisions.length; i++) {
-      let tempDivisionObject = divisions[i];
-      let tempDivision = new Division(tempDivisionObject.id, tempDivisionObject.category, tempDivisionObject.units);
-      this.divisions.push(tempDivision);
-    }
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
+    this.divisions = this.divisionsService.getAllDivisions()
   }
 
   handleSelectedDivision(divisionName): void {
@@ -51,6 +34,7 @@ export class DivisionsComponent implements OnInit {
     for(let i=0; i<this.divisions.length; i++) {
       if(this.divisions[i].category === divisionName) {
         this.selectedDivison =  this.divisions[i];
+        this.divisionsService.setDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
       }
     }
@@ -70,12 +54,16 @@ export class DivisionsComponent implements OnInit {
     }
   }
 
-  handleSelectedUnit(unitName): void {
-    this.selectedUnit = unitName;
+  handleSelectedUnit(unitObject): void {
+    this.selectedUnit = unitObject;
+    this.divisionsService.setSelectedDivisionUnit(unitObject);
+    this.divisionIdValue = this.selectedUnit.id;
   }
 
-  handleIsSelectedUnit(unitName): Boolean {
-    return this.selectedUnit === unitName;
+  handleIsSelectedUnit(unitObject): Boolean {
+    if(this.selectedUnit !== null) {
+      return this.selectedUnit.name === unitObject.name;
+    }
   }
 
   submit(value: string): void {

@@ -17,7 +17,7 @@
           (click)="handleSelectedUnit(selectedDivison.units[i])"
           [selected]="handleIsSelectedUnit(selectedDivison.units[i])"
         >
-        {{selectedDivison.units[i]}}
+        {{selectedDivison.units[i].name}}
       </mat-chip>
       </mat-chip-list>
     </div>
@@ -31,16 +31,14 @@
       </mat-form-field>
     </div>
     <div *ngIf="selectedDivison">
-    <h1 mat-h1>
-      {{selectedDivison.category}}
-    </h1>
-    <mat-card style="width: 75%" *ngIf="selectedDivison">
-      <mat-card-header>
-        <mat-card-title>Division: {{selectedDivison.category}}</mat-card-title>
-        <mat-card-subtitle>Division Id: {{selectedDivison.id}}</mat-card-subtitle>
-      </mat-card-header>
-        <app-division></app-division>
-      </mat-card>
+      <h1 mat-h1>
+        {{selectedDivison.category}}
+      </h1>
+      <div *ngIf="selectedUnit">
+        <mat-card style="width: 75%" *ngIf="selectedDivison">
+            <app-division></app-division>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>

@@ -1,15 +1,40 @@
 <div>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-header>
+    <mat-card-title>Unit: {{unit.name}}</mat-card-title>
+    <mat-card-subtitle>Unit Id: {{unit.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="../../../assets/images/WardsOfHospital.png">
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
+    <h1 class="mat-h1">
+      Short Term Beds Available
+    </h1>
+    <body class="body-1">
+      {{unit.numOfBedsShortTerm}}
+    </body>
+    <h1 class="mat-h1">
+      Long Term Beds Available
+    </h1>
+    <body class="body-1">
+      {{unit.numOfBedsLongTerm}}
+    </body>
+    <h1 class="mat-h1">
+      Number of Patients in Unit
+    </h1>
+    <body class="body-1">
+      {{unit.numOfPatients}}
+    </body>
+    <h1 class="mat-h1">
+      Number of Staff Members in Unit
+    </h1>
+    <body class="body-1">
+      {{unit.numOfStaffMembers}}
+    </body>
+    <h1 class="mat-h1">
+      Max Patient Capacity
+    </h1>
+    <body class="body-1">
+      {{unit.numOfPatients}}/{{unit.maxPatientCapacity}}
+    </body>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
 </div>
 
