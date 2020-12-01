@@ -21,7 +21,17 @@
           Last Name is required.
         </div>
       </div>
+      <!--
+      <button onclick="myFunction()">Try it</button>
 
+      <p id="demo"></p>
+      
+      <script>
+      function myFunction() {
+        var x = Math.floor((Math.random() * 10) + 1);
+        document.getElementById("demo").innerHTML = x.toString();
+      }
+      </script>-->
       <div class="form-group">
         <label for="lastName">Date of Birth (DOB):</label>
         <input type="text" class="form-control" id="dateofbirth" placeholder="MM/DD/YYYY" required formControlName="dateofbirth">
@@ -58,6 +68,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th>ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Date of Birth</th>
@@ -67,6 +78,7 @@
     </thead>
     <tbody>
     <tr *ngFor = "let datas of users">
+      <td>{{datas.identification}}</td>
       <td>{{datas.firstname}}</td>
       <td>{{datas.lastname}}</td>
       <td>{{datas.dateofbirth}}</td>

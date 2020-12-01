@@ -64,9 +64,10 @@ export class FormComponent implements OnInit {
   }
   
   onSubmit(): void{
-
+    var number = this.users.length + Math.floor(Math.random() * 20) + 1
     const user = new Patientdatas(
       null,
+      number.toString(),
       this.userForm.value.lastName,
       this.userForm.value.firstName,
       Number(this.userForm.value.phone),
@@ -76,8 +77,11 @@ export class FormComponent implements OnInit {
     this.store.createUser(user)
       .then(
         docRef => {
+          //user.id = number.toString();
           user.id = docRef.id;
           this.showMessage('info', 'Sucessfully Save');
+          console.log(user.id)
+          console.log(number)
           }
     )
     .catch(_ =>
