@@ -36,10 +36,6 @@
       </h1>
       <div *ngIf="selectedUnit">
         <mat-card style="width: 75%" *ngIf="selectedDivison">
-          <mat-card-header>
-            <mat-card-title>Unit: {{selectedUnit.name}}</mat-card-title>
-            <mat-card-subtitle>Unit Id: {{divisionIdValue}}</mat-card-subtitle>
-          </mat-card-header>
             <app-division></app-division>
         </mat-card>
       </div>
