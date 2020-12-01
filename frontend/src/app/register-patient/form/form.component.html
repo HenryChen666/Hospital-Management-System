@@ -1,0 +1,82 @@
+<!--<p>form works!</p> -->
+<div class="container">
+    <h1>Register Patients Form</h1>
+    <div class="col-md-8" [ngStyle]="msgStyle" [hidden]="hideMsg">
+      {{message}}
+    </div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" required formControlName="firstName">
+        <div [hidden]="firstName.pristine || firstName.valid"
+             class="alert alert-danger">
+          First Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" required formControlName="lastName">
+        <div [hidden]="lastName.pristine || lastName.valid"
+             class="alert alert-danger">
+          Last Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Date of Birth (DOB):</label>
+        <input type="text" class="form-control" id="dateofbirth" placeholder="MM/DD/YYYY" required formControlName="dateofbirth">
+        <div [hidden]="dateofbirth.pristine || dateofbirth.valid"
+             class="alert alert-danger">
+             Date of Birth is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="text" class="form-control" id="phone"  formControlName="phone" required>
+        <div [hidden]="phone.pristine || phone.valid"
+             class="alert alert-danger">
+          Phone Number must be 10 digits long with the first and fourth digits different to 0
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" required  formControlName="email">
+        <div [hidden]="email.pristine || email.valid"
+             class="alert alert-danger">
+          Please Enter a Valid Email address
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">Submit</button>
+    </form>
+  </div>
+  <br>
+  <div class="container">
+  <h1>Table of Patients</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date of Birth</th>
+      <th>Phone Number</th>
+      <th>Email Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let datas of users">
+      <td>{{datas.firstname}}</td>
+      <td>{{datas.lastname}}</td>
+      <td>{{datas.dateofbirth}}</td>
+      <td>{{datas.phone}}</td>
+      <td>{{datas.email}}</td>
+      <td><button class="btn btn-danger" name="delete" (click)="delete(datas.id)">Delete</button></td>
+    </tr>
+    </tbody>
+  
+  </table>
+  
+  </div>
+  
