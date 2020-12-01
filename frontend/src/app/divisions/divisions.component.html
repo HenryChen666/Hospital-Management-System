@@ -31,16 +31,18 @@
       </mat-form-field>
     </div>
     <div *ngIf="selectedDivison">
-    <h1 mat-h1>
-      {{selectedDivison.category}}
-    </h1>
-    <mat-card style="width: 75%" *ngIf="selectedDivison">
-      <mat-card-header>
-        <mat-card-title>Division: {{selectedDivison.category}}</mat-card-title>
-        <mat-card-subtitle>Division Id: {{selectedDivison.id}}</mat-card-subtitle>
-      </mat-card-header>
-        <app-division></app-division>
-      </mat-card>
+      <h1 mat-h1>
+        {{selectedDivison.category}}
+      </h1>
+      <div *ngIf="selectedUnit">
+        <mat-card style="width: 75%" *ngIf="selectedDivison">
+          <mat-card-header>
+            <mat-card-title>Unit: {{selectedUnit.name}}</mat-card-title>
+            <mat-card-subtitle>Unit Id: {{divisionIdValue}}</mat-card-subtitle>
+          </mat-card-header>
+            <app-division></app-division>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>
