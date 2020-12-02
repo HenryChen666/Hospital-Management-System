@@ -83,7 +83,7 @@
   <div class="container">
   <h1>Table of Registered Patients</h1>
   <table mat-table class="table">
-    <!--
+  
     <thead>
     <tr>
       <th>ID</th>
@@ -105,20 +105,8 @@
       <td><button mat-raised-button color="warn" class="btn btn-danger" name="delete" (click)="delete(datas.id)">Delete</button></td>
     </tr>
     </tbody>
-    -->
-
-    <ng-container matColumnDef="identification">
-      <th mat-header-cell *matHeaderCellDef> ID. </th>
-      <td mat-cell *ngFor="let datas of users"> {{datas.identification}} </td>
-    </ng-container>
  
-    <ng-container matColumnDef="firstname">
-      <th mat-header-cell > First Name </th>
-      <td mat-cell *ngFor="let datas of users"> {{datas.firstname}} </td>
-    </ng-container>
-  
 
-    
   
   </table>
   
