@@ -29,7 +29,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DivisionsComponent } from './divisions/divisions.component';
 import { DivisionComponent } from './divisions/division/division.component';
+import { FormComponent } from './register-patient/form/form.component';
 
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,9 +47,12 @@ import { DivisionComponent } from './divisions/division/division.component';
     LayoutComponent,
     ProfileComponent,
     DivisionsComponent,
-    DivisionComponent
+    DivisionComponent,
+    FormComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

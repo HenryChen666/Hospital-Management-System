@@ -1,0 +1,114 @@
+<!--<p>form works!</p> -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link rel="stylesheet" href="form.component.css" >
+
+<div class="container">
+    <h1>Register Patients Form</h1>
+    <!--
+    <div class="col-md-8" [ngStyle]="msgStyle" [hidden]="hideMsg">
+      {{message}}
+    </div>-->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+        <mat-label for="firstName">First Name:</mat-label>
+        <input matInput type="text" class="form-control" id="firstName" required formControlName="firstName">
+        <mat-error [hidden]="firstName.pristine || firstName.valid"
+             class="alert alert-danger">
+          First Name is required.
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+        <mat-label for="lastName">Last Name:</mat-label>
+        <input matInput type="text" class="form-control" id="lastName" required formControlName="lastName">
+        <mat-error [hidden]="lastName.pristine || lastName.valid"
+             class="alert alert-danger">
+          Last Name is required.
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <!--
+      <button onclick="myFunction()">Try it</button>
+
+      <p id="demo"></p>
+      
+      <script>
+      function myFunction() {
+        var x = Math.floor((Math.random() * 10) + 1);
+        document.getElementById("demo").innerHTML = x.toString();
+      }
+      </script>-->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+        <mat-label for="lastName">Date of Birth (DOB):</mat-label>
+        <input matInput type="text" class="form-control" id="dateofbirth" placeholder="MM/DD/YYYY" required formControlName="dateofbirth">
+        <mat-error [hidden]="dateofbirth.pristine || dateofbirth.valid"
+             class="alert alert-danger">
+             Date of Birth is required.
+        </mat-error>
+      </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+        <mat-label for="phone">Phone:</mat-label>
+        <input matInput type="text" class="form-control" id="phone"  formControlName="phone" required>
+        <mat-hint>Phone Number must be 10 digits long with the first and fourth digits different to 0</mat-hint>
+        <mat-error [hidden]="phone.pristine || phone.valid"
+             class="alert alert-danger">
+          Phone Number must be 10 digits long with the first and fourth digits different to 0
+        </mat-error>
+      </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+        <mat-label for="email">Email:</mat-label>
+        <input matInput type="text" class="form-control" id="email" required  formControlName="email">
+        <mat-hint>Please Enter a Valid Email address</mat-hint>
+        <mat-error [hidden]="email.pristine || email.valid"
+             class="alert alert-danger">
+          Please Enter a Valid Email address
+        </mat-error>
+      </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit" class="btn btn-success" [disabled]="userForm.invalid">Submit</button>
+    </form>
+  </div>
+  <br>
+  <div class="container">
+  <h1>Table of Registered Patients</h1>
+  <table mat-table class="table">
+  
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date of Birth</th>
+      <th>Phone Number</th>
+      <th>Email Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let datas of users">
+      <td>{{datas.identification}}</td>
+      <td>{{datas.firstname}}</td>
+      <td>{{datas.lastname}}</td>
+      <td>{{datas.dateofbirth}}</td>
+      <td>{{datas.phone}}</td>
+      <td>{{datas.email}}</td>
+      <td><button mat-raised-button color="warn" class="btn btn-danger" name="delete" (click)="delete(datas.id)">Delete</button></td>
+    </tr>
+    </tbody>
+ 
+
+  
+  </table>
+  
+  </div>
+  
