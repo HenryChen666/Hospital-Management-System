@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {Patientdatas} from '../patientdatas';
 import {FormDbService} from './firestore/form-db.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -10,7 +11,6 @@ import {FormDbService} from './firestore/form-db.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-
 
 
 //export class FormComponent implements OnInit {
@@ -38,7 +38,10 @@ import {FormDbService} from './firestore/form-db.service';
   get email(): AbstractControl{return this.userForm.get('email'); }
   get dateofbirth() : AbstractControl{return this.userForm.get('dateofbirth'); }
 
-  constructor(private  fromBuilder: FormBuilder, private store: FormDbService) { }
+  displayedColumns: string[] = ['identification', 'firstname'];
+  dataSource = this.users;
+
+  constructor(private  fromBuilder: FormBuilder, private store: FormDbService, private _snackBar: MatSnackBar) { }
 
   
   ngOnInit(): void {
@@ -50,6 +53,12 @@ import {FormDbService} from './firestore/form-db.service';
           ...(e.payload.doc.data() as object)
         } as Patientdatas;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2500,
     });
   }
 
@@ -80,13 +89,15 @@ import {FormDbService} from './firestore/form-db.service';
         docRef => {
           //user.id = number.toString();
           user.id = docRef.id;
-          this.showMessage('info', 'Sucessfully Save');
+          this.openSnackBar('Sucessfully Save', 'Undo');
+          //this.showMessage('info', 'Sucessfully Save');
           console.log(user.id)
           console.log(number)
           }
     )
     .catch(_ =>
-      this.showMessage('error', 'Save Unsuccessful')
+      //this.showMessage('error', 'Save Unsuccessful')
+      this.openSnackBar('Save Unsuccessful', 'Undo')
     );
     this.userForm.reset();
 
@@ -95,10 +106,14 @@ import {FormDbService} from './firestore/form-db.service';
   delete(id: string): void {
     this.store.deleteUser(id)
       .then(_ =>
-        this.showMessage('info', 'Sucessfully Delete')
+        this.openSnackBar('Sucessfully Delete', 'Undo')
+        //this.showMessage('info', 'Sucessfully Delete')
+        
     )
     .catch(_ =>
-      this.showMessage('error', 'Delete Unsuccessful')
+      this.openSnackBar('Delete Unsuccessful', 'Undo')
+      //this.showMessage('error', 'Delete Unsuccessful')
+      
     );
   }
 

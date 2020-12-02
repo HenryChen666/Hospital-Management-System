@@ -5,9 +5,10 @@
 
 <div class="container">
     <h1>Register Patients Form</h1>
+    <!--
     <div class="col-md-8" [ngStyle]="msgStyle" [hidden]="hideMsg">
       {{message}}
-    </div>
+    </div>-->
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <mat-form-field class="example-full-width">
@@ -81,7 +82,8 @@
   <br>
   <div class="container">
   <h1>Table of Registered Patients</h1>
-  <table class="table">
+  <table mat-table class="table">
+    <!--
     <thead>
     <tr>
       <th>ID</th>
@@ -103,6 +105,20 @@
       <td><button mat-raised-button color="warn" class="btn btn-danger" name="delete" (click)="delete(datas.id)">Delete</button></td>
     </tr>
     </tbody>
+    -->
+
+    <ng-container matColumnDef="identification">
+      <th mat-header-cell *matHeaderCellDef> ID. </th>
+      <td mat-cell *ngFor="let datas of users"> {{datas.identification}} </td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell > First Name </th>
+      <td mat-cell *ngFor="let datas of users"> {{datas.firstname}} </td>
+    </ng-container>
+  
+
+    
   
   </table>
   
