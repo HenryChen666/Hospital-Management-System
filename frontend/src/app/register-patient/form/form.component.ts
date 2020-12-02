@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {Patientdatas} from '../patientdatas';
 import {FormDbService} from './firestore/form-db.service';
@@ -13,7 +13,8 @@ import {FormDbService} from './firestore/form-db.service';
 
 
 
-export class FormComponent implements OnInit {
+//export class FormComponent implements OnInit {
+  export class FormComponent  {
   message: string;
   hideMsg = true;
   msgStyle = {
