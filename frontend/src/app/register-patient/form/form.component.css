@@ -55,4 +55,11 @@
   table {
     width: 100%;
   }
+
+  td{
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 12pt;
+    position: relative;
+  }
   
