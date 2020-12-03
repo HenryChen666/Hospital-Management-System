@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
@@ -68,7 +69,8 @@ import {environment} from '../environments/environment';
     MatSnackBarModule,
     MatRadioModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

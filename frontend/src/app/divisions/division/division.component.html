@@ -4,37 +4,22 @@
     <mat-card-subtitle>Unit Id: {{unit.id}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="../../../assets/images/WardsOfHospital.png">
-  <mat-card-content>
-    <h1 class="mat-h1">
-      Short Term Beds Available
-    </h1>
-    <body class="body-1">
-      {{unit.numOfBedsShortTerm}}
-    </body>
-    <h1 class="mat-h1">
-      Long Term Beds Available
-    </h1>
-    <body class="body-1">
-      {{unit.numOfBedsLongTerm}}
-    </body>
-    <h1 class="mat-h1">
-      Number of Patients in Unit
-    </h1>
-    <body class="body-1">
-      {{unit.numOfPatients}}
-    </body>
-    <h1 class="mat-h1">
-      Number of Staff Members in Unit
-    </h1>
-    <body class="body-1">
-      {{unit.numOfStaffMembers}}
-    </body>
-    <h1 class="mat-h1">
-      Max Patient Capacity
-    </h1>
-    <body class="body-1">
-      {{unit.numOfPatients}}/{{unit.maxPatientCapacity}}
-    </body>
-  </mat-card-content>
+  <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="num">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> {{element.num}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
 
