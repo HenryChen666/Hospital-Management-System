@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { DivisionService } from './service/division.service';
-import { Subscription } from 'rxjs';
 import { DivisionComponent } from './division/division.component';
 import { Division } from './model/division';
 import { Unit } from './model/unit';
@@ -16,7 +15,6 @@ export const divisionsRoutes: Routes = [
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
-  private subscription: Subscription;
   selectedDivison: Division = null;
   isDivisionSelected: Boolean = false;
   divisionIdValue: Number;
@@ -26,7 +24,13 @@ export class DivisionsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
-    this.divisions = this.divisionsService.getAllDivisions()
+    this.divisionsService.getAllDivisions().subscribe((res)=>(
+      res.map((division)=>{
+        let tempDivision = division.payload.doc.data() as Division;
+        tempDivision.firestoreId = division.payload.doc.id;
+        this.divisions.push(tempDivision);
+      })
+    ));
   }
 
   handleSelectedDivision(divisionName): void {
