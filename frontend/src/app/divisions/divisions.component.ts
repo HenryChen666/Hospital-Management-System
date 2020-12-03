@@ -27,6 +27,7 @@ export class DivisionsComponent implements OnInit {
     this.divisionsService.getAllDivisions().subscribe((res)=>(
       res.map((division)=>{
         let tempDivision = division.payload.doc.data() as Division;
+        tempDivision.firestoreId = division.payload.doc.id;
         this.divisions.push(tempDivision);
       })
     ));
