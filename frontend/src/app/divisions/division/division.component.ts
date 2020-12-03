@@ -27,8 +27,25 @@ export class DivisionComponent implements OnInit {
   constructor(private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
-    // Formatting table data.
     this.unit = this.divisionsService.getSelectedDivisionUnit();
+    this.formatTableData();
+
+    // Get the updated data for unit then set it as well in divisions service.
+    this.divisionsService.getUnitsForDivision().subscribe((res)=>{
+      const division = res.payload.data() as Division;
+      let units = division.units;
+      for(let unit in units) {
+        if(this.unit.id === units[unit].id) {
+          this.unit = units[unit];
+          this.divisionsService.setSelectedDivisionUnit(units[unit]);
+          this.formatTableData();
+        }
+      }
+    });
+  }
+
+  formatTableData() {
+    this.tableData = [];
     for(let tableNamesIndex in this.tableNames) {
       let tableName = this.tableNames[tableNamesIndex];
       for(let item in this.unit) {
@@ -44,35 +61,33 @@ export class DivisionComponent implements OnInit {
   }
 
   handleButtonControl(name, movement) {
-    console.log(name);
-    console.log(movement);
     switch(name){
       case "Short Term Beds Available":
         if(movement === "up") {
-          this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm-1;
-        } else {
           this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm+1;
+        } else {
+          this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm-1;
         }
       break;
       case "Long Term Beds Available":
         if(movement === "up") {
-          this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm-1;
-        } else {
           this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm+1;
+        } else {
+          this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm-1;
         }
       break;
       case "Number of Patients in Unit":
         if(movement === "up") {
-          this.unit.numOfPatients = this.unit.numOfPatients-1;
-        } else {
           this.unit.numOfPatients = this.unit.numOfPatients+1;
+        } else {
+          this.unit.numOfPatients = this.unit.numOfPatients-1;
         }
       break;
       case "Number of Staff Members in Unit":
         if(movement === "up") {
-          this.unit.numOfStaffMembers = this.unit.numOfStaffMembers-1;
-        } else {
           this.unit.numOfStaffMembers = this.unit.numOfStaffMembers+1;
+        } else {
+          this.unit.numOfStaffMembers = this.unit.numOfStaffMembers-1;
         }
       break;
       case "Max Patient Capacity":
@@ -83,7 +98,7 @@ export class DivisionComponent implements OnInit {
         }
       break;
     }
-    this.divisionsService.setUnitStatus(this.unit)
+    this.divisionsService.setUnitStatus(this.unit);
   }
 
 }

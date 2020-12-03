@@ -23,31 +23,29 @@ export class DivisionService {
     return this.selectedDivision;
   }
 
-  public getSelectedDivisionUnit(): Unit {
-    return this.selectedDivisionUnit
+  public getSelectedDivisionUnit() {
+    return this.selectedDivisionUnit;
   }
 
-  public getUnitsForDivision(divisionName): Unit[] {
-    for(let i=0; i < this.divisions.length; i++) {
-      if(this.divisions[i].category === divisionName) {
-        return this.divisions[i].units;
-      }
-    }
+  public getUnitsForDivision() {
+    return this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).snapshotChanges();
   }
 
+  // Set the selected Division and its Units.
   public setDivision(divisionObject): void {
     this.selectedDivision = divisionObject;
+    this.selectedDivisionUnits = divisionObject.units;
   }
 
+  // Set the selected Division Unit.
   public setSelectedDivisionUnit(unitObject): void {
     this.selectedDivisionUnit = unitObject;
   }
 
+  // Sends the updated unit to firestore.
   public setUnitStatus(unitObject): void {
     this.selectedDivisionUnit = unitObject;
-
-    // Replace the old unit in selectedDivisionUnits to the updated unit that was exposed to
-    // a change in status.
+    // Replace the old unit in selectedDivisionUnits to the updated unit that was exposed to a change in status.
     for(let i=0; i < this.selectedDivisionUnits.length; i++) {
       let unit = this.selectedDivisionUnits[i];
       if(this.selectedDivisionUnit.id === unit.id) {
@@ -56,7 +54,7 @@ export class DivisionService {
     }
 
     // Call firestore to replace entire selectedDivisionUnits with the new one.
-    //this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({})
+    this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivisionUnits }, { merge: true });
   }
 
 }
