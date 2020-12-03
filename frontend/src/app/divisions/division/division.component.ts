@@ -17,7 +17,7 @@ export interface UnitElement {
 export class DivisionComponent implements OnInit {
   private subscription: Subscription;
   unit: Unit;
-  displayedColumns: string[] = ['name', 'num'];
+  displayedColumns: string[] = ['name', 'num', 'button'];
   tableNames: string[] = ['Short Term Beds Available', 'Long Term Beds Available', 'Number of Patients in Unit', 'Number of Staff Members in Unit', 'Max Patient Capacity'];
   unitNames: string[] = ['numOfBedsShortTerm', 'numOfBedsLongTerm', 'numOfPatients', 'numOfStaffMembers', 'maxPatientCapacity'];
   tableData: UnitElement[] = [];
@@ -33,7 +33,7 @@ export class DivisionComponent implements OnInit {
         if(this.unitNames[tableNamesIndex] === item) {
           let itemObj = {
             "name": tableName,
-            "num": this.unit[item]
+            "num": this.unit[item],
           }
           this.tableData.push(itemObj);
         }
