@@ -21,7 +21,10 @@
     <!-- Button Column -->
     <ng-container matColumnDef="button">
       <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element"><button mat-stroked-button color="primary">Up</button><button mat-stroked-button color="primary">Down</button></td>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="primary" (click)="handleButtonControl(element.name, 'up')">Up</button>
+        <button mat-stroked-button color="primary" (click)="handleButtonControl(element.name, 'up')">Down</button>
+      </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -41,4 +41,9 @@ export class DivisionComponent implements OnInit {
     }
   }
 
+  handleButtonControl(name, movement) {
+    console.log(name);
+    console.log(movement);
+  }
+
 }
