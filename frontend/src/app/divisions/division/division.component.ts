@@ -27,8 +27,11 @@ export class DivisionComponent implements OnInit {
   constructor(private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
-    this.unit = this.divisionsService.getSelectedDivisionUnit();
-    this.formatTableData();
+    this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
+      console.log(unit);
+      this.unit = unit;
+      this.formatTableData();
+    })
 
     // Get the updated data for unit then set it as well in divisions service.
     this.divisionsService.getUnitsForDivision().subscribe((res)=>{

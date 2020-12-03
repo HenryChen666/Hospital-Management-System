@@ -3,6 +3,7 @@ import { Division } from '../model/division';
 import { Unit } from '../model/unit';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,14 @@ export class DivisionService {
     return this.selectedDivision;
   }
 
-  public getSelectedDivisionUnit() {
-    return this.selectedDivisionUnit;
+  public getSelectedDivisionUnit(): any {
+    const selectedDivisionUnitObservable = new Observable(observer => {
+      setTimeout(()=> {
+        observer.next(this.selectedDivisionUnit);
+      }, 1000);
+    });
+
+    return selectedDivisionUnitObservable;
   }
 
   public getUnitsForDivision() {
