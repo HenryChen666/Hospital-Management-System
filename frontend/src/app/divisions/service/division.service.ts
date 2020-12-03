@@ -45,12 +45,17 @@ export class DivisionService {
 
   public setUnitStatus(unitObject): void {
     this.selectedDivisionUnit = unitObject;
+
+    // Replace the old unit in selectedDivisionUnits to the updated unit that was exposed to
+    // a change in status.
     for(let i=0; i < this.selectedDivisionUnits.length; i++) {
       let unit = this.selectedDivisionUnits[i];
       if(this.selectedDivisionUnit.id === unit.id) {
         this.selectedDivisionUnits[i] = this.selectedDivisionUnit;
       }
     }
+
+    // Call firestore to replace entire selectedDivisionUnits with the new one.
     //this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({})
   }
 
