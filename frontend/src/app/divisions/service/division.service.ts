@@ -43,4 +43,9 @@ export class DivisionService {
     this.selectedDivisionUnit = unitObject;
   }
 
+  public setUnitStatus(unitObject): void {
+    this.selectedDivisionUnit = unitObject;
+    //this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({})
+  }
+
 }
