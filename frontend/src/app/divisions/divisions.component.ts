@@ -25,6 +25,7 @@ export class DivisionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.divisionsService.getAllDivisions().subscribe((res)=>(
+      this.divisions = [],
       res.map((division)=>{
         let tempDivision = division.payload.doc.data() as Division;
         tempDivision.firestoreId = division.payload.doc.id;
