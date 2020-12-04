@@ -3,7 +3,7 @@ import { Division } from '../model/division';
 import { Unit } from '../model/unit';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DivisionService {
   divisions: Division[] = [];
   selectedDivision: Division;
   selectedDivisionUnits: Unit[] = [];
-  selectedDivisionUnit: Unit;
+  selectedUnitInfo = new BehaviorSubject<Unit>(null);
 
   constructor(private http: HttpClient, private firestore: AngularFirestore) { }
 
@@ -25,13 +25,7 @@ export class DivisionService {
   }
 
   public getSelectedDivisionUnit(): any {
-    const selectedDivisionUnitObservable = new Observable(observer => {
-      setTimeout(()=> {
-        observer.next(this.selectedDivisionUnit);
-      }, 1000);
-    });
-
-    return selectedDivisionUnitObservable;
+    return this.selectedUnitInfo.asObservable();
   }
 
   public getUnitsForDivision() {
@@ -46,22 +40,22 @@ export class DivisionService {
 
   // Set the selected Division Unit.
   public setSelectedDivisionUnit(unitObject): void {
-    this.selectedDivisionUnit = unitObject;
+    this.selectedUnitInfo.next(unitObject);
   }
 
   // Sends the updated unit to firestore.
   public setUnitStatus(unitObject): void {
-    this.selectedDivisionUnit = unitObject;
+    this.selectedUnitInfo.next(unitObject);
+    let selectedUnit = this.selectedUnitInfo.getValue();
     // Replace the old unit in selectedDivisionUnits to the updated unit that was exposed to a change in status.
-    for(let i=0; i < this.selectedDivisionUnits.length; i++) {
-      let unit = this.selectedDivisionUnits[i];
-      if(this.selectedDivisionUnit.id === unit.id) {
-        this.selectedDivisionUnits[i] = this.selectedDivisionUnit;
+      for(let i=0; i < this.selectedDivisionUnits.length; i++) {
+        let tempUnit = this.selectedDivisionUnits[i];
+        if(selectedUnit.id === tempUnit.id) {
+          this.selectedDivisionUnits[i] = selectedUnit;
+          // Call firestore to replace entire selectedDivisionUnits with the new one.
+          this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivisionUnits }, { merge: true });
+        }
       }
-    }
-
-    // Call firestore to replace entire selectedDivisionUnits with the new one.
-    this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivisionUnits }, { merge: true });
   }
 
 }

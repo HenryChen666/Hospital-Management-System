@@ -16,7 +16,15 @@ export interface UnitElement {
 })
 export class DivisionComponent implements OnInit {
   private subscription: Subscription;
-  unit: Unit;
+  unit: Unit = {
+    "id": 0,
+    "name": "loading...",
+    "numOfBedsShortTerm": 0,
+    "numOfBedsLongTerm": 0,
+    "numOfPatients": 0,
+    "numOfStaffMembers": 0,
+    "maxPatientCapacity": 0
+  };
 
   // Table related items.
   displayedColumns: string[] = ['name', 'num', 'button'];
@@ -28,10 +36,9 @@ export class DivisionComponent implements OnInit {
 
   ngOnInit(): void {
     this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
-      console.log(unit);
       this.unit = unit;
       this.formatTableData();
-    })
+    });
 
     // Get the updated data for unit then set it as well in divisions service.
     this.divisionsService.getUnitsForDivision().subscribe((res)=>{
