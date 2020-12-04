@@ -1,12 +1,13 @@
 <div>
-    <h2>Search Patient By Id</h2>
-    <div>
-      <label for="id">Patient Id:</label>
-      <input type="text" #patientQuery id="id" class="form-control" />
-      <button class="btn btn-primary" (click)="submit(patientQuery.value)">
+    <h1>Search Patient By Id</h1>
+    <mat-form-field>
+      <mat-label for="id">Search Patient Id</mat-label>
+      <input matInput type="text" #patientQuery id="id" class="form-control" />
+    </mat-form-field>
+    <br/>
+    <button mat-raised-button color="primary" (click)="submit(patientQuery.value)">
         Search
-      </button>
-    </div>
+    </button>
     <div class="container">
       <router-outlet></router-outlet>
     </div>
