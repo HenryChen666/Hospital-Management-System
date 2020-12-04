@@ -19,10 +19,9 @@ import { PatientComponent } from '../patient.component';
 @Component({
   selector: 'app-prescribe-medication-modal',
   templateUrl: './prescribe-medication-modal.component.html',
-  styleUrls: ['./prescribe-medication-modal.component.css']
+  styleUrls: ['./prescribe-medication-modal.component.css'],
 })
 export class PrescribeMedicationModalComponent implements OnInit {
-
   prescriptionForm: FormGroup;
   selectedPatient: Patient;
   patient: PatientComponent;
@@ -31,9 +30,14 @@ export class PrescribeMedicationModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       id: string;
-      medicine: string;
-      duration: string;
-      frequency: string;
+      drugNumber: string;
+      drugName: string;
+      unitsByDay: string;
+      administrationByDay: string;
+      administractionListings: string;
+      administrationMethod: string;
+      startDate: string;
+      endDate: string;
     },
     private fb: FormBuilder,
     private firestore: AngularFirestore,
@@ -42,9 +46,14 @@ export class PrescribeMedicationModalComponent implements OnInit {
   ) {
     this.prescriptionForm = this.fb.group({
       id: this.data.id,
-      medicine: ['', Validators.required],
-      duration: ['', Validators.required],
-      frequency: ['', Validators.required],
+      drugNumber: ['', Validators.required],
+      drugName: ['', Validators.required],
+      unitsByDay: ['', Validators.required],
+      administrationByDay: ['', Validators.required],
+      administractionListings: ['', Validators.required],
+      administrationMethod: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
     });
   }
   ngOnInit(): void {
@@ -66,13 +75,18 @@ export class PrescribeMedicationModalComponent implements OnInit {
       .doc(id)
       .set({
         id: this.prescriptionForm.value.id,
-        medicine: this.prescriptionForm.value.medicine,
-        duration: this.prescriptionForm.value.duration,
-        frequency: this.prescriptionForm.value.frequency,
+        drugNumber: this.prescriptionForm.value.drugNumber,
+        drugName: this.prescriptionForm.value.drugName,
+        unitsByDay: this.prescriptionForm.value.unitsByDay,
+        administrationByDay: this.prescriptionForm.value.administrationByDay,
+        administractionListings: this.prescriptionForm.value
+          .administractionListings,
+        administrationMethod: this.prescriptionForm.value.administrationMethod,
+        startDate: this.prescriptionForm.value.startDate,
+        endDate: this.prescriptionForm.value.endDate,
       })
       .then(function () {
         console.log('Document successfully updated!');
       });
   }
 }
-
