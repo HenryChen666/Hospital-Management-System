@@ -15,47 +15,64 @@ export const divisionsRoutes: Routes = [
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
-  selectedDivison: Division = null;
+  selectedDivison: Division = {
+    "category": "Please select a division",
+    "firestoreId": null,
+    "id": 0,
+    "units": null
+  };
   isDivisionSelected: Boolean = false;
   divisionIdValue: Number;
   divisions: Division[] = [];
-  selectedUnit: Unit = null;
+
+  // Unit Related.
+  unitIdsArray: number[] = [];
+  selectedUnit: Unit = {
+    "id": 0,
+    "maxPatientCapacity": 0,
+    "name": "null",
+    "numOfBedsLongTerm": 0,
+    "numOfBedsShortTerm": 0,
+    "numOfPatients": 0,
+    "numOfStaffMembers": 0
+  }
 
   constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
     this.divisionsService.getAllDivisions().subscribe((res)=>(
       this.divisions = [],
+      this.unitIdsArray = [],
       res.map((division)=>{
         let tempDivision = division.payload.doc.data() as Division;
+
+        // Push the Division into the components Division Array.
         tempDivision.firestoreId = division.payload.doc.id;
         this.divisions.push(tempDivision);
+
+        // Push it's Units and their Ids in an Array so it can be queried.
+        for(let i=0; i<tempDivision.units.length; i++) {
+          let unit = tempDivision.units[i];
+          this.unitIdsArray.push(unit.id);
+        }
       })
     ));
   }
 
-  handleSelectedDivision(divisionName): void {
+  handleSelectedDivision(divisionId): void {
     // Set the selected division.
     for(let i=0; i<this.divisions.length; i++) {
-      if(this.divisions[i].category === divisionName) {
+      if(this.divisions[i].id === divisionId) {
         this.selectedDivison =  this.divisions[i];
         this.divisionsService.setDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
       }
     }
     // Indicate that a division has been selected.
-    if(this.selectedDivison.category !== '') {
+    if(this.selectedDivison.id !== null) {
       this.isDivisionSelected = true;
     } else {
       this.isDivisionSelected = false;
-    }
-  }
-
-  handleIsSelectedDivision(divisionName): Boolean {
-    if(this.selectedDivison !== null) {
-      return this.selectedDivison.category === divisionName;
-    } else {
-      return false;
     }
   }
 
@@ -68,6 +85,15 @@ export class DivisionsComponent implements OnInit {
   handleIsSelectedUnit(unitObject): Boolean {
     if(this.selectedUnit !== null) {
       return this.selectedUnit.name === unitObject.name;
+    }
+  }
+
+  findDivisionId(value): void {
+    for(let unitId in this.unitIdsArray) {
+      if(this.unitIdsArray[unitId] == value) {
+        let divisionId = value.substring(0,2) + "00";
+        this.handleSelectedDivision(divisionId)
+      }
     }
   }
 

@@ -6,8 +6,8 @@
     <div>
       <mat-chip-list>
         <mat-chip *ngFor="let division of divisions" 
-          (click)="handleSelectedDivision(division.category)" 
-          [selected]="handleIsSelectedDivision(division.category)"
+          (click)="handleSelectedDivision(division.id)" 
+          [selected]="division.id === selectedDivison.id"
         >
           {{division.category}}
         </mat-chip>
@@ -24,7 +24,7 @@
     <div style="margin-top: 15px;">
       <mat-form-field>
         <mat-label>Or Enter Division Id</mat-label>
-        <input matInput type="number" [(ngModel)]="divisionIdValue">
+        <input #divisionIdBox matInput type="number" [(ngModel)]="divisionIdValue" (keyup)="findDivisionId(divisionIdBox.value)">
         <button mat-button *ngIf="divisionIdValue" matSuffix mat-icon-button aria-label="Clear" (click)="divisionIdValue=''">
           <mat-icon>close</mat-icon>
         </button>
@@ -34,7 +34,7 @@
       <h1 mat-h1>
         {{selectedDivison.category}}
       </h1>
-      <div *ngIf="selectedUnit">
+      <div *ngIf="selectedUnit.id !== 0">
         <mat-card style="width: 75%" *ngIf="selectedDivison">
             <app-division></app-division>
         </mat-card>

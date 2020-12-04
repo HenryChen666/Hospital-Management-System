@@ -9,8 +9,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DivisionService {
+  // Division Related.
   divisions: Division[] = [];
   selectedDivision: Division;
+
+  // Unit Related.
   selectedDivisionUnits: Unit[] = [];
   selectedUnitInfo = new BehaviorSubject<Unit>(null);
 
