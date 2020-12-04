@@ -35,16 +35,7 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params.id;
-      /* this.store.getPatientById(id).subscribe(data => {
-        this.patients = data.map(e => {
-          return {
-            id: e.payload.doc.data(),
-            ...(e.payload.doc.data() as object)
-          } as Patient;
-        });
-      });
-      */
-      //second method
+
       var docRef = this.firestore.collection('user').doc(id);
       docRef
         .get()
@@ -58,7 +49,7 @@ export class PatientComponent implements OnInit {
               doc.data().firstName,
               doc.data().lastName,
               doc.data().phoneNumber,
-              1997
+              doc.data().dateOfBirth
             );
 
             console.log('patient', this.selectedPatient);
