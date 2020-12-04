@@ -3,11 +3,11 @@
     <h1>
       Divisions Page
     </h1>
-    <div>
+    <div style="margin-button: 15px">
       <mat-chip-list>
         <mat-chip *ngFor="let division of divisions" 
-          (click)="handleSelectedDivision(division.category)" 
-          [selected]="handleIsSelectedDivision(division.category)"
+          (click)="handleSelectedDivision(division.id)" 
+          [selected]="division.id === selectedDivison.id"
         >
           {{division.category}}
         </mat-chip>
@@ -15,26 +15,32 @@
       <mat-chip-list *ngIf="isDivisionSelected">
         <mat-chip *ngFor="let unit of selectedDivison.units; let i = index"
           (click)="handleSelectedUnit(selectedDivison.units[i])"
-          [selected]="handleIsSelectedUnit(selectedDivison.units[i])"
+          [selected]="selectedDivison.units[i].id === selectedUnit.id"
         >
         {{selectedDivison.units[i].name}}
       </mat-chip>
       </mat-chip-list>
     </div>
-    <div style="margin-top: 15px;">
+    <div className="searchBox" style="margin-top: 15px;">
       <mat-form-field>
         <mat-label>Or Enter Division Id</mat-label>
-        <input matInput type="number" [(ngModel)]="divisionIdValue">
+        <input #divisionIdBox matInput type="text" pattern="\d*" maxlength="4" [(ngModel)]="divisionIdValue" (keyup)="findDivisionId(divisionIdBox.value)">
         <button mat-button *ngIf="divisionIdValue" matSuffix mat-icon-button aria-label="Clear" (click)="divisionIdValue=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error>
+          Please enter only digits.
+        </mat-error>
       </mat-form-field>
+      <mat-error *ngIf="searchError">
+        Invalid Id Entered.
+      </mat-error>
     </div>
     <div *ngIf="selectedDivison">
       <h1 mat-h1>
         {{selectedDivison.category}}
       </h1>
-      <div *ngIf="selectedUnit">
+      <div *ngIf="selectedUnit.name !== 'null'">
         <mat-card style="width: 75%" *ngIf="selectedDivison">
             <app-division></app-division>
         </mat-card>
