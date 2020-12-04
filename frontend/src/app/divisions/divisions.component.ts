@@ -76,6 +76,18 @@ export class DivisionsComponent implements OnInit {
         this.divisionIdValue = this.selectedDivison.id;
         this.isDivisionSelected = true;
         this.searchError = false;
+
+        // Reset the Selected Unit.
+          let resetUnit = {
+            "id": this.divisionIdValue,
+            "maxPatientCapacity": 0,
+            "name": "null",
+            "numOfBedsLongTerm": 0,
+            "numOfBedsShortTerm": 0,
+            "numOfPatients": 0,
+            "numOfStaffMembers": 0
+          }
+        this.handleSelectedUnit(resetUnit);
       }
     }
   }
