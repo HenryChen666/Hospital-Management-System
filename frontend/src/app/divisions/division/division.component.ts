@@ -31,12 +31,21 @@ export class DivisionComponent implements OnInit {
   tableNames: string[] = ['Short Term Beds Available', 'Long Term Beds Available', 'Number of Patients in Unit', 'Number of Staff Members in Unit', 'Max Patient Capacity'];
   unitNames: string[] = ['numOfBedsShortTerm', 'numOfBedsLongTerm', 'numOfPatients', 'numOfStaffMembers', 'maxPatientCapacity'];
   tableData: UnitElement[] = [];
-
+  unitDiagrams: string[] = ['../../../assets/images/SpecialtyWard.png','../../../assets/images/IntensiveCareWard.png','../../../assets/images/NonIntensiveCareWard.png']
+  unitDiagramSelected: string;
   constructor(private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
+    // Get selected division unit.
     this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
       this.unit = unit;
+      if(this.unit.id > 3000) {
+        this.unitDiagramSelected = this.unitDiagrams[0];
+      } else if (this.unit.id < 3000 && this.unit.id > 2000) {
+        this.unitDiagramSelected = this.unitDiagrams[2];
+      } else {
+        this.unitDiagramSelected = this.unitDiagrams[1];
+      }
       this.formatTableData();
     });
 

@@ -3,7 +3,7 @@
     <mat-card-title>Unit: {{unit.name}}</mat-card-title>
     <mat-card-subtitle>Unit Id: {{unit.id}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="../../../assets/images/WardsOfHospital.png">
+  <img mat-card-image src={{unitDiagramSelected}}>
   <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
   
     <!-- Name Column -->
