@@ -15,7 +15,7 @@ import {
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.css']
+  styleUrls: ['./patient.component.css'],
 })
 export class PatientComponent implements OnInit {
   selectedPatient: Patient;
@@ -52,13 +52,14 @@ export class PatientComponent implements OnInit {
         .then((doc) => {
           if (doc.exists) {
             console.log('Document data:', doc.data().id);
-            this.savePatientId(doc.data().id);
+
             this.selectedPatient = new Patient(
               doc.data().id.toString(),
               doc.data().firstName,
               doc.data().lastName,
               doc.data().phoneNumber,
-              1997);
+              1997
+            );
 
             console.log('patient', this.selectedPatient);
           } else {
@@ -110,9 +111,16 @@ export class PatientComponent implements OnInit {
   }
 
   prescribe(): void {
-    console.log('pres');
     //this.router.navigate(['./', value], { relativeTo: this.route });
     let dialogRef = this.dialog.open(PrescribeMedicationModalComponent, {
+      //Drug’s number
+      // • Drug Name
+      // • Units by day
+      // • Number of administration per day
+      // • Listing of each administration time of day with number of units administered
+      //  ©S. Somé
+      // • Method of administration
+      // • Start and finish date
       data: {
         id: this.selectedPatient.id,
         firstName: this.selectedPatient.firstName,
@@ -129,12 +137,4 @@ export class PatientComponent implements OnInit {
   // getPatientById(id:string): Patient{
   //   this.firestore.collection('request').doc('id').get()
   // }
-
-  savePatientId(id: string): void {
-    this.patientId = id;
-  }
-
-  getPatientId(): string {
-    return this.patientId;
-  }
 }

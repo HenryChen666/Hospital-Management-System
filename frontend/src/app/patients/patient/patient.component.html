@@ -1,41 +1,40 @@
 <div id="select-patient-wrapper">
-    <div *ngIf="!selectedPatient">
-      <h2>Sorry can't find the requested patient...</h2>
+  <div *ngIf="!selectedPatient">
+    <h2>Sorry can't find the requested patient...</h2>
+  </div>
+  <div *ngIf="selectedPatient">
+    <h2>Here are details of Patient {{ selectedPatient.id }}</h2>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ selectedPatient.id }}</td>
+            <td>{{ selectedPatient.firstName }}</td>
+            <td>{{ selectedPatient.lastName }}</td>
+            <td>{{ selectedPatient.phoneNumber }}</td>
+            <td>{{ selectedPatient.dateOfBirth }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div *ngIf="selectedPatient">
-      <h2>Here are details of Patient {{ selectedPatient.id }}</h2>
-      <div class="container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Phone Number</th>
-              <th>Date of Birth</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ selectedPatient.id }}</td>
-              <td>{{ selectedPatient.firstName }}</td>
-              <td>{{ selectedPatient.lastName }}</td>
-              <td>{{ selectedPatient.phoneNumber }}</td>
-              <td>{{ selectedPatient.dateOfBirth }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row" id="btn-patients">
-        <button class="btn btn-primary" (click)="update()">Update</button>
-        <button class="btn btn-primary" (click)="discharge()">Discharge</button>
-        <button class="btn btn-primary" (click)="request()">
-          Request Patient Admission
-        </button>
-        <button class="btn btn-primary" (click)="prescribe()">
-          Prescribe Medication
-        </button>
-      </div>
+    <div class="row" id="btn-patients">
+      <button class="btn btn-primary" (click)="update()">Update</button>
+      <button class="btn btn-primary" (click)="discharge()">Discharge</button>
+      <button class="btn btn-primary" (click)="request()">
+        Request Patient Admission
+      </button>
+      <button class="btn btn-primary" (click)="prescribe()">
+        Prescribe Medication
+      </button>
     </div>
   </div>
-  
+</div>
