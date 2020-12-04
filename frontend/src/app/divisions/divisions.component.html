@@ -15,7 +15,7 @@
       <mat-chip-list *ngIf="isDivisionSelected">
         <mat-chip *ngFor="let unit of selectedDivison.units; let i = index"
           (click)="handleSelectedUnit(selectedDivison.units[i])"
-          [selected]="handleIsSelectedUnit(selectedDivison.units[i])"
+          [selected]="selectedDivison.units[i].id === selectedUnit.id"
         >
         {{selectedDivison.units[i].name}}
       </mat-chip>

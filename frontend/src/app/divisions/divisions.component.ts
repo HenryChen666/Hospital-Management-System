@@ -82,12 +82,6 @@ export class DivisionsComponent implements OnInit {
     this.divisionIdValue = this.selectedUnit.id;
   }
 
-  handleIsSelectedUnit(unitObject): Boolean {
-    if(this.selectedUnit !== null) {
-      return this.selectedUnit.name === unitObject.name;
-    }
-  }
-
   findDivisionId(value): void {
     for(let unitId in this.unitIdsArray) {
       if(this.unitIdsArray[unitId] == value) {
