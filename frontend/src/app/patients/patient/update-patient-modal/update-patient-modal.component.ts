@@ -19,10 +19,9 @@ import { PatientComponent } from '../patient.component';
 @Component({
   selector: 'app-update-patient-modal',
   templateUrl: './update-patient-modal.component.html',
-  styleUrls: ['./update-patient-modal.component.css']
+  styleUrls: ['./update-patient-modal.component.css'],
 })
 export class UpdatePatientModalComponent implements OnInit {
-
   //@Input() patientId: any;
 
   updatePatientForm: FormGroup;
@@ -35,8 +34,13 @@ export class UpdatePatientModalComponent implements OnInit {
       id: string;
       firstName: string;
       lastName: string;
+      address: string;
       phoneNumber: string;
       dateOfBirth: string;
+      gender: string;
+      martialStatus: string;
+      externalDoctorId: string;
+      nextOfKin: any;
     },
     private fb: FormBuilder,
     private firestore: AngularFirestore,
@@ -46,6 +50,7 @@ export class UpdatePatientModalComponent implements OnInit {
     this.updatePatientForm = this.fb.group({
       firstName: [data.firstName, Validators.required],
       lastName: [data.lastName, Validators.required],
+      address: [data.address, Validators.required],
       phoneNumber: [
         data.phoneNumber,
         [
@@ -55,6 +60,10 @@ export class UpdatePatientModalComponent implements OnInit {
         ],
       ],
       dateOfBirth: [data.dateOfBirth, Validators.required],
+      gender: [data.gender, Validators.required],
+      martialStatus: [data.martialStatus, Validators.required],
+      externalDoctorId: [data.externalDoctorId, Validators.required],
+      nextOfKin: [data.nextOfKin, Validators.required],
     });
   }
 
@@ -78,20 +87,30 @@ export class UpdatePatientModalComponent implements OnInit {
       .update({
         firstName: this.updatePatientForm.value.firstName,
         lastName: this.updatePatientForm.value.lastName,
+        address: this.updatePatientForm.value.address,
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
+        gender: this.updatePatientForm.value.gender,
+        martialStatus: this.updatePatientForm.value.martialStatus,
+        externalDoctorId: this.updatePatientForm.value.externalDoctorId,
+        nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
       .then(function () {
         console.log('Document successfully updated!');
       });
-      this.firestore
+    this.firestore
       .collection('request')
       .doc(id)
       .update({
         firstName: this.updatePatientForm.value.firstName,
         lastName: this.updatePatientForm.value.lastName,
+        address: this.updatePatientForm.value.address,
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
+        gender: this.updatePatientForm.value.gender,
+        martialStatus: this.updatePatientForm.value.martialStatus,
+        externalDoctorId: this.updatePatientForm.value.externalDoctorId,
+        nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
       .then(function () {
         console.log('Document successfully updated!');

@@ -31,7 +31,14 @@ export class PatientComponent implements OnInit {
   id: string;
   firstName: string;
   lastName: string;
+  address: string;
   phoneNumber: string;
+  dateOfBirth: string;
+  gender: string;
+  martialStatus: string;
+  externalDoctorId: string;
+  nextOfKin: string;
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params.id;
@@ -45,11 +52,16 @@ export class PatientComponent implements OnInit {
             console.log('Document data:', doc.data().id);
 
             this.selectedPatient = new Patient(
-              doc.data().id.toString(),
+              doc.data().id,
               doc.data().firstName,
               doc.data().lastName,
+              doc.data().address,
               doc.data().phoneNumber,
-              doc.data().dateOfBirth
+              doc.data().dateOfBirth,
+              doc.data().gender,
+              doc.data().martialStatus,
+              doc.data().externalDoctorId,
+              doc.data().nextOfKin
             );
 
             console.log('patient', this.selectedPatient);
@@ -70,8 +82,13 @@ export class PatientComponent implements OnInit {
         id: this.selectedPatient.id,
         firstName: this.selectedPatient.firstName,
         lastName: this.selectedPatient.lastName,
+        address: this.selectedPatient.address,
         phoneNumber: this.selectedPatient.phoneNumber,
         dateOfBirth: this.selectedPatient.dateOfBirth,
+        gender: this.selectedPatient.gender,
+        martialStatus: this.selectedPatient.martialStatus,
+        externalDoctorId: this.selectedPatient.externalDoctorId,
+        nextOfKin: this.selectedPatient.nextOfKin,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
