@@ -1,0 +1,68 @@
+<p>update-patient-modal works!</p>
+<h2 mat-dialog-title>Update Patient Information</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="updatePatientModal">
+    <form [formGroup]="updatePatientForm">
+      <div class="form-group">
+        <label>First Name</label>
+        <input
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          placeholder="{{ data.firstName }}"
+        />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          placeholder="{{ data.lastName }}"
+        />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input
+          type="text"
+          formControlName="phoneNumber"
+          class="form-control"
+          placeholder="{{ data.phoneNumber }}"
+        />
+      </div>
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input
+          type="text"
+          formControlName="dateOfBirth"
+          class="form-control"
+          placeholder="{{ data.dateOfBirth }}"
+        />
+      </div>
+<<<<<<< HEAD
+      <div class="form-group"></div>
+=======
+      <div class="form-group">
+        <button
+          class="btn btn-primary"
+          name="register"
+          (click)="onSubmit()"
+        >
+          Update
+        </button>
+      </div>
+>>>>>>> af8535085c809e43300eeab24aa1de9acccd503b
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    class="btn btn-primary"
+    mat-button
+    mat-dialog-close
+    (click)="onSubmit()"
+  >
+    Update
+  </button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Update</button>
+</mat-dialog-actions>

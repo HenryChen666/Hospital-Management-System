@@ -1,1 +1,14 @@
-<p>patients works!</p>
+<div>
+    <h2>Search Patient By Id</h2>
+    <div>
+      <label for="id">Patient Id:</label>
+      <input type="text" #patientQuery id="id" class="form-control" />
+      <button class="btn btn-primary" (click)="submit(patientQuery.value)">
+        Search
+      </button>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
