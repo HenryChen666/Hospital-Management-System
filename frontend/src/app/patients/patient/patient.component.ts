@@ -49,19 +49,20 @@ export class PatientComponent implements OnInit {
         .toPromise()
         .then((doc) => {
           if (doc.exists) {
-            console.log('Document data:', doc.data().id);
+            let patient = doc.data() as Patient;
+            console.log('Document data:',patient.id);
 
             this.selectedPatient = new Patient(
-              doc.data().id,
-              doc.data().firstName,
-              doc.data().lastName,
-              doc.data().address,
-              doc.data().phoneNumber,
-              doc.data().dateOfBirth,
-              doc.data().gender,
-              doc.data().martialStatus,
-              doc.data().externalDoctorId,
-              doc.data().nextOfKin
+              patient.id,
+              patient.firstName,
+              patient.lastName,
+              patient.address,
+              patient.phoneNumber,
+              patient.dateOfBirth,
+              patient.gender,
+              patient.martialStatus,
+              patient.externalDoctorId,
+              patient.nextOfKin
             );
 
             console.log('patient', this.selectedPatient);
