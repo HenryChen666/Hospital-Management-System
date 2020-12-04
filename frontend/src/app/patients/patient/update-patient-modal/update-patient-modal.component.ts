@@ -27,7 +27,6 @@ export class UpdatePatientModalComponent implements OnInit {
   updatePatientForm: FormGroup;
   selectedPatient: Patient;
   patient: PatientComponent;
-  patientId: any;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
