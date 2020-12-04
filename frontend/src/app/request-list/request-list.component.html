@@ -1,1 +1,27 @@
-<p>request-list works!</p>
+<div class="container">
+  <h1>Requested Patients List</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date of Birth</th>
+      <th>Phone Number</th>
+      <th>Email Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let datas of patients">
+      <td>{{datas.id}}</td>
+      <td>{{datas.firstName}}</td>
+      <td>{{datas.lastName}}</td>
+      <td>{{datas.dateOfBirth}}</td>
+      <td>{{datas.phoneNumber}}</td>
+      <td>{{datas.email}}</td>
+    </tr>
+    </tbody>
+  
+  </table>
+  
+  </div>

@@ -1,0 +1,12 @@
+.form-group {
+  width: 100%;
+  padding: 0.5rem 0rem;
+}
+
+.mat-dialog-content {
+  display: flex;
+}
+
+.form-control {
+  width: 100%;
+}

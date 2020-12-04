@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Update Patient Information</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="updatePatientModal">
+    <form [formGroup]="prescriptionForm">
+      <div class="form-group">
+        <label>Drug Number</label>
+        <input type="text" formControlName="drugNumber" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Drug Name</label>
+        <input type="text" formControlName="drugName" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Units by Day</label>
+        <input type="text" formControlName="unitsByDay" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Number of administration per day</label>
+        <input
+          type="text"
+          formControlName="administrationByDay"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label
+          >Listing of each administration time of day with number of units
+          administered</label
+        >
+        <input
+          type="text"
+          formControlName="administractionListings"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label>Method of administration</label>
+        <input
+          type="text"
+          formControlName="administrationMethod"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label>Start Date</label>
+        <input type="text" formControlName="startDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>End Date</label>
+        <input type="text" formControlName="endDate" class="form-control" />
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">
+    Prescribe
+  </button>
+</mat-dialog-actions>
