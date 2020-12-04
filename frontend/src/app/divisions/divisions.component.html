@@ -3,7 +3,7 @@
     <h1>
       Divisions Page
     </h1>
-    <div>
+    <div style="margin-button: 15px">
       <mat-chip-list>
         <mat-chip *ngFor="let division of divisions" 
           (click)="handleSelectedDivision(division.id)" 
@@ -21,14 +21,20 @@
       </mat-chip>
       </mat-chip-list>
     </div>
-    <div style="margin-top: 15px;">
+    <div className="searchBox" style="margin-top: 15px;">
       <mat-form-field>
         <mat-label>Or Enter Division Id</mat-label>
-        <input #divisionIdBox matInput type="number" [(ngModel)]="divisionIdValue" (keyup)="findDivisionId(divisionIdBox.value)">
+        <input #divisionIdBox matInput type="text" pattern="\d*" maxlength="4" [(ngModel)]="divisionIdValue" (keyup)="findDivisionId(divisionIdBox.value)">
         <button mat-button *ngIf="divisionIdValue" matSuffix mat-icon-button aria-label="Clear" (click)="divisionIdValue=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error>
+          Please enter only digits.
+        </mat-error>
       </mat-form-field>
+      <mat-error *ngIf="searchError">
+        Invalid Id Entered.
+      </mat-error>
     </div>
     <div *ngIf="selectedDivison">
       <h1 mat-h1>

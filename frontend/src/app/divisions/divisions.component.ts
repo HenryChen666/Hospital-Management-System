@@ -4,6 +4,7 @@ import { DivisionService } from './service/division.service';
 import { DivisionComponent } from './division/division.component';
 import { Division } from './model/division';
 import { Unit } from './model/unit';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms'
 
 export const divisionsRoutes: Routes = [
   {path: ':id', component: DivisionComponent}
@@ -15,6 +16,10 @@ export const divisionsRoutes: Routes = [
   styleUrls: ['./divisions.component.css']
 })
 export class DivisionsComponent implements OnInit {
+  searchForm: FormGroup;
+  searchError: Boolean = false;
+
+  // Division Related.
   selectedDivison: Division = {
     "category": "Please select a division",
     "firestoreId": null,
@@ -41,6 +46,7 @@ export class DivisionsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
+    // Get Divisions from Firestore.
     this.divisionsService.getAllDivisions().subscribe((res)=>(
       this.divisions = [],
       this.unitIdsArray = [],
@@ -69,6 +75,7 @@ export class DivisionsComponent implements OnInit {
         this.divisionsService.setDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
         this.isDivisionSelected = true;
+        this.searchError = false;
       }
     }
   }
@@ -77,13 +84,16 @@ export class DivisionsComponent implements OnInit {
     this.selectedUnit = unitObject;
     this.divisionsService.setSelectedDivisionUnit(unitObject);
     this.divisionIdValue = this.selectedUnit.id;
+    this.searchError = false;
   }
 
   findDivisionId(value): void {
+    let isUnitOrDivisionFound = false;
     // First check if value inputed is in divisionsIdArray.
     for(let divisionId in this.divisionIdsArray) {
       if(this.divisionIdsArray[divisionId] == value) {
-        this.handleSelectedDivision(this.divisionIdsArray[divisionId])
+        this.handleSelectedDivision(this.divisionIdsArray[divisionId]);
+        isUnitOrDivisionFound = true;
       }
     }
     // If not in divisionsIdArray, then check unitsIdsArray.
@@ -96,10 +106,24 @@ export class DivisionsComponent implements OnInit {
         for(let unit in this.selectedDivison.units) {
           if(this.selectedDivison.units[unit].id == value) {
             this.handleSelectedUnit(this.selectedDivison.units[unit]);
+            isUnitOrDivisionFound = true;
           }
         }
       }
     }
+    if(!isUnitOrDivisionFound) {
+      this.searchError = true;
+    } else {
+      this.searchError = false;
+    }
+  }
+
+  validateSearch(isSearchError: Boolean): ValidatorFn {
+    console.log(isSearchError);
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const notValidId = isSearchError;
+      return notValidId ? {notValidId: {value: isSearchError}} : null;
+    };
   }
 
   submit(value: string): void {

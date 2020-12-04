@@ -1,0 +1,4 @@
+.searchBox {
+  display:flex;
+  flex-direction: row;
+}
