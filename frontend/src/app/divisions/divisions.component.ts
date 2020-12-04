@@ -24,6 +24,7 @@ export class DivisionsComponent implements OnInit {
   isDivisionSelected: Boolean = false;
   divisionIdValue: Number;
   divisions: Division[] = [];
+  divisionIdsArray: number[] = [];
 
   // Unit Related.
   unitIdsArray: number[] = [];
@@ -49,6 +50,7 @@ export class DivisionsComponent implements OnInit {
         // Push the Division into the components Division Array.
         tempDivision.firestoreId = division.payload.doc.id;
         this.divisions.push(tempDivision);
+        this.divisionIdsArray.push(tempDivision.id);
 
         // Push it's Units and their Ids in an Array so it can be queried.
         for(let i=0; i<tempDivision.units.length; i++) {
@@ -62,17 +64,12 @@ export class DivisionsComponent implements OnInit {
   handleSelectedDivision(divisionId): void {
     // Set the selected division.
     for(let i=0; i<this.divisions.length; i++) {
-      if(this.divisions[i].id === divisionId) {
+      if(this.divisions[i].id == divisionId) {
         this.selectedDivison =  this.divisions[i];
         this.divisionsService.setDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
+        this.isDivisionSelected = true;
       }
-    }
-    // Indicate that a division has been selected.
-    if(this.selectedDivison.id !== null) {
-      this.isDivisionSelected = true;
-    } else {
-      this.isDivisionSelected = false;
     }
   }
 
@@ -83,10 +80,24 @@ export class DivisionsComponent implements OnInit {
   }
 
   findDivisionId(value): void {
+    // First check if value inputed is in divisionsIdArray.
+    for(let divisionId in this.divisionIdsArray) {
+      if(this.divisionIdsArray[divisionId] == value) {
+        this.handleSelectedDivision(this.divisionIdsArray[divisionId])
+      }
+    }
+    // If not in divisionsIdArray, then check unitsIdsArray.
     for(let unitId in this.unitIdsArray) {
       if(this.unitIdsArray[unitId] == value) {
+        // Set the selected Division.
         let divisionId = value.substring(0,2) + "00";
-        this.handleSelectedDivision(divisionId)
+        this.handleSelectedDivision(divisionId);
+        // Set the selected Division Unit.
+        for(let unit in this.selectedDivison.units) {
+          if(this.selectedDivison.units[unit].id == value) {
+            this.handleSelectedUnit(this.selectedDivison.units[unit]);
+          }
+        }
       }
     }
   }
