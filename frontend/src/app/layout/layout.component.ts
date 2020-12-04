@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../security/authentication.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,14 +9,40 @@ import {Router} from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private router: Router) { }
-  links = ['home', 'patients', 'requestlist','registerpatient','contact','divisions','profile'];
+  constructor(private router: Router, private loginService: AuthenticationService) { }
+  links = [];
   activeLink = this.router.url.split("/")[1];
 
   ngOnInit(): void {
     if(this.router.url === "/"){
       this.router.navigate(["/home"])
     }
+    //this.links = ['home', 'patients', 'requestlist','registerpatient'];
+    if(this.loginService.getRole() == "ROLE_NURSE"){
+      this.links = ['patients', 'requestlist','registerpatient','divisions','profile'];
+    }
+    else if(this.loginService.getRole() == "ROLE_DOCTOR"){
+      this.links = ['patients', 'registerpatient','profile'];
+    }
+    else if(this.loginService.getRole() == "ROLE_MD"){
+      this.links = ['patients', 'registerpatient','profile'];
+    }
+    else if(this.loginService.getRole() == "ROLE_PO"){
+      this.links = ['patients', 'profile'];
+    }
+    else{
+      this.links = ['patients', 'requestlist','registerpatient','divisions','profile'];
+    }
+  }
+
+  //get user data
+  get loggedUser(): string {
+    return this.loginService.getUser();
+  }
+
+  //get user role
+  get loggedRole(): string {
+    return this.loginService.getRole();
   }
 
   route(link){
