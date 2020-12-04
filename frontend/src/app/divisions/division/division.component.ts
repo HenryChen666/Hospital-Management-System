@@ -111,9 +111,9 @@ export class DivisionComponent implements OnInit {
       break;
       case "Max Patient Capacity":
         if(movement === "up") {
-          this.unit.maxPatientCapacity = this.unit.maxPatientCapacity-1;
-        } else {
           this.unit.maxPatientCapacity = this.unit.maxPatientCapacity+1;
+        } else {
+          this.unit.maxPatientCapacity = this.unit.maxPatientCapacity-1;
         }
       break;
     }
