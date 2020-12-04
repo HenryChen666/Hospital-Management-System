@@ -11,6 +11,7 @@ import {
   DocumentChangeAction,
   DocumentReference,
 } from '@angular/fire/firestore';
+import { PatientAdmissionRequestDialogComponent } from './patient-admission-request-dialog/patient-admission-request-dialog.component';
 
 @Component({
   selector: 'app-patient',
@@ -110,7 +111,17 @@ export class PatientComponent implements OnInit {
         console.error('Error discharging patient', error);
       });
   }
+
   request() {
+    const dialogRef = this.dialog.open(PatientAdmissionRequestDialogComponent, {
+      width: '75%',
+      data: {selectedPatient: this.selectedPatient}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed.');
+    });
+
     this.firestore.collection('request').doc(this.selectedPatient.id).set({
       id: this.selectedPatient.id,
       firstName: this.selectedPatient.firstName,

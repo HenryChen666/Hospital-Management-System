@@ -37,6 +37,7 @@ import { UpdatePatientModalComponent } from './patients/patient/update-patient-m
 
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { PatientAdmissionRequestDialogComponent } from './patients/patient/patient-admission-request-dialog/patient-admission-request-dialog.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {environment} from '../environments/environment';
     DivisionComponent,
     PatientComponent,
     PrescribeMedicationModalComponent,
-    UpdatePatientModalComponent
+    UpdatePatientModalComponent,
+    PatientAdmissionRequestDialogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -77,7 +79,8 @@ import {environment} from '../environments/environment';
     MatRadioModule,
     MatChipsModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
