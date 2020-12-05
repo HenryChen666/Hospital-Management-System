@@ -15,6 +15,7 @@ import { PatientAdmissionRequestDialogComponent } from './patient-admission-requ
 import { PatientAdmissionRequestDialogTwoComponent } from './patient-admission-request-dialog-two/patient-admission-request-dialog-two.component';
 import { Division } from 'src/app/divisions/model/division';
 import { DivisionService } from 'src/app/divisions/service/division.service';
+import { Unit } from 'src/app/divisions/model/unit';
 
 // Dialog Request Patient Admission Related.
 export interface DialogData {
@@ -24,6 +25,12 @@ export interface DialogData {
   rationale: string,
   divisions: Division[],
   divisionSelected: Division
+}
+export interface DialogDataTwo {
+  selectedPatient: Patient
+  selectedDivisionRequest: Division,
+  selectedUnit: Unit,
+  selectedDoctor: string
 }
 
 
@@ -167,9 +174,16 @@ export class PatientComponent implements OnInit {
       // Set data.
       this.PatientsService.setRationaleRequest(result.rationale);
       this.PatientsService.setDivisionsRequest(result.divisionSelected);
+      this.PatientsService.setPriorityRequest(result.prioritySelected);
       if(result.rationale !== "") {
         const dialogRef2 = this.dialog.open(PatientAdmissionRequestDialogTwoComponent, {
-
+          width: '75%',
+          data: {
+            selectedDivisionRequest: result.divisionSelected,
+            selectedUnit: this.PatientsService.getUnitSelectedRequest(),
+            selectedDoctor: this.PatientsService.getDoctorSelectedRequest(),
+            selectedPatient: this.selectedPatient
+          }
         })
       }
     });

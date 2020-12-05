@@ -1,1 +1,26 @@
-<p>patient-admission-request-dialog-two works!</p>
+<h1 mat-dialog-title>Request Admission Part 2/2</h1>
+<div mat-dialog-content>
+  <p>Please enter required fields for the patient request</p>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Select Unit</mat-label>
+      <mat-select [(ngModel)]="data.selectedUnit" name="unit" required>
+        <mat-option *ngFor="let unit of data.selectedDivisionRequest.units" [value]="unit">
+          {{unit.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Select Doctor</mat-label>
+      <mat-select [(ngModel)]="data.selectedDoctor" name="doctor" required>
+        <mat-option *ngFor="let doctor of data.selectedDivisionRequest" [value]="doctor">
+          {{doctor}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Request</button>
+</div>

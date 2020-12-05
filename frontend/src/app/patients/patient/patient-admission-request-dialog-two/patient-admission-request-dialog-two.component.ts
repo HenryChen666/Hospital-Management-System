@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogDataTwo } from '../patient.component';
 
 @Component({
   selector: 'app-patient-admission-request-dialog-two',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientAdmissionRequestDialogTwoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<PatientAdmissionRequestDialogTwoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataTwo) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
   }
