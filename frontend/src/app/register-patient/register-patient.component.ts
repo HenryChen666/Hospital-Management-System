@@ -4,6 +4,8 @@ import {AngularFirestore, DocumentChangeAction, DocumentReference} from '@angula
 import { Router } from '@angular/router';
 import { identifierName } from '@angular/compiler';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-register-patient',
   templateUrl: './register-patient.component.html',
@@ -14,7 +16,7 @@ export class RegisterPatientComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private route: Router) { 
+  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private route: Router, private _snackBar: MatSnackBar) { 
   
   }
 
@@ -43,6 +45,13 @@ export class RegisterPatientComponent implements OnInit {
   get maritalStatus(){return this.registerForm.get('maritalStatus'); }
   get externalDoctor(){return this.registerForm.get('externalDoctor'); }
   get nextOfKin(){return this.registerForm.get('nextOfKin'); }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2500,
+    });
+
+  }
 
   register() {
       this.submitted = true;
@@ -74,6 +83,11 @@ export class RegisterPatientComponent implements OnInit {
         externalDoctor: externalDoctor,
         nextOfKin: nextOfKin      
       })
+      
+      this.registerForm.reset()
+
+      this.openSnackBar('Sucessfully Save', 'Undo')
+
   }
 }
 
