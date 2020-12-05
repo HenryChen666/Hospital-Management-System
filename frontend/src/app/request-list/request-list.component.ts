@@ -27,4 +27,8 @@ export class RequestListComponent implements OnInit {
     });
   }
 
+  Accept(id: string){
+    //
+  }
+
 }
