@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Request Admission Part 3/3</h1>
+<div mat-dialog-content>
+  <p>Unit - {{data.selectedUnit.name}} </p>
+  <p>Here is a list of available {{data.selectedBedType}} Beds</p>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Bed Number</mat-label>
+      <mat-select [(ngModel)]="data.selectedBedNum" name="bedNum" required>
+        <mat-option *ngFor="let bedIndex of data.numOfBeds" [value]="data.numOfBeds[bedIndex]">
+          {{data.numOfBeds[bedIndex]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+</div>

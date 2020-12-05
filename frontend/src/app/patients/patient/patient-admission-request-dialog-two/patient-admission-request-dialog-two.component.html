@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Request Admission Part 2/2</h1>
+<h1 mat-dialog-title>Request Admission Part 2/3</h1>
 <div mat-dialog-content>
   <p>Please enter required fields for the patient request</p>
     <mat-form-field appearance="fill" class="formField">
@@ -20,7 +20,20 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <div>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Long term or Short term bed?</mat-label>
+      <mat-select [(ngModel)]="data.bedTypeSelected" name="bed" required>
+        <mat-option value="Long Term">
+          Long Term Bed
+        </mat-option>
+        <mat-option value="Short Term">
+          Short Term Bed
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Request</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Continue</button>
 </div>

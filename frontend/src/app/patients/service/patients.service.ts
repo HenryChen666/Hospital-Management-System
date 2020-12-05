@@ -30,6 +30,8 @@ export class PatientsService {
   priorityRequest: string;
   unitSelectedRequest: Unit;
   doctorSelectedRequest: Object;
+  bedTypeSelected: string = '';
+  bedNumberSelected: string = '';
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -46,7 +48,7 @@ export class PatientsService {
     this.selectedPatient = patient;
   } 
 
-  // Dialog 1/2 Related Requests for Requesting Patient Admission
+  // Dialog 1/3 Related Requests for Requesting Patient Admission
   public getUnitSelectedRequest(): Unit {
     return this.unitSelectedRequest;
   }
@@ -67,7 +69,7 @@ export class PatientsService {
     this.priorityRequest = priority;
   }
 
-  // Dialog 2/2 Related Requests for Requesting Patient Admission
+  // Dialog 2/3 Related Requests for Requesting Patient Admission
   public setDoctorRequest(doctor: Object): void {
     this.doctorSelectedRequest = doctor;
   }
@@ -76,6 +78,24 @@ export class PatientsService {
     this.unitSelectedRequest = unit;
   }
 
+  // Dialog 3/3
+  public getBedTypeSelected(): string {
+    return this.bedTypeSelected;
+  }
+
+  public getBedNumberSelected(): string {
+    return this.bedNumberSelected;
+  }
+
+  public setBedTypeSelected(bedType: string): void {
+    this.bedTypeSelected = bedType;
+  }
+
+  public setBedNumberSelected(bedNum: string): void {
+    this.bedNumberSelected = bedNum;
+  }
+
+  // Send Request Patient Admission to Firebase.
   public sendPatientAdmissionRequest(): void {
     for(let prop in this.selectedPatient){
       if(this.selectedPatient[prop] === undefined) {
@@ -89,15 +109,19 @@ export class PatientsService {
       unit: this.unitSelectedRequest,
       doctor: this.doctorSelectedRequest,
       division: this.divisionsRequest,
-      
+      bedTypeSelected: this.bedTypeSelected,
+      bedNumberSelected: this.bedNumberSelected,
     }
     this.firestore.collection("request").doc(this.selectedPatient.id.toString()).set(Object.assign({}, requestObject))
     .then((res)=> {
+      // Reset the state.
       this.rationaleRequest = "";
       this.divisionsRequest = null;
       this.priorityRequest = ""
       this.unitSelectedRequest = null;
       this.doctorSelectedRequest = null;
+      this.bedTypeSelected = '';
+      this.bedNumberSelected = '';
     });
   }
 }
