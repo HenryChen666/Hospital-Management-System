@@ -25,7 +25,8 @@ export class PatientComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: RegisterDbService
   ) {}
 
   id: string;
