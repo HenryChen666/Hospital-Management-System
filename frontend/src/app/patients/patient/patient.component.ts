@@ -147,7 +147,7 @@ export class PatientComponent implements OnInit {
   discharge() {
     this.firestore
       .collection('request')
-      .doc(this.selectedPatient.id)
+      .doc(this.selectedPatient.id.toString())
       .delete()
       .then(function () {
         console.log('This patient has been discharged!');
