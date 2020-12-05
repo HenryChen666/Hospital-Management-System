@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Patient Request - {{data.requestData.patientName}}</h1>
+<div mat-dialog-content>
+  <mat-card>Requested Unit: {{data.requestData.requestedUnit}}</mat-card>
+  <mat-card>Requested Doctor: {{data.requestData.requestedDoctor}}</mat-card>
+  <mat-card>Priority Rating: {{data.requestData.priority}}</mat-card>
+  <mat-card>Rationale: {{data.requestData.rationale}}</mat-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>
