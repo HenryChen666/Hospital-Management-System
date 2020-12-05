@@ -34,6 +34,14 @@ export class AuthenticationService {
     return this.tokenService.getRole();
   }
 
+  getFirstname(): string {
+    return this.tokenService.getFirstname();
+  }
+
+  getLastname(): string {
+    return this.tokenService.getLastname();
+  }
+
   isLoggedIn(): boolean {
     return this.getUser() !== null;
   }

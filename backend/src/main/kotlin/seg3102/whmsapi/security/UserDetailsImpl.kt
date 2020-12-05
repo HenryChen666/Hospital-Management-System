@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import seg3102.whmsapi.security.credentials.User
 
 class UserDetailsImpl(val id: Long, private val username: String,
+                      val firstname: String, val lastname: String,
                       @field: JsonIgnore private val password: String,
                       private val authorities: Collection<GrantedAuthority>) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> {
@@ -44,6 +45,8 @@ fun build(user: User): UserDetailsImpl {
     return UserDetailsImpl(
             user.id,
             user.username,
+            user.firstname,
+            user.lastname,
             user.password,
             authorities
     )

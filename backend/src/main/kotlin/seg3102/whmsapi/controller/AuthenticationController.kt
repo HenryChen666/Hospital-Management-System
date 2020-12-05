@@ -34,7 +34,7 @@ class AuthenticationController(val authenticationManager: AuthenticationManager,
         val jwt = jwtUtils.generateJwtToken(authentication)
         val userDetails = authentication.principal as UserDetailsImpl
         val role = userDetails.authorities.elementAtOrNull(0)
-        return ResponseEntity.ok<Any>(AuthResponse(jwt, userDetails.id, userDetails.username, role!!.authority))
+        return ResponseEntity.ok<Any>(AuthResponse(jwt, userDetails.id, userDetails.username, userDetails.firstname, userDetails.lastname, role!!.authority))
     }
 
     @PostMapping("/register")
@@ -54,7 +54,7 @@ class AuthenticationController(val authenticationManager: AuthenticationManager,
     }
 
     @GetMapping("/getDoctors")
-    fun getUser(): ResponseEntity<*>{
+    fun getDoctors(): ResponseEntity<*>{
         val users = userRepository.findUserByRole(ERole.ROLE_DOCTOR)
         return ResponseEntity(users, HttpStatus.OK)
     }
