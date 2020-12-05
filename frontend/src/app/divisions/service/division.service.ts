@@ -43,6 +43,12 @@ export class DivisionService {
 
   // Set the selected Division Unit.
   public setSelectedDivisionUnit(unitObject): void {
+    // Check status of Unit.
+    if(unitObject.numOfBedsLongTerm > 0 || unitObject.numOfBedsShortTerm > 0) {
+      unitObject.status = "Incomplete"
+    } else {
+      unitObject.status = "Complete"
+    }
     this.selectedUnitInfo.next(unitObject);
   }
 
