@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { Patient } from '../model/patient';
-//import { PatientsService } from '../service/patients.service';
+import { PatientsService } from '../service/patients.service';
 import { RegisterDbService } from '../firestore/register-db.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePatientModalComponent } from '../patient/update-patient-modal/update-patient-modal.component';
@@ -11,6 +11,29 @@ import {
   DocumentChangeAction,
   DocumentReference,
 } from '@angular/fire/firestore';
+import { PatientAdmissionRequestDialogComponent } from './patient-admission-request-dialog/patient-admission-request-dialog.component';
+import { PatientAdmissionRequestDialogTwoComponent } from './patient-admission-request-dialog-two/patient-admission-request-dialog-two.component';
+import { Division } from 'src/app/divisions/model/division';
+import { DivisionService } from 'src/app/divisions/service/division.service';
+import { Unit } from 'src/app/divisions/model/unit';
+
+// Dialog Request Patient Admission Related.
+export interface DialogData {
+  selectedPatient: Patient
+  priorityArray: string[],
+  prioritySelected: string,
+  rationale: string,
+  divisions: Division[],
+  divisionSelected: Division
+}
+export interface DialogDataTwo {
+  selectedPatient: Patient,
+  doctorsArray: Object[],
+  selectedDivisionRequest: Division,
+  selectedUnit: Unit,
+  selectedDoctor: string
+}
+
 
 @Component({
   selector: 'app-patient',
@@ -26,7 +49,9 @@ export class PatientComponent implements OnInit {
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
     public dialog: MatDialog,
-    private store: RegisterDbService
+    private store: RegisterDbService,
+    private divisionService: DivisionService,
+    private PatientsService: PatientsService
   ) {}
 
   id: string;
@@ -39,6 +64,13 @@ export class PatientComponent implements OnInit {
   martialStatus: string;
   externalDoctorId: string;
   nextOfKin: string;
+
+  // Related to the Request Admission Dialog
+  priorityArray: string[] = ['0','1','2','3','4','5','6','7','8','9','10'];
+  rationale: string = '';
+  prioritySelected: string = '';
+  divisions: Division[] = [];
+  divisionSelected: Division;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -63,10 +95,12 @@ export class PatientComponent implements OnInit {
               patient.gender,
               patient.martialStatus,
               patient.externalDoctorId,
-              patient.nextOfKin
+              patient.nextOfKin,
+              null // DivisionId Occupied not set.  
             );
 
-            console.log('patient', this.selectedPatient);
+            this.PatientsService.setSelectedPatient(this.selectedPatient);
+            //console.log('patient', this.selectedPatient);
           } else {
             // doc.data() will be undefined in this case
             console.log('No such document!');
@@ -76,6 +110,18 @@ export class PatientComponent implements OnInit {
           console.log('Error getting document:', error);
         });
     });
+
+    // Get the Divisions from Firestore using the Divisions Service.
+    this.divisionService.getAllDivisions().subscribe((res) => (
+      this.divisions = [],
+      res.map((divisionRes) => {
+        let tempDivision = divisionRes.payload.doc.data() as Division
+
+        // Push the Division into the components Division Array.
+        tempDivision.firestoreId = divisionRes.payload.doc.id;
+        this.divisions.push(tempDivision);
+      })
+    ));
   }
 
   update(): void {
@@ -110,14 +156,58 @@ export class PatientComponent implements OnInit {
         console.error('Error discharging patient', error);
       });
   }
+
   request() {
-    this.firestore.collection('request').doc(this.selectedPatient.id).set({
+    const dialogRef = this.dialog.open(PatientAdmissionRequestDialogComponent, {
+      width: '75%',
+      data: {
+        selectedPatient: this.selectedPatient,
+        priorityArray: this.priorityArray,
+        prioritySelected: this.prioritySelected,
+        rationale: this.rationale,
+        divisions: [this.divisions[0],this.divisions[1],this.divisions[2]],
+        divisionSelected: this.divisionSelected
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Set data.
+      this.PatientsService.setRationaleRequest(result.rationale);
+      this.PatientsService.setDivisionsRequest(result.divisionSelected);
+      this.PatientsService.setPriorityRequest(result.prioritySelected);
+
+      // Open Second Dialog.
+      if(result.rationale !== "") {
+        const dialogRef2 = this.dialog.open(PatientAdmissionRequestDialogTwoComponent, {
+          width: '75%',
+          data: {
+            selectedDivisionRequest: result.divisionSelected,
+            doctorsArray: this.PatientsService.getAllDoctors(),
+            selectedUnit: this.PatientsService.getUnitSelectedRequest(),
+            selectedDoctor: this.PatientsService.getDoctorSelectedRequest(),
+            selectedPatient: this.selectedPatient
+          }
+        });
+
+        dialogRef2.afterClosed().subscribe(result => { 
+          // Set data.
+          this.PatientsService.setDoctorRequest(result.selectedDoctor);
+          this.PatientsService.setUnitSelectedRequest(result.selectedUnit);
+
+          // Send to request list.
+          this.PatientsService.sendPatientAdmissionRequest();
+        })
+
+      }
+    });
+
+    /*this.firestore.collection('request').doc(this.selectedPatient.id).set({
       id: this.selectedPatient.id,
       firstName: this.selectedPatient.firstName,
       lastName: this.selectedPatient.lastName,
       phoneNumber: this.selectedPatient.phoneNumber,
       dateOfBirth: this.selectedPatient.dateOfBirth,
-    });
+    });*/
   }
 
   prescribe(): void {
