@@ -6,6 +6,7 @@ export class Division {
     public firestoreId: string,
     public chargeNurse: string,
     public telephoneExt: string,
+    public bipperExt: string,
     public totalBeds: string,
     public status: string,
     public location: string,
