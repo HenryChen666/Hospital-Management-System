@@ -15,3 +15,13 @@ export class Patient {
     public divisionId: Division
   ) {}
 }
+
+
+export class Doctor {
+  constructor(
+    public id: number,
+    public username: string,
+    public firstname: string,
+    public lastname: string
+  ){}
+}

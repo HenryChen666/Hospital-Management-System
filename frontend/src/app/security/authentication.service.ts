@@ -51,4 +51,8 @@ export class AuthenticationService {
       role
     });
   }
+
+  getDoctor(){
+    return this.http.get(Url + 'getDoctors');
+  }
 }
