@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Division } from 'src/app/divisions/model/division';
 import { Unit } from 'src/app/divisions/model/unit';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 import {Patient} from '../model/patient';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PatientsService {
+  selectedPatient: Patient;
   doctorsArray: Object[] = [
     {
       "fName": "Frank",
@@ -29,7 +31,7 @@ export class PatientsService {
   unitSelectedRequest: Unit;
   doctorSelectedRequest: Object;
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   /*public getPatient(id: string): Patient {
     // tslint:disable-next-line:radix
@@ -39,6 +41,10 @@ export class PatientsService {
   public getAllDoctors(): Object[] {
     return this.doctorsArray;
   }
+
+  public setSelectedPatient(patient: Patient): void {
+    this.selectedPatient = patient;
+  } 
 
   // Dialog 1/2 Related Requests for Requesting Patient Admission
   public getUnitSelectedRequest(): Unit {
@@ -55,7 +61,6 @@ export class PatientsService {
 
   public setDivisionsRequest(division: Division): void {
     this.divisionsRequest = division;
-    console.log(this.divisionsRequest);
   }
 
   public setPriorityRequest(priority: string): void {
@@ -69,5 +74,28 @@ export class PatientsService {
 
   public setUnitSelectedRequest(unit: Unit): void {
     this.unitSelectedRequest = unit;
+  }
+
+  public sendPatientAdmissionRequest(): void {
+    for(let prop in this.selectedPatient){
+      if(this.selectedPatient[prop] === undefined) {
+        this.selectedPatient[prop] = ""
+      }
+    }
+    let requestObject = {
+      patient: Object.assign({}, this.selectedPatient),
+      rationale: this.rationaleRequest,
+      priority: this.priorityRequest,
+      unit: this.unitSelectedRequest,
+      doctor: this.doctorSelectedRequest
+    }
+    this.firestore.collection("request").doc(this.selectedPatient.id.toString()).set(Object.assign({}, requestObject))
+    .then((res)=> {
+      this.rationaleRequest = "";
+      this.divisionsRequest = null;
+      this.priorityRequest = ""
+      this.unitSelectedRequest = null;
+      this.doctorSelectedRequest = null;
+    });
   }
 }

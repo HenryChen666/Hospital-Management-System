@@ -99,7 +99,8 @@ export class PatientComponent implements OnInit {
               null // DivisionId Occupied not set.  
             );
 
-            console.log('patient', this.selectedPatient);
+            this.PatientsService.setSelectedPatient(this.selectedPatient);
+            //console.log('patient', this.selectedPatient);
           } else {
             // doc.data() will be undefined in this case
             console.log('No such document!');
@@ -192,6 +193,9 @@ export class PatientComponent implements OnInit {
           // Set data.
           this.PatientsService.setDoctorRequest(result.selectedDoctor);
           this.PatientsService.setUnitSelectedRequest(result.selectedUnit);
+
+          // Send to request list.
+          this.PatientsService.sendPatientAdmissionRequest();
         })
 
       }
