@@ -26,8 +26,4 @@ export class PrescriptionListModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void{
-    console.log(`OnSubmit Test: ${this.data.drugName}`)
-  }
-
 }                         
