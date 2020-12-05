@@ -52,7 +52,7 @@ export class RegisterPatientComponent implements OnInit {
     });
 
   }
-
+  
   register() {
       this.submitted = true;
 
