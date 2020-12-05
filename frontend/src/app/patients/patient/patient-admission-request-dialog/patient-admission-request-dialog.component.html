@@ -20,6 +20,16 @@
   </div>
   <div>
     <mat-form-field appearance="fill" class="formField">
+      <mat-label>Select a doctor</mat-label>
+      <mat-select required>
+        <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+          {{ doctor.firstname + " " + doctor.lastname + " (" + doctor.username +")"}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="formField">
       <mat-label>Select Division</mat-label>
       <mat-select [(ngModel)]="data.divisionSelected" name="divisions" required>
         <mat-option *ngFor="let division of data.divisions" [value]="division">

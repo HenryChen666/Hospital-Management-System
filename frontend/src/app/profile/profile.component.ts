@@ -24,6 +24,14 @@ export class ProfileComponent implements OnInit {
     return this.loginService.getRole();
   }
 
+  get loggedFirstname(): string {
+    return this.loginService.getFirstname();
+  }
+
+  get loggedLastname(): string {
+    return this.loginService.getLastname();
+  }
+
   logout(): boolean {
     this.loginService.logout();
     this.router.navigate(["auth"]);

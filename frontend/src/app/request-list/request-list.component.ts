@@ -5,6 +5,13 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthenticationService} from '../security/authentication.service';
 import {Unit} from '../divisions/model/unit';
 import {Division} from '../divisions/model/division';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestDialogComponent } from './request-moreinfo-dialog/request-dialog.component';
+
+// Dialog More Info data Related.
+export interface DialogDataMoreInfo {
+  requestData: any
+}
 
 @Component({
   selector: 'app-request-list',
@@ -14,8 +21,8 @@ import {Division} from '../divisions/model/division';
 export class RequestListComponent implements OnInit {
     requestedPatientList: any[] = [];
     patients: Patient[] = [];
-    constructor(private requestListService: RequestListService, private firestore: AngularFirestore, private loginService: AuthenticationService) { }
-
+    constructor(private requestListService: RequestListService, private firestore: AngularFirestore, private loginService: AuthenticationService,private dialog: MatDialog) { }
+    
   ngOnInit(): void {
     this.requestListService.getRequestedPatientList().subscribe((res)=> {
       this.requestedPatientList = res;
@@ -68,4 +75,32 @@ export class RequestListComponent implements OnInit {
   }
   }
 
+  openDialogInfo(patientId: string): void {
+    // Get the selected request.
+    let selectedRequest;
+    for(let patientRequest in this.requestedPatientList) {
+      let patientIdRequest = this.requestedPatientList[patientRequest].patient.id;
+      if(patientIdRequest == patientId) {
+        selectedRequest = this.requestedPatientList[patientRequest];
+      }
+    }
+    // Set data to send to Dialog.
+    let requestDialogObject = {
+      "patientName": selectedRequest.patient.firstName + " " + selectedRequest.patient.lastName,
+      "requestedDoctor": selectedRequest.doctor.fName + " " + selectedRequest.doctor.lName,
+      "priority": selectedRequest.priority,
+      "rationale": selectedRequest.rationale,
+      "requestedUnit": selectedRequest.unit.name
+    }
+
+    // Open Dialog.
+    const dialogRef = this.dialog.open(RequestDialogComponent, {
+      width: '75%',   
+      data: {
+        requestData: requestDialogObject
+      }
+    })
+  }
+
 }
+
