@@ -48,20 +48,77 @@
         </mat-form-field> 
         </div>
 
-
         <div class="form-group">
             <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput type="text" formControlName="email" class="form-control" required
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                <mat-hint>Email must be a valid email address</mat-hint>
-                <mat-error>
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <mat-label>Address</mat-label>
+            <input matInput type="text" formControlName="address" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                <div *ngIf="f.address.errors.required">Address is required</div>
             </div>
         </mat-error>
-        </mat-form-field> 
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput type="text" formControlName="dateOfBirth" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                <div *ngIf="f.dateOfBirth.errors.required">Date of Birth is required</div>
+            </div>
+        </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+            <mat-label>Gender</mat-label>
+            <input matInput type="text" formControlName="gender" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Gender is required</div>
+            </div>
+        </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+            <mat-label>Marital Status</mat-label>
+            <input matInput type="text" formControlName="maritalStatus" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.maritalStatus.errors" class="invalid-feedback">
+                <div *ngIf="f.maritalStatus.errors.required">Marital Status is required</div>
+            </div>
+        </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+            <mat-label>External Doctor</mat-label>
+            <input matInput type="text" formControlName="externalDoctor" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.externalDoctor.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.externalDoctor.errors" class="invalid-feedback">
+                <div *ngIf="f.firstNaexternalDoctorme.errors.required">External Doctor is required</div>
+            </div>
+        </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+            <mat-label>Next Of Kin</mat-label>
+            <input matInput type="text" formControlName="nextOfKin" class="form-control" required
+                [ngClass]="{ 'is-invalid': submitted && f.nextOfKin.errors }" />
+            <mat-error>
+            <div *ngIf="submitted && f.nextOfKin.errors" class="invalid-feedback">
+                <div *ngIf="f.nextOfKin.errors.required">Next Of Kin is required</div>
+            </div>
+        </mat-error>
+        </mat-form-field>
         </div>
         <br>
         <div class="form-group">

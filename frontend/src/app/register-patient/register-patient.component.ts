@@ -22,16 +22,27 @@ export class RegisterPatientComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
+          address: ['', Validators.required],
           phoneNumber: ['', [Validators.required, Validators.minLength(10),Validators.pattern('[1-9]\\d{2}[1-9]\\d{6}')]],
-          email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
-      });
+          dateOfBirth: ['', Validators.required],
+          gender:['', Validators.required],
+          maritalStatus: ['', Validators.required],
+          externalDoctor: ['', Validators.required],
+          nextOfKin: ['', Validators.required]
+
+        });
   }
 
   get f() { return this.registerForm.controls; }
   get firstName(){return this.registerForm.get('firstName'); }
   get lastName(){return this.registerForm.get('lastName'); }
   get phoneNumber(){return this.registerForm.get('phoneNumber'); }
-  get email(){return this.registerForm.get('email'); }
+  get address(){return this.registerForm.get('address'); }
+  get dateOfBirth(){return this.registerForm.get('dateOfBirth'); }
+  get gender(){return this.registerForm.get('gender'); }
+  get maritalStatus(){return this.registerForm.get('maritalStatus'); }
+  get externalDoctor(){return this.registerForm.get('externalDoctor'); }
+  get nextOfKin(){return this.registerForm.get('nextOfKin'); }
 
   register() {
       this.submitted = true;
@@ -43,14 +54,25 @@ export class RegisterPatientComponent implements OnInit {
       const firstName = this.registerForm.get('firstName').value;
       const lastName = this.registerForm.get('lastName').value;
       const phoneNumber = this.registerForm.get('phoneNumber').value;
-      const email = this.registerForm.get('email').value;
-      this.route.navigate(['/user', firstName, lastName, phoneNumber, email]);
+      const address = this.registerForm.get('address').value;
+      const dateOfBirth = this.registerForm.get('dateOfBirth').value;
+      const gender = this.registerForm.get('gender').value;
+      const maritalStatus = this.registerForm.get('maritalStatus').value;
+      const externalDoctor = this.registerForm.get('externalDoctor').value;
+      const nextOfKin = this.registerForm.get('nextOfKin').value;
+
+      this.route.navigate(['/user', firstName, lastName, phoneNumber, address,dateOfBirth,gender,maritalStatus,externalDoctor,nextOfKin]);
       this.firestore.collection('user').doc(identifier.toString()).set({
         id: identifier,
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
-        email: email        
+        address: address,
+        dateOfBirth: dateOfBirth,
+        gender: gender,
+        maritalStatus: maritalStatus,
+        externalDoctor: externalDoctor,
+        nextOfKin: nextOfKin      
       })
   }
 }
