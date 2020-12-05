@@ -34,6 +34,7 @@ export class PatientsComponent implements OnInit {
           ...(e.payload.doc.data() as object)
         } as Patient;
       });
+      console.log(this.patients);
     });
   }
   
