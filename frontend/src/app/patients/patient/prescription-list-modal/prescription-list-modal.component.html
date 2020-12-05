@@ -1,4 +1,24 @@
-<p>prescription-list-modal works!</p>
-<h2>Testing: {{data.id}}</h2>
-<button (click)="onSubmit()">Submit</button>
-<mat-card>Simple card</mat-card>
+<mat-card>
+    <div id="select-patient-wrapper">
+
+        <h2>Patient {{ data.id }} Prescription</h2>
+        <div class="flex-container">
+          <div class="container">
+            <table class="table">
+              <tbody>
+                <tr><th>ID</th><td>{{ data.id }}</td></tr>
+                <tr><th>Drug Name</th><td>{{ data.drugName }}</td></tr>
+                <!-- <tr><th>Last Name</th><td>{{ selectedPatient.lastName }}</td></tr>
+                <tr><th>Address</th><td>{{ selectedPatient.address }}</td></tr>
+                <tr><th>Phone Number</th><td>{{ selectedPatient.phoneNumber }}</td></tr>
+                <tr><th>Date of Birth</th><td>{{ selectedPatient.dateOfBirth }}</td></tr>
+                <tr><th>Gender</th><td>{{ selectedPatient.gender }}</td></tr>
+                <tr><th>Martial Status</th><td>{{ selectedPatient.martialStatus }}</td></tr>
+                <tr><th>External Doctor ID</th><td>{{ selectedPatient.externalDoctorId }}</td></tr>
+                <tr><th>Next of Kin</th><td>{{ selectedPatient.nextOfKin }}</td></tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div> 
+</mat-card>

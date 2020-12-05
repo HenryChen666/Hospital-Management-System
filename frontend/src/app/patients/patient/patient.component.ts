@@ -240,26 +240,37 @@ export class PatientComponent implements OnInit {
       } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
+          prescriptions = {
+            drugNumber: "N/A",
+            drugName: "N/A",
+            unitsByDay: "N/A",
+            administrationByDay: "N/A",
+            administrationListings: "N/A",
+            administrationMethod: "N/A",
+            startDate: "N/A",
+            endDate: "N/A",
+          }
+          console.log(prescriptions)
       }
-  }).then(()=>{    
-      let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
-        data: {
-          id: this.selectedPatient.id.toString(),
-          drugNumber: prescriptions.drugNumber,
-          drugName: prescriptions.drugName,
-          unitsByDay: prescriptions.unitsByDay,
-          administrationByDay: prescriptions.administrationByDay,
-          administrationListings: prescriptions.administrationListings,
-          administrationMethod: prescriptions.administrationMethod,
-          startDate: prescriptions.startDate,
-          endDate: prescriptions.endDate,
-        }
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
-      });
-    }).catch(function(error) {
-      console.log("Error getting document:", error);
-  });
+      }).then(()=>{    
+        let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
+          data: {
+            id: this.selectedPatient.id.toString(),
+            drugNumber: prescriptions.drugNumber,
+            drugName: prescriptions.drugName,
+            unitsByDay: prescriptions.unitsByDay,
+            administrationByDay: prescriptions.administrationByDay,
+            administrationListings: prescriptions.administrationListings,
+            administrationMethod: prescriptions.administrationMethod,
+            startDate: prescriptions.startDate,
+            endDate: prescriptions.endDate,
+          }
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          console.log(`Dialog result: ${result}`);
+        });
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
   }
 }
