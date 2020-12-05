@@ -23,11 +23,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
-import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
-import { ContactComponent } from './contact/contact.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DivisionsComponent } from './divisions/divisions.component';
@@ -48,11 +46,9 @@ import { RequestDialogComponent } from './request-list/request-moreinfo-dialog/r
     LoginComponent,
     RegisterComponent,
     AuthenticationComponent,
-    HomeComponent,
     PatientsComponent,
     RequestListComponent,
     RegisterPatientComponent,
-    ContactComponent,
     LayoutComponent,
     ProfileComponent,
     DivisionsComponent,

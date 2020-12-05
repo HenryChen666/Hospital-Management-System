@@ -37,9 +37,29 @@
       </mat-error>
     </div>
     <div *ngIf="selectedDivison">
-      <h1 mat-h1>
-        {{selectedDivison.category}}
-      </h1>
+      <mat-card style="width: 40%;">
+        <h1 mat-h1>
+          Category: {{selectedDivison.category}}
+        </h1>
+        <h3 mat-h3>
+          Charge Nurse: {{selectedDivison.chargeNurse}}
+        </h3>
+        <h3 mat-h3>
+          Charge Nurse Bipper Ext: {{selectedDivison.bipperExt}}
+        </h3>
+        <h3 mat-h3>
+          Location: {{selectedDivison.location}}
+        </h3>
+        <h3 mat-h3>
+          Telephone Extension: {{selectedDivison.telephoneExt}}
+        </h3>
+        <h3 mat-h3>
+          Total Beds Available: {{selectedDivison.totalBeds}}
+        </h3>
+        <h3 mat-h3>
+          Status: {{selectedDivison.status}}
+        </h3>
+      </mat-card>
       <div *ngIf="selectedUnit.name !== 'null'">
         <mat-card style="width: 75%" *ngIf="selectedDivison">
             <app-division></app-division>

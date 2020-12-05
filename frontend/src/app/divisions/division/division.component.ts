@@ -19,6 +19,7 @@ export class DivisionComponent implements OnInit {
   unit: Unit = {
     "id": 0,
     "name": "loading...",
+    "status": "...",
     "numOfBedsShortTerm": 0,
     "numOfBedsLongTerm": 0,
     "numOfPatients": 0,

@@ -37,12 +37,35 @@ export class DivisionService {
 
   // Set the selected Division and its Units.
   public setDivision(divisionObject): void {
+    // Check status of selected Division and set it in Firestore.
+    let bedCount = 0;
+    for(let unitIndex in divisionObject.units) {
+      let unit = divisionObject.units[unitIndex];
+      bedCount = unit.numOfBedsLongTerm + bedCount;
+      bedCount = unit.numOfBedsShortTerm + bedCount;
+    }
+    if(bedCount > 0) {
+      divisionObject.status = "Incomplete"
+    } else {
+      divisionObject.status = "Complete"
+    }
+    divisionObject.totalBeds = bedCount;
+    this.firestore.collection("divisions").doc(divisionObject.firestoreId).set({ status: divisionObject.status }, { merge: true });
+    this.firestore.collection("divisions").doc(divisionObject.firestoreId).set({ totalBeds: bedCount }, { merge: true });
+
+    // Set state of Application.
     this.selectedDivision = divisionObject;
     this.selectedDivisionUnits = divisionObject.units;
   }
 
   // Set the selected Division Unit.
   public setSelectedDivisionUnit(unitObject): void {
+    // Check status of Unit.
+    if(unitObject.numOfBedsLongTerm > 0 || unitObject.numOfBedsShortTerm > 0) {
+      unitObject.status = "Incomplete"
+    } else {
+      unitObject.status = "Complete"
+    }
     this.selectedUnitInfo.next(unitObject);
   }
 

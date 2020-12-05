@@ -15,10 +15,9 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.router.url === "/"){
-      this.router.navigate(["/home"])
+      this.router.navigate(["/profile"])
     }
-    //this.links = ['home', 'patients', 'requestlist','registerpatient'];
-    if(this.loginService.getRole() == "ROLE_NURSE"){
+    if(this.loginService.getRole() == "ROLE_NURSE" || this.loginService.getRole() == "ROLE_CHARGE_NURSE"){
       this.links = ['patients', 'requestlist','registerpatient','divisions','profile'];
     }
     else if(this.loginService.getRole() == "ROLE_DOCTOR"){

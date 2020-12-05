@@ -15,6 +15,8 @@ export const patientsRoutes: Routes = [
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
+  displayedColumns: string[] = ['id','firstname', 'lastname', 'address',
+'phonenumber', 'dob', 'gender', 'ms', 'edId', 'nok', 'delete'];
   patients: Patient[] = [];
 
   constructor(
@@ -32,6 +34,7 @@ export class PatientsComponent implements OnInit {
           ...(e.payload.doc.data() as object)
         } as Patient;
       });
+      console.log(this.patients);
     });
   }
   

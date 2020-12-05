@@ -1,55 +1,88 @@
 <div>
-    <h1>Search Patient By Id</h1>
-    <div class="search-wrapper">
-      <mat-form-field>
-        <mat-label for="id">Search Patient Id</mat-label>
-        <input matInput type="text" #patientQuery id="id" class="form-control" />
-      </mat-form-field>
-      <br/>
-      <button class="search-btn" mat-raised-button color="primary" (click)="submit(patientQuery.value)">
-          Search
-      </button>
-    </div>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
+  <h1>List of Patients</h1>
+  <div>
+    <mat-form-field>
+      <mat-label for="id">Search Patient Id</mat-label>
+      <input matInput type="text" #patientQuery id="id" />
+    </mat-form-field>
+    <button class="search-btn" mat-raised-button color="primary" (click)="submit(patientQuery.value)">
+        Search
+    </button>
   </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<table mat-table [dataSource]="patients" class="mat-elevation-z8 patient-table">
 
-  <div id="all-patient-wrapper">
-    <div *ngIf="patients">
-      <h2>Here are details of all patients</h2>
-      <div class="container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>Date of Birth</th>
-              <th>Gender</th>
-              <th>Martial Status</th>
-              <th>External Doctor ID</th>
-              <th>Next of Kin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor = "let datas of patients">
-              <td>{{datas.id}}</td>
-              <td>{{datas.firstName}}</td>
-              <td>{{datas.lastName}}</td>
-              <td>{{datas.address}}</td>
-              <td>{{datas.phoneNumber}}</td>
-              <td>{{datas.dateOfBirth}}</td>
-              <td>{{datas.gender}}</td>
-              <td>{{datas.martialStatus}}</td>
-              <td>{{datas.externalDoctorId}}</td>
-              <td>{{datas.nextOfKin}}</td>
-              <td><button mat-raised-button color="warn" class="btn btn-danger" name="delete" (click)="delete(datas.id)">Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  </div>
-  
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- first name Column -->
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+
+  <!-- last name Column -->
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container>
+
+  <!-- address Column -->
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+  </ng-container>
+
+  <!-- phone number Column -->
+  <ng-container matColumnDef="phonenumber">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+  </ng-container>
+
+  <!-- date of birth Column -->
+  <ng-container matColumnDef="dob">
+    <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+    <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+  </ng-container>
+
+  <!-- gender Column -->
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef> Gender </th>
+    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+  </ng-container>
+
+  <!-- martial status Column -->
+  <ng-container matColumnDef="ms">
+    <th mat-header-cell *matHeaderCellDef> Martial Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.maritalStatus}} </td>
+  </ng-container>
+
+  <!-- external doctor ID Column -->
+  <ng-container matColumnDef="edId">
+    <th mat-header-cell *matHeaderCellDef> External Doctor ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.externalDoctor}} </td>
+  </ng-container>
+
+  <!-- Next of Kin Column -->
+  <ng-container matColumnDef="nok">
+    <th mat-header-cell *matHeaderCellDef> Next of Kin </th>
+    <td mat-cell *matCellDef="let element"> {{element.nextOfKin}} </td>
+  </ng-container>
+
+  <!-- Delete button Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="warn" name="delete" (click)="delete(element.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

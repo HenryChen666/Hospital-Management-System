@@ -44,6 +44,7 @@ class AuthenticationController(val authenticationManager: AuthenticationManager,
         }
         val user = User(registerRequest.username, registerRequest.firstname, registerRequest.lastname, encoder.encode(registerRequest.password))
         user.role = if ("admin" == registerRequest.role) ERole.ROLE_ADMIN
+        else if("charge_nurse" == registerRequest.role) ERole.ROLE_CHARGE_NURSE
         else if("nurse" == registerRequest.role) ERole.ROLE_NURSE
         else if("doctor" == registerRequest.role) ERole.ROLE_DOCTOR
         else if("medical_doctor" == registerRequest.role) ERole.ROLE_MD

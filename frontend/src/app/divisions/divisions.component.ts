@@ -23,6 +23,12 @@ export class DivisionsComponent implements OnInit {
   selectedDivison: Division = {
     "category": "Please select a division",
     "firestoreId": null,
+    "chargeNurse": "...",
+    "location": "...",
+    "telephoneExt": "...",
+    "bipperExt": "...",
+    "totalBeds": "...",
+    "status": "...",
     "id": 0,
     "units": null
   };
@@ -37,6 +43,7 @@ export class DivisionsComponent implements OnInit {
     "id": 0,
     "maxPatientCapacity": 0,
     "name": "null",
+    "status": "null",
     "numOfBedsLongTerm": 0,
     "numOfBedsShortTerm": 0,
     "numOfPatients": 0,
