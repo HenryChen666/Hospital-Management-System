@@ -151,6 +151,7 @@ export class PatientComponent implements OnInit {
       .doc(this.selectedPatient.id.toString())
       .delete()
       .then(function () {
+        window.location.reload();
         console.log('This patient has been discharged!');
       })
       .catch(function (error) {

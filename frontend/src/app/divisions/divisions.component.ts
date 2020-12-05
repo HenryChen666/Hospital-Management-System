@@ -26,6 +26,7 @@ export class DivisionsComponent implements OnInit {
     "chargeNurse": "...",
     "location": "...",
     "telephoneExt": "...",
+    "bipperExt": "...",
     "totalBeds": "...",
     "status": "...",
     "id": 0,
