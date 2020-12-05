@@ -15,6 +15,8 @@ export const patientsRoutes: Routes = [
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
+  displayedColumns: string[] = ['id','firstname', 'lastname', 'address',
+'phonenumber', 'dob', 'gender', 'ms', 'edId', 'nok', 'delete'];
   patients: Patient[] = [];
 
   constructor(
