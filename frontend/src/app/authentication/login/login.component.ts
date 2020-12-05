@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
         this.tokenService.saveFirstname(data.firstname);
         this.tokenService.saveLastname(data.lastname);
         this.tokenService.saveUserRole(data.role);
-        this.router.navigate(['home']);
+        this.router.navigate(['profile']);
       },
       err => {
         this._snackBar.open('Invalid Login' + err.error.message, 'Close', {
