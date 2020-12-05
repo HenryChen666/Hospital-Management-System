@@ -4,6 +4,7 @@ import { RegisterDbService } from './firestore/register-db.service';
 import {PatientComponent} from './patient/patient.component';
 import { Patient } from '../patients/model/patient';
 import {AngularFirestore, DocumentChangeAction, DocumentReference} from '@angular/fire/firestore';
+import {AuthenticationService} from '../security/authentication.service';
 
 export const patientsRoutes: Routes = [
   {path: ':id', component: PatientComponent}
@@ -19,11 +20,13 @@ export class PatientsComponent implements OnInit {
 'phonenumber', 'dob', 'gender', 'ms', 'edId', 'nok', 'delete'];
   patients: Patient[] = [];
 
+
   constructor(
     private router: Router, 
     private store: RegisterDbService,
     private route: ActivatedRoute,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private loginService: AuthenticationService,
     ) { }
 
   ngOnInit(): void {
@@ -39,7 +42,14 @@ export class PatientsComponent implements OnInit {
   }
   
   submit(value: string): void {
+    var identifier = Math.floor(Math.random() * 20) + 1
     this.router.navigate(['./', value], {relativeTo: this.route});
+    console.log("LOG USER" + this.loginService.getUser()+ new Date())
+    this.firestore.collection('logUser').doc(identifier.toString()).set({
+      userName: this.loginService.getUser(),
+      access: value,
+      time: new Date()
+    })
   }
 
   delete(id: string){
