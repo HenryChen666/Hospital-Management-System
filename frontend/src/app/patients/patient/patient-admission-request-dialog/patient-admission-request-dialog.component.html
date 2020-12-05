@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Request Admission Part 1/2</h1>
+<div mat-dialog-content>
+  <p>Please enter required fields for the patient request</p>
+  <div>
+    <mat-form-field class="formField">
+      <mat-label>Rationale for the request?</mat-label>
+      <textarea matInput type="text" [(ngModel)]="data.rationale" required></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Priority Assessment</mat-label>
+      <mat-select [(ngModel)]="data.prioritySelected" name="priority" required>
+        <mat-option *ngFor="let priority of data.priorityArray" [value]="data.priorityArray[priority]">
+          {{data.priorityArray[priority]}}
+        </mat-option>
+      </mat-select>
+      <mat-hint> 0 - Low / 10 - High</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="formField">
+      <mat-label>Select Division</mat-label>
+      <mat-select [(ngModel)]="data.divisionSelected" name="divisions" required>
+        <mat-option *ngFor="let division of data.divisions" [value]="division">
+          {{division.category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Continue</button>
+</div>

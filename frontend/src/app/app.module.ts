@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 import { HomeComponent } from './home/home.component';
 import { PatientsComponent } from './patients/patients.component';
 import { RequestListComponent } from './request-list/request-list.component';
@@ -37,6 +38,8 @@ import { UpdatePatientModalComponent } from './patients/patient/update-patient-m
 
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { PatientAdmissionRequestDialogComponent } from './patients/patient/patient-admission-request-dialog/patient-admission-request-dialog.component';
+import { PatientAdmissionRequestDialogTwoComponent } from './patients/patient/patient-admission-request-dialog-two/patient-admission-request-dialog-two.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import {environment} from '../environments/environment';
     DivisionComponent,
     PatientComponent,
     PrescribeMedicationModalComponent,
-    UpdatePatientModalComponent
+    UpdatePatientModalComponent,
+    PatientAdmissionRequestDialogComponent,
+    PatientAdmissionRequestDialogTwoComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -77,7 +82,9 @@ import {environment} from '../environments/environment';
     MatRadioModule,
     MatChipsModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
