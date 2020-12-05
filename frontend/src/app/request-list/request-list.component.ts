@@ -59,7 +59,20 @@ export class RequestListComponent implements OnInit {
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
-}
+  }
+  discharge(id: string) {
+    this.firestore
+    .collection('request')
+    .doc(id.toString())
+    .delete()
+    .then(function () {
+      window.location.reload();
+      console.log('This patient has been discharged!');
+    })
+    .catch(function (error) {
+      console.error('Error discharging patient', error);
+    });
+  }
   openDialogInfo(patientId: string): void {
     // Get the selected request.
     let selectedRequest;
