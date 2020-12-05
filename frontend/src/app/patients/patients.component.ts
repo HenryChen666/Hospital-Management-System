@@ -44,12 +44,13 @@ export class PatientsComponent implements OnInit {
   submit(value: string): void {
     var identifier = Math.floor(Math.random() * 20) + 1
     this.router.navigate(['./', value], {relativeTo: this.route});
-    console.log("LOG USER" + this.loginService.getUser()+ new Date())
-    this.firestore.collection('logUser').doc(identifier.toString()).set({
-      userName: this.loginService.getUser(),
-      access: value,
-      time: new Date()
-    })
+    if (value != ""){
+      this.firestore.collection('logUser').doc(identifier.toString()).set({
+        userName: this.loginService.getUser(),
+        access: value,
+        time: new Date()
+      })
+    }
   }
 
   delete(id: string){
