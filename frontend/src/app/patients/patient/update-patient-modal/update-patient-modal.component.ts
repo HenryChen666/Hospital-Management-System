@@ -3,9 +3,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 
 import {
-  AngularFirestore,
-  DocumentChangeAction,
-  DocumentReference,
+  AngularFirestore
 } from '@angular/fire/firestore';
 import {
   FormBuilder,
@@ -22,8 +20,6 @@ import { PatientComponent } from '../patient.component';
   styleUrls: ['./update-patient-modal.component.css'],
 })
 export class UpdatePatientModalComponent implements OnInit {
-  //@Input() patientId: any;
-
   updatePatientForm: FormGroup;
   selectedPatient: Patient;
   patient: PatientComponent;

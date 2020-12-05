@@ -6,6 +6,7 @@ import { RegisterDbService } from '../firestore/register-db.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePatientModalComponent } from '../patient/update-patient-modal/update-patient-modal.component';
 import { PrescribeMedicationModalComponent } from '../patient/prescribe-medication-modal/prescribe-medication-modal.component';
+import {PrescriptionListModalComponent} from '../patient/prescription-list-modal/prescription-list-modal.component';
 import {
   AngularFirestore,
   DocumentChangeAction,
@@ -213,14 +214,6 @@ export class PatientComponent implements OnInit {
   prescribe(): void {
     //this.router.navigate(['./', value], { relativeTo: this.route });
     let dialogRef = this.dialog.open(PrescribeMedicationModalComponent, {
-      //Drug’s number
-      // • Drug Name
-      // • Units by day
-      // • Number of administration per day
-      // • Listing of each administration time of day with number of units administered
-      //  ©S. Somé
-      // • Method of administration
-      // • Start and finish date
       data: {
         id: this.selectedPatient.id,
         firstName: this.selectedPatient.firstName,
@@ -234,7 +227,22 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  // getPatientById(id:string): Patient{
-  //   this.firestore.collection('request').doc('id').get()
-  // }
+  showPrescription(): void{
+    let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
+      data: {
+        id: this.selectedPatient.id.toString(),
+        drugNumber: '',
+        drugName: '',
+        unitsByDay: '',
+        administrationByDay: '',
+        administrationListings: '',
+        administrationMethod: '',
+        startDate: '',
+        endDate: '',
+      }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+   }
 }
