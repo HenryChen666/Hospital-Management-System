@@ -42,9 +42,11 @@ export class AuthenticationService {
     return this.tokenService.getRole() === 'ROLE_ADMIN';
   }
 
-  register(username: string, password: string, role: string): Observable<any> {
+  register(username: string, firstname: string, lastname: string, password: string, role: string): Observable<any> {
     return this.http.post(Url + 'register', {
       username,
+      firstname,
+      lastname,
       password,
       role
     });

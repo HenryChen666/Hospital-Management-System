@@ -17,6 +17,8 @@ function passwordMatcher(pwGrp: FormGroup): { [s: string]: boolean } | null {
 export class RegisterComponent implements OnInit {
   signupForm = this.builder.group({
     username: ['', Validators.required],
+    firstname: ['', Validators.required],
+    lastname: ['', Validators.required],
     pwGroup: this.builder.group({
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
@@ -25,6 +27,8 @@ export class RegisterComponent implements OnInit {
   });
 
   get username(): AbstractControl {return this.signupForm.get('username'); }
+  get firstname(): AbstractControl {return this.signupForm.get('firstname'); }
+  get lastname(): AbstractControl {return this.signupForm.get('lastname'); }
   get password(): AbstractControl {return this.signupForm.get('pwGroup').get('password'); }
   get confirmPassword(): AbstractControl {return this.signupForm.get('pwGroup').get('confirmPassword'); }
   get pwGroup(): AbstractControl {return this.signupForm.get('pwGroup'); }
@@ -37,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
   //clear inputs and display register output for 3 seconds.
   register(): void {
-    this.authService.register(this.username.value, this.password.value, this.usertype.value).subscribe(
+    this.authService.register(this.username.value, this.firstname.value, this.lastname.value, this.password.value, this.usertype.value).subscribe(
       data => {
         this._snackBar.open(data.message, 'Close', {
           duration: 3000
