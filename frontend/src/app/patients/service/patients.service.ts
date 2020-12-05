@@ -5,14 +5,17 @@ import {Patient} from '../model/patient';
   providedIn: 'root'
 })
 export class PatientsService {
+  // Dialog Related
+  rationaleRequest: string;
 
-  private patients = [
-   new Patient('1', 'Bob', 'James', 123456789, 2017),
-  ]
   constructor() { }
 
-  public getPatient(id: string): Patient {
+  /*public getPatient(id: string): Patient {
     // tslint:disable-next-line:radix
     return this.patients.find(patient => patient.id === String(Number.parseInt(id)));
+  }*/
+
+  public setRationaleRequest(rationale: string): void {
+    this.rationaleRequest = rationale;
   }
 }

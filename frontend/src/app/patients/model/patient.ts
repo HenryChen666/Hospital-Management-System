@@ -1,3 +1,5 @@
+import { Division } from 'src/app/divisions/model/division';
+
 export class Patient {
   constructor(
     public id: string,
@@ -9,6 +11,7 @@ export class Patient {
     public gender: string,
     public martialStatus: string,
     public externalDoctorId: string,
-    public nextOfKin: any
+    public nextOfKin: any,
+    public divisionId: Division
   ) {}
 }
