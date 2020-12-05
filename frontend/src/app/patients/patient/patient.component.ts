@@ -166,6 +166,7 @@ export class PatientComponent implements OnInit {
       console.log(result);
       // Set data.
       this.PatientsService.setRationaleRequest(result.rationale);
+      this.PatientsService.setDivisionsRequest(result.divisionSelected);
       if(result.rationale !== "") {
         const dialogRef2 = this.dialog.open(PatientAdmissionRequestDialogTwoComponent, {
 

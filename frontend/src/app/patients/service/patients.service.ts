@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Division } from 'src/app/divisions/model/division';
 
 import {Patient} from '../model/patient';
 @Injectable({
@@ -7,6 +8,7 @@ import {Patient} from '../model/patient';
 export class PatientsService {
   // Dialog Related
   rationaleRequest: string;
+  divisionsRequest: Division;
 
   constructor() { }
 
@@ -17,5 +19,10 @@ export class PatientsService {
 
   public setRationaleRequest(rationale: string): void {
     this.rationaleRequest = rationale;
+  }
+
+  public setDivisionsRequest(division: Division): void {
+    this.divisionsRequest = division;
+    console.log(this.divisionsRequest);
   }
 }
