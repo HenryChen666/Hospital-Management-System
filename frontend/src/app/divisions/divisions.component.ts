@@ -25,6 +25,9 @@ export class DivisionsComponent implements OnInit {
     "firestoreId": null,
     "chargeNurse": "...",
     "location": "...",
+    "telephoneExt": "...",
+    "totalBeds": "...",
+    "status": "...",
     "id": 0,
     "units": null
   };
