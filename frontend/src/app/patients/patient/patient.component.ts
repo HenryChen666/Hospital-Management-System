@@ -170,12 +170,12 @@ export class PatientComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed.');
-      console.log(result);
       // Set data.
       this.PatientsService.setRationaleRequest(result.rationale);
       this.PatientsService.setDivisionsRequest(result.divisionSelected);
       this.PatientsService.setPriorityRequest(result.prioritySelected);
+
+      // Open Second Dialog.
       if(result.rationale !== "") {
         const dialogRef2 = this.dialog.open(PatientAdmissionRequestDialogTwoComponent, {
           width: '75%',
@@ -186,7 +186,14 @@ export class PatientComponent implements OnInit {
             selectedDoctor: this.PatientsService.getDoctorSelectedRequest(),
             selectedPatient: this.selectedPatient
           }
+        });
+
+        dialogRef2.afterClosed().subscribe(result => { 
+          // Set data.
+          this.PatientsService.setDoctorRequest(result.selectedDoctor);
+          this.PatientsService.setUnitSelectedRequest(result.selectedUnit);
         })
+
       }
     });
 

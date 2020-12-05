@@ -27,7 +27,7 @@ export class PatientsService {
   divisionsRequest: Division;
   priorityRequest: string;
   unitSelectedRequest: Unit;
-  doctorSelectedRequest: string;
+  doctorSelectedRequest: Object;
 
   constructor() { }
 
@@ -40,12 +40,12 @@ export class PatientsService {
     return this.doctorsArray;
   }
 
-  // Dialog Related Requests for Requesting Patient Admission
+  // Dialog 1/2 Related Requests for Requesting Patient Admission
   public getUnitSelectedRequest(): Unit {
     return this.unitSelectedRequest;
   }
 
-  public getDoctorSelectedRequest(): string {
+  public getDoctorSelectedRequest(): Object {
     return this.doctorSelectedRequest;
   }
 
@@ -60,5 +60,14 @@ export class PatientsService {
 
   public setPriorityRequest(priority: string): void {
     this.priorityRequest = priority;
+  }
+
+  // Dialog 2/2 Related Requests for Requesting Patient Admission
+  public setDoctorRequest(doctor: Object): void {
+    this.doctorSelectedRequest = doctor;
+  }
+
+  public setUnitSelectedRequest(unit: Unit): void {
+    this.unitSelectedRequest = unit;
   }
 }
