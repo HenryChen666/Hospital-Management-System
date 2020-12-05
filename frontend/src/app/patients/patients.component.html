@@ -1,6 +1,8 @@
-<div>
-    <h1>Search Patient By Id</h1>
+<div class="flex-container">
     <div class="search-wrapper">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
       <mat-form-field>
         <mat-label for="id">Search Patient Id</mat-label>
         <input matInput type="text" #patientQuery id="id" class="form-control" />
@@ -10,11 +12,10 @@
           Search
       </button>
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <router-outlet></router-outlet>
-    </div>
+    </div> -->
   </div>
-
   <div id="all-patient-wrapper">
     <div *ngIf="patients">
       <h2>Here are details of all patients</h2>
@@ -52,4 +53,3 @@
         </table>
       </div>
   </div>
-  
