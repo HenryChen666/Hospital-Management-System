@@ -87,7 +87,9 @@ export class PatientsService {
       rationale: this.rationaleRequest,
       priority: this.priorityRequest,
       unit: this.unitSelectedRequest,
-      doctor: this.doctorSelectedRequest
+      doctor: this.doctorSelectedRequest,
+      division: this.divisionsRequest,
+      
     }
     this.firestore.collection("request").doc(this.selectedPatient.id.toString()).set(Object.assign({}, requestObject))
     .then((res)=> {

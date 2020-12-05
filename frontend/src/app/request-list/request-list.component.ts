@@ -21,6 +21,7 @@ export interface DialogDataMoreInfo {
 export class RequestListComponent implements OnInit {
     requestedPatientList: any[] = [];
     patients: Patient[] = [];
+
     constructor(private requestListService: RequestListService, private firestore: AngularFirestore, private loginService: AuthenticationService,private dialog: MatDialog) { }
     
   ngOnInit(): void {
@@ -33,15 +34,24 @@ export class RequestListComponent implements OnInit {
   }
 
   accept(id: string){
-    var user = this.loginService.getUser();
-    console.log("current user", user);
+    var userFirstName = this.loginService.getFirstname;
+    var userLastName = this.loginService.getLastname;
+    console.log("current user", userFirstName);
     var docRef = this.firestore.collection("request").doc(id);
-    var unit;
+    var chargeNurseName: String;
+  
     docRef.get().toPromise().then(function(doc) {
       if (doc.exists) {
         let requestObject = doc.data() as any;
-        unit = requestObject.unit.name;
-        console.log("Document data:", unit);
+        chargeNurseName = requestObject.division.chargeNurse;
+        console.log("chargeNurse:", chargeNurseName);
+        var userFullName = userFirstName + ' ' + userLastName;
+        if (chargeNurseName === userFullName){
+          alert("Accept Successfully!");
+        }
+        else {
+          alert("You dont have the access to accept this patient!");
+        }
       } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -49,32 +59,7 @@ export class RequestListComponent implements OnInit {
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
-
-  var chargeNurse = this.firestore.collection('divisions',ref => ref.where('category','==','Pediatric'));
-  var chargeNurseName;
-  chargeNurse
-  .get()
-  .toPromise()
-  .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          let divisions = doc.data() as any 
-          chargeNurseName = divisions.chargeNurse;
-          console.log("charge nurse",chargeNurseName);
-      });
-  })
-  .catch(function(error) {
-      console.log("Error getting documents: ", error);
-  });
-
-  if (chargeNurseName === user){
-    alert("Accept Successfully!");
-  }
-  else {
-    alert("You dont have the access to accept this patient!");
-  }
-  }
-
+}
   openDialogInfo(patientId: string): void {
     // Get the selected request.
     let selectedRequest;
