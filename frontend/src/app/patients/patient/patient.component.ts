@@ -17,6 +17,7 @@ import { PatientAdmissionRequestDialogTwoComponent } from './patient-admission-r
 import { Division } from 'src/app/divisions/model/division';
 import { DivisionService } from 'src/app/divisions/service/division.service';
 import { Unit } from 'src/app/divisions/model/unit';
+import { stringify } from 'querystring';
 
 // Dialog Request Patient Admission Related.
 export interface DialogData {
@@ -228,21 +229,37 @@ export class PatientComponent implements OnInit {
   }
 
   showPrescription(): void{
-    let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
-      data: {
-        id: this.selectedPatient.id.toString(),
-        drugNumber: '',
-        drugName: '',
-        unitsByDay: '',
-        administrationByDay: '',
-        administrationListings: '',
-        administrationMethod: '',
-        startDate: '',
-        endDate: '',
+    var prescriptions: any;
+    var docRef = this.firestore.collection("prescriptions").doc(this.selectedPatient.id.toString());
+    docRef.get().toPromise().then(function(doc){
+      if (doc.exists) {
+          console.log("Prescription Doc Exists:", doc.data());
+          prescriptions = doc.data();
+          console.log(prescriptions)
+
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
       }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  }).then(()=>{    
+      let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
+        data: {
+          id: this.selectedPatient.id.toString(),
+          drugNumber: prescriptions.drugNumber,
+          drugName: prescriptions.drugName,
+          unitsByDay: prescriptions.unitsByDay,
+          administrationByDay: prescriptions.administrationByDay,
+          administrationListings: prescriptions.administrationListings,
+          administrationMethod: prescriptions.administrationMethod,
+          startDate: prescriptions.startDate,
+          endDate: prescriptions.endDate,
+        }
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+      });
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
-   }
+  }
 }

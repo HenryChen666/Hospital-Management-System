@@ -20,9 +20,14 @@ export class PrescriptionListModalComponent implements OnInit {
     administrationMethod: string;
     startDate: string;
     endDate: string;
-  },private firestore: AngularFirestore) { }
+  },private firestore: AngularFirestore) {
+   }
 
   ngOnInit(): void {
   }
 
-}
+  onSubmit(): void{
+    console.log(`OnSubmit Test: ${this.data.drugName}`)
+  }
+
+}                         
