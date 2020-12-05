@@ -23,6 +23,8 @@ export class DivisionsComponent implements OnInit {
   selectedDivison: Division = {
     "category": "Please select a division",
     "firestoreId": null,
+    "chargeNurse": "...",
+    "location": "...",
     "id": 0,
     "units": null
   };

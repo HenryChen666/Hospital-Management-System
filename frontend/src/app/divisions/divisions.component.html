@@ -38,7 +38,13 @@
     </div>
     <div *ngIf="selectedDivison">
       <h1 mat-h1>
-        {{selectedDivison.category}}
+        Category: {{selectedDivison.category}}
+      </h1>
+      <h1 mat-h1>
+        Charge Nurse: {{selectedDivison.chargeNurse}}
+      </h1>
+      <h1 mat-h1>
+        Location: {{selectedDivison.location}}
       </h1>
       <div *ngIf="selectedUnit.name !== 'null'">
         <mat-card style="width: 75%" *ngIf="selectedDivison">
