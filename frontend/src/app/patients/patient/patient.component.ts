@@ -27,7 +27,8 @@ export interface DialogData {
   divisionSelected: Division
 }
 export interface DialogDataTwo {
-  selectedPatient: Patient
+  selectedPatient: Patient,
+  doctorsArray: Object[],
   selectedDivisionRequest: Division,
   selectedUnit: Unit,
   selectedDoctor: string
@@ -180,6 +181,7 @@ export class PatientComponent implements OnInit {
           width: '75%',
           data: {
             selectedDivisionRequest: result.divisionSelected,
+            doctorsArray: this.PatientsService.getAllDoctors(),
             selectedUnit: this.PatientsService.getUnitSelectedRequest(),
             selectedDoctor: this.PatientsService.getDoctorSelectedRequest(),
             selectedPatient: this.selectedPatient

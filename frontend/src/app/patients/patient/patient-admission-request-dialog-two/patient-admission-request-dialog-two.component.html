@@ -14,8 +14,8 @@
     <mat-form-field appearance="fill" class="formField">
       <mat-label>Select Doctor</mat-label>
       <mat-select [(ngModel)]="data.selectedDoctor" name="doctor" required>
-        <mat-option *ngFor="let doctor of data.selectedDivisionRequest" [value]="doctor">
-          {{doctor}}
+        <mat-option *ngFor="let doctor of data.doctorsArray" [value]="doctor">
+          {{doctor.fName + ' ' + doctor.lName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

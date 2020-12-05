@@ -7,6 +7,21 @@ import {Patient} from '../model/patient';
   providedIn: 'root'
 })
 export class PatientsService {
+  doctorsArray: Object[] = [
+    {
+      "fName": "Frank",
+      "lName": "Wang"
+    },
+    {
+      "fName": "Jon",
+      "lName": "Snow"
+    },
+    {
+      "fName": "Arya",
+      "lName": "Stark"
+    }
+  ];
+
   // Dialog Related to Submitting a Patient Request
   rationaleRequest: string;
   divisionsRequest: Division;
@@ -21,6 +36,9 @@ export class PatientsService {
     return this.patients.find(patient => patient.id === String(Number.parseInt(id)));
   }*/
 
+  public getAllDoctors(): Object[] {
+    return this.doctorsArray;
+  }
 
   // Dialog Related Requests for Requesting Patient Admission
   public getUnitSelectedRequest(): Unit {
