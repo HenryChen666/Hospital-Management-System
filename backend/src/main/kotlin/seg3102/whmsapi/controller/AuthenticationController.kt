@@ -1,5 +1,6 @@
 package seg3102.whmsapi.controller
 
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.security.authentication.AuthenticationManager
@@ -50,5 +51,11 @@ class AuthenticationController(val authenticationManager: AuthenticationManager,
         else ERole.ROLE_USER
         userRepository.save(user)
         return ResponseEntity.ok<Any>(MessageResponse("User registered successfully!"))
+    }
+
+    @GetMapping("/getDoctors")
+    fun getUser(): ResponseEntity<*>{
+        val users = userRepository.findUserByRole(ERole.ROLE_DOCTOR)
+        return ResponseEntity(users, HttpStatus.OK)
     }
 }
