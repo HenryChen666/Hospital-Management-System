@@ -42,7 +42,7 @@ class AuthenticationController(val authenticationManager: AuthenticationManager,
         if(userRepository.existsByUsername(registerRequest.username)){
             return ResponseEntity.badRequest().body<Any>(MessageResponse("Error: Username is already taken"))
         }
-        val user = User(registerRequest.username, encoder.encode(registerRequest.password))
+        val user = User(registerRequest.username, registerRequest.firstname, registerRequest.lastname, encoder.encode(registerRequest.password))
         user.role = if ("admin" == registerRequest.role) ERole.ROLE_ADMIN
         else if("nurse" == registerRequest.role) ERole.ROLE_NURSE
         else if("doctor" == registerRequest.role) ERole.ROLE_DOCTOR

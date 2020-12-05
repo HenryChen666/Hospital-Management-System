@@ -17,6 +17,14 @@ class User {
     var username: String = ""
 
     @NotBlank
+    @Size(max = 20)
+    var firstname: String = ""
+
+    @NotBlank
+    @Size(max = 20)
+    var lastname: String = ""
+
+    @NotBlank
     @Size(max = 120)
     var password: String = ""
 
@@ -24,8 +32,10 @@ class User {
     var role: ERole = ERole.ROLE_USER
 
     constructor(){}
-    constructor(username: String, password: String){
+    constructor(username: String, firstname: String, lastname: String, password: String){
         this.username = username
+        this.firstname = firstname
+        this.lastname = lastname
         this.password = password
     }
 }
