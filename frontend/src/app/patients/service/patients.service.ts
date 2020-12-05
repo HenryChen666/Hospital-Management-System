@@ -32,6 +32,7 @@ export class PatientsService {
   doctorSelectedRequest: Object;
   bedTypeSelected: string = '';
   bedNumberSelected: string = '';
+  bedNumArray: string[] = [];
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -95,13 +96,19 @@ export class PatientsService {
     this.bedNumberSelected = bedNum;
   }
 
+  public setBedNumArray(bedNumArray: string[]): void {
+    this.bedNumArray = bedNumArray;
+  }
+
   // Send Request Patient Admission to Firebase.
   public sendPatientAdmissionRequest(): void {
+    // set any properties of patient that is undefined to empty string or it wont push to firestore.
     for(let prop in this.selectedPatient){
       if(this.selectedPatient[prop] === undefined) {
         this.selectedPatient[prop] = ""
       }
     }
+    // Set up the request object to send to firestore.
     let requestObject = {
       patient: Object.assign({}, this.selectedPatient),
       rationale: this.rationaleRequest,
@@ -112,6 +119,8 @@ export class PatientsService {
       bedTypeSelected: this.bedTypeSelected,
       bedNumberSelected: this.bedNumberSelected,
     }
+    // Send to firestore.
+    this.firestore.collection("divisions").doc(this.divisionsRequest.firestoreId.toString()).set({ bedNumAvailable: this.bedNumArray }, {merge: true});
     this.firestore.collection("request").doc(this.selectedPatient.id.toString()).set(Object.assign({}, requestObject))
     .then((res)=> {
       // Reset the state.

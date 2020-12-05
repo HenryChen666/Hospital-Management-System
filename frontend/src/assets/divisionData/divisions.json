@@ -1,6 +1,12 @@
-{
+  {
     "id": 1000,
     "category": "Intensive Care",
+    "bipperExt": "7653",
+    "chargeNurse": "Lee Sin",
+    "location": "Block A",
+    "status": "incomplete",
+    "telephoneExt":"3000",
+    "totalBeds": "61",
     "units": [
       {
         "id": 1010,
@@ -61,6 +67,12 @@
   {
     "id": 2000,
     "category": "Non Intensive Care",
+    "bipperExt": "5346",
+    "chargeNurse": "Ziming Wang",
+    "location": "Block B",
+    "status": "incomplete",
+    "telephoneExt":"2000",
+    "totalBeds": "12",
     "units": [
       {
         "id": 2010,
@@ -148,6 +160,12 @@
   {
     "id": 3000,
     "category": "Specialty",
+    "bipperExt": "8923",
+    "chargeNurse": "James Lee",
+    "location": "Block A",
+    "status": "incomplete",
+    "telephoneExt":"3000",
+    "totalBeds": "61",
     "units": [
       {
         "id": 3010,

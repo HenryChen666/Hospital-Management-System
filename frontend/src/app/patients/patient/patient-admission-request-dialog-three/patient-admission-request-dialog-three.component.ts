@@ -11,9 +11,7 @@ export class PatientAdmissionRequestDialogThreeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PatientAdmissionRequestDialogThreeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogDataThree) {
-      console.log(data);
-    }
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataThree) { }
 
   onNoClick(): void {
     this.dialogRef.close();

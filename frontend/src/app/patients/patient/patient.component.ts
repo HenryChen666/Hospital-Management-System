@@ -221,7 +221,7 @@ export class PatientComponent implements OnInit {
             for(let i=0; i < numOfBeds; i++) {
               numOfBedsArray.push(i.toString());
             }
-            console.log(numOfBeds);
+            this.PatientsService.setBedNumArray(numOfBedsArray);
 
             const dialogRef3 = this.dialog.open(PatientAdmissionRequestDialogThreeComponent, {
               width: '75%',
