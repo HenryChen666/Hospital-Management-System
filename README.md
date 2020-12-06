@@ -23,3 +23,9 @@ The bed count for overall division will change once reselected if bed count did 
 ### F3.4 Requirment: Division Charge Nurse.
 
 A Division has it's own telephone ext. The Charge nurse will be assigned to that telephone ext, and the Charge nurse's Bipper ext. assigned to that Division.
+
+### F9 Requirement: Preventing Patient Admission to a 'Complete' Division.
+
+When a Division or its Unit(sub-division) is complete, in the Request Patient Admission dialogs, it will show those 'Complete' Division and Units as a disabled option so the user will not be able to select it.
+
+This will prevent a Patient from being admitted to a Division or Unit that is 'Complete'.
