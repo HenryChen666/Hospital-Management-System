@@ -14,6 +14,7 @@ export class Patient {
     public nextOfKin: any,
     public divisionId: Division,
     public bedNumAssigned: string,
+    public bedTypeAssigned: string,
   ) {}
 }
 

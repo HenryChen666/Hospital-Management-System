@@ -30,7 +30,8 @@ export class DivisionService {
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
       "divisionId": null,
-      "bedNumAssigned": "1012"
+      "bedNumAssigned": "1012",
+      "bedTypeAssigned": "Long Term"
     },
     {
       "id": "1234",
@@ -44,7 +45,8 @@ export class DivisionService {
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
       "divisionId": null,
-      "bedNumAssigned": "1013"
+      "bedNumAssigned": "1013",
+      "bedTypeAssigned": "Long Term"
     },
     {
       "id": "1234",
@@ -58,7 +60,8 @@ export class DivisionService {
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
       "divisionId": null,
-      "bedNumAssigned": "1014"
+      "bedNumAssigned": "1014",
+      "bedTypeAssigned": "Long Term"
     },
     {
       "id": "1234",
@@ -72,7 +75,8 @@ export class DivisionService {
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
       "divisionId": null,
-      "bedNumAssigned": "1015"
+      "bedNumAssigned": "1015",
+      "bedTypeAssigned": "Long Term"
     },
     {
       "id": "1234",
@@ -86,7 +90,8 @@ export class DivisionService {
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
       "divisionId": null,
-      "bedNumAssigned": "1016"
+      "bedNumAssigned": "1016",
+      "bedTypeAssigned": "Long Term"
     }
   ];
 
@@ -164,7 +169,6 @@ export class DivisionService {
 
   // Firestore related services.
   public sendPatientDischarge(patientId: string): void {
-    // Remove patient from patientArray of selectedUnit.
     
   }
 

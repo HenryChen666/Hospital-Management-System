@@ -13,7 +13,7 @@ export interface UnitElementPatientList {
   patientId: string;
   name: string;
   phoneNumber: number;
-  gender: string;
+  bedTypeAssigned: string;
   bedNumAssigned: string;
 }
 
@@ -48,7 +48,7 @@ export class DivisionComponent implements OnInit {
   unitDiagramSelected: string;
 
   // Patient Table related items.
-  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "gender", "bedNumAssigned", "dischargeButton"];
+  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "bedTypeAssigned", "bedNumAssigned", "dischargeButton"];
   tableDataPatient: UnitElementPatientList[] = [];
 
   constructor(private divisionsService: DivisionService) { }
@@ -119,7 +119,7 @@ export class DivisionComponent implements OnInit {
         "patientId": patient.id,
         "name": patient.firstName + " " + patient.lastName,
         "phoneNumber": patient.phoneNumber,
-        "gender": patient.gender,
+        "bedTypeAssigned": patient.bedTypeAssigned,
         "bedNumAssigned": patient.bedNumAssigned
       }
       this.tableDataPatient.push(itemObj);
@@ -127,6 +127,17 @@ export class DivisionComponent implements OnInit {
   }
 
   handleDischargeButton(patientId: string): void {
+    // Remove patient from patientArray of selectedUnit.
+    for(let i=0; i < this.unit.patientArray.length; i++) {
+      let patient = this.unit.patientArray[i];
+      if(patientId === patient.id) {
+        // Put bed num back into appropriate bed type.
+        //if()
+        this.unit.patientArray.splice(i);
+      }
+    }
+
+    // Call service to send to firestore.
     this.divisionsService.sendPatientDischarge(patientId);
   }
 
