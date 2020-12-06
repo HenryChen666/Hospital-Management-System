@@ -9,7 +9,7 @@ export class Patient {
     public phoneNumber: number,
     public dateOfBirth: number,
     public gender: string,
-    public martialStatus: string,
+    public maritalStatus: string,
     public externalDoctorId: string,
     public nextOfKin: any,
     public divisionId: Division

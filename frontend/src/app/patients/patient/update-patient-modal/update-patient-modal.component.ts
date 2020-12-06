@@ -37,7 +37,7 @@ export class UpdatePatientModalComponent implements OnInit {
       phoneNumber: string;
       dateOfBirth: string;
       gender: string;
-      martialStatus: string;
+      maritalStatus: string;
       externalDoctorId: string;
       nextOfKin: any;
     },
@@ -60,7 +60,7 @@ export class UpdatePatientModalComponent implements OnInit {
       ],
       dateOfBirth: [data.dateOfBirth, Validators.required],
       gender: [data.gender, Validators.required],
-      martialStatus: [data.martialStatus, Validators.required],
+      maritalStatus: [data.maritalStatus, Validators.required],
       externalDoctorId: [data.externalDoctorId, Validators.required],
       nextOfKin: [data.nextOfKin, Validators.required],
     });
@@ -90,7 +90,7 @@ export class UpdatePatientModalComponent implements OnInit {
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
         gender: this.updatePatientForm.value.gender,
-        martialStatus: this.updatePatientForm.value.martialStatus,
+        maritalStatus: this.updatePatientForm.value.maitalStatus,
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
@@ -107,7 +107,7 @@ export class UpdatePatientModalComponent implements OnInit {
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
         gender: this.updatePatientForm.value.gender,
-        martialStatus: this.updatePatientForm.value.martialStatus,
+        maritalStatus: this.updatePatientForm.value.maritalStatus,
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
