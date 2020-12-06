@@ -11,6 +11,7 @@ import {
   DocumentChangeAction,
   DocumentReference,
 } from '@angular/fire/firestore';
+import {AuthenticationService} from '../../security/authentication.service';
 import { PatientAdmissionRequestDialogComponent } from './patient-admission-request-dialog/patient-admission-request-dialog.component';
 import { PatientAdmissionRequestDialogTwoComponent } from './patient-admission-request-dialog-two/patient-admission-request-dialog-two.component';
 import { Division } from 'src/app/divisions/model/division';
@@ -52,7 +53,8 @@ export class PatientComponent implements OnInit {
     public dialog: MatDialog,
     private store: RegisterDbService,
     private divisionService: DivisionService,
-    private PatientsService: PatientsService
+    private PatientsService: PatientsService,
+    private loginService: AuthenticationService
   ) {}
 
   id: string;
@@ -239,4 +241,9 @@ export class PatientComponent implements OnInit {
   // getPatientById(id:string): Patient{
   //   this.firestore.collection('request').doc('id').get()
   // }
+
+  //get user role
+  get loggedRole(): string {
+    return this.loginService.getRole();
+  }
 }
