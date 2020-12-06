@@ -34,7 +34,7 @@ export class PrescribeMedicationModalComponent implements OnInit {
       drugName: string;
       unitsByDay: string;
       administrationByDay: string;
-      administractionListings: string;
+      administrationListings: string;
       administrationMethod: string;
       startDate: string;
       endDate: string;
@@ -46,14 +46,14 @@ export class PrescribeMedicationModalComponent implements OnInit {
   ) {
     this.prescriptionForm = this.fb.group({
       id: this.data.id,
-      drugNumber: ['', Validators.required],
-      drugName: ['', Validators.required],
-      unitsByDay: ['', Validators.required],
-      administrationByDay: ['', Validators.required],
-      administractionListings: ['', Validators.required],
-      administrationMethod: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      drugNumber: [this.data.drugNumber, Validators.required],
+      drugName: [this.data.drugName, Validators.required],
+      unitsByDay: [this.data.unitsByDay, Validators.required],
+      administrationByDay: [this.data.administrationByDay, Validators.required],
+      administrationListings: [this.data.administrationListings, Validators.required],
+      administrationMethod: [this.data.administrationMethod, Validators.required],
+      startDate: [this.data.startDate, Validators.required],
+      endDate: [this.data.endDate, Validators.required],
     });
   }
   ngOnInit(): void {
@@ -79,8 +79,8 @@ export class PrescribeMedicationModalComponent implements OnInit {
         drugName: this.prescriptionForm.value.drugName,
         unitsByDay: this.prescriptionForm.value.unitsByDay,
         administrationByDay: this.prescriptionForm.value.administrationByDay,
-        administractionListings: this.prescriptionForm.value
-          .administractionListings,
+        administrationListings: this.prescriptionForm.value
+          .administrationListings,
         administrationMethod: this.prescriptionForm.value.administrationMethod,
         startDate: this.prescriptionForm.value.startDate,
         endDate: this.prescriptionForm.value.endDate,

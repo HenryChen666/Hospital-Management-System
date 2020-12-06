@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
-
+import {MatSelectModule} from '@angular/material/select'; 
 import {
-  AngularFirestore,
-  DocumentChangeAction,
-  DocumentReference,
+  AngularFirestore
 } from '@angular/fire/firestore';
 import {
   FormBuilder,
@@ -16,17 +14,39 @@ import {
 import { Patient } from '../../model/patient';
 import { PatientComponent } from '../patient.component';
 
+// Interface used for select menus
+interface Gender {
+  value: string;
+  viewValue: string;
+}
+
+interface MaritalStatus{
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-update-patient-modal',
   templateUrl: './update-patient-modal.component.html',
   styleUrls: ['./update-patient-modal.component.css'],
 })
 export class UpdatePatientModalComponent implements OnInit {
-  //@Input() patientId: any;
-
   updatePatientForm: FormGroup;
   selectedPatient: Patient;
   patient: PatientComponent;
+  genders: Gender[] = [
+    {value: 'Male', viewValue: "Male"},
+    {value: 'Female', viewValue: "Female"},
+    {value: 'Other', viewValue: "Other"},
+  ];
+
+  maritalStatuses: MaritalStatus[] = [
+    {value: 'Single', viewValue: 'Single'},
+    {value: 'Relationship', viewValue: 'Relationship'},
+    {value: 'Married', viewValue: 'Married'},
+    {value: 'Divorced', viewValue: 'Divorced'},
+    {value: 'Widowed', viewValue: 'Widowed'},
+
+  ]
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -90,7 +110,7 @@ export class UpdatePatientModalComponent implements OnInit {
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
         gender: this.updatePatientForm.value.gender,
-        maritalStatus: this.updatePatientForm.value.maitalStatus,
+        maritalStatus: this.updatePatientForm.value.maritalStatus,
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
@@ -115,4 +135,8 @@ export class UpdatePatientModalComponent implements OnInit {
         console.log('Document successfully updated!');
       });
   }
+  updateGender(gender: string): void{
+    console.log(`gender: ${gender}`)
+  }
+
 }

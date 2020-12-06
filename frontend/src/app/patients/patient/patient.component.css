@@ -1,7 +1,7 @@
 #btn-patients {
   display: flex;
-  justify-content: space-around;
-  margin: 5vh 0vh 1vh;
+  /* justify-content: stretch; */
+  /* margin: 5vh 0vh 1vh; */
 }
 
 .btn {
@@ -11,14 +11,38 @@
 #select-patient-wrapper {
   border: 0.2px solid rgb(100, 100, 100);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  padding: 0.5vw 0.5vw;
-  margin-top: 5vh;
-}
-
-.table {
-  width: 100%;
+  padding: 1rem 2rem;
+  margin-top: 5vh;        
+  width: fit-content;        
 }
 
 td {
   text-align: center;
+}
+
+ table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-child {
+  flex: 1;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+} 
+
+.btn-row{
+  flex-direction: column;
+  margin-left: 2.5rem;
 }
