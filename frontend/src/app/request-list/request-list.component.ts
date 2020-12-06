@@ -77,8 +77,6 @@ export class RequestListComponent implements OnInit {
               // Get the Division Object and Array of Units.
               let divisionObject = data.data() as Division;
               let units: Unit[] = divisionObject.units;
-              console.log("Old Units")
-              console.log(units);
 
               // 1. Put the Patient in the patientArray of the division unit requested.
               // 2. Increase the patient count in the unit by 1
@@ -97,8 +95,6 @@ export class RequestListComponent implements OnInit {
                     for(let j=0; j<units[i].longTermBedArray.length; j++) {
                       let bedNum = units[i].longTermBedArray[j];
                       if(requestedBedNum === bedNum) {
-                        console.log("spliced long term bed num: " + bedNum);
-                        console.log("spliced long term bed num: " + bedNum);
                         units[i].longTermBedArray.splice(j,1);
                       }
                     }
@@ -107,7 +103,6 @@ export class RequestListComponent implements OnInit {
                     for(let j=0; j<units[i].shortTermBedArray.length; j++) {
                       let bedNum = units[i].shortTermBedArray[j];
                       if(requestedBedNum === bedNum) {
-                        console.log("spliced short term bed num: " + bedNum);
                         units[i].shortTermBedArray.splice(j,1);
                       }
                     }
@@ -115,8 +110,12 @@ export class RequestListComponent implements OnInit {
                 }
               }
               
-              console.log("New Units")
-              console.log(units);
+              // 6. Set divisionObject to the new state of units
+              divisionObject.units = units;
+              // 7. Decrement total beds available for division.
+              divisionObject.totalBeds = (Number(divisionObject.totalBeds)-1).toString();
+              // 8. Send to firestore new division.
+              //this.firestore.collection('divisions').doc(requestedDivision.firestoreId).set(divisionObject, {merge: true});
 
               /*for(let unit of divisionObject.units) {
                 //console.log("test",unit)
