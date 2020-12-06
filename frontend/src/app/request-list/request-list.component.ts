@@ -48,9 +48,10 @@ export class RequestListComponent implements OnInit {
         var userFullName = userFirstName + ' ' + userLastName;
         if (chargeNurseName === "Lee Sin"){
           alert("Accept Successfully!");
-          const bedType = requestObject.division.bedType
+          var totalBeds = requestObject.division.totalBeds
+          var bedType = requestObject.division.bedType
          // this.firestore.collection('request').doc
-          this.firestore.collection("divisions").doc(id).set({ totalBeds: bedcount-1 }, { merge: true });
+          this.firestore.collection("divisions").doc(id).set({ totalBeds: totalBeds-1 }, { merge: true });
         }
         else {
           alert("You dont have the access to accept this patient!");
