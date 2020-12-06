@@ -120,7 +120,7 @@ export class PatientsService {
       bedNumberSelected: this.bedNumberSelected,
     }
     // Send to firestore.
-    this.firestore.collection("divisions").doc(this.divisionsRequest.firestoreId.toString()).set({ bedNumAvailable: this.bedNumArray }, {merge: true});
+    //this.firestore.collection("divisions").doc(this.divisionsRequest.firestoreId.toString()).set({ bedNumAvailable: this.bedNumArray }, {merge: true});
     this.firestore.collection("request").doc(this.selectedPatient.id.toString()).set(Object.assign({}, requestObject))
     .then((res)=> {
       // Reset the state.
