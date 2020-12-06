@@ -20,8 +20,6 @@ import { DivisionService } from 'src/app/divisions/service/division.service';
 import { Unit } from 'src/app/divisions/model/unit';
 import { PatientAdmissionRequestDialogThreeComponent } from './patient-admission-request-dialog-three/patient-admission-request-dialog-three.component';
 
-import { stringify } from 'querystring';
-
 // Dialog Request Patient Admission Related.
 export interface DialogData {
   selectedPatient: Patient
