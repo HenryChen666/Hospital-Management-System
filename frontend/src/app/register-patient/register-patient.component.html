@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 <link rel="stylesheet" href="register-patient.component.css" >
 
-
+<mat-card>
 <div class="col-md-6 col-md-offset-3">
     <h2>Register Patients Form</h2>
     <form [formGroup]="registerForm" >
@@ -122,5 +122,7 @@
         <div class="form-group">
             <button mat-raised-button color="primary" class="btn btn-primary" name="register" (click)="register()">Register</button>
         </div>
+        
     </form>
 </div>
+</mat-card>
