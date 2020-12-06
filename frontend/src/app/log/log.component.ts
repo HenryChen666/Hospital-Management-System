@@ -25,11 +25,12 @@ export class LogComponent implements OnInit {
   ngOnInit(): void {
     this.getLog().subscribe(data => {
        this.log = data.map(e => {
-        console.log(e.payload.doc.data().time.toDate())
+        let logTime = e.payload.doc.data() as any;
+        console.log(logTime.time.toDate())
         return {
           
           ...(e.payload.doc.data() as object),
-          time: e.payload.doc.data().time.toDate(),
+          time: logTime.time.toDate(),
         } as Model;
       });
       console.log(this.log) });  
