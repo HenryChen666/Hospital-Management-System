@@ -4,9 +4,16 @@ import { Division } from '../model/division';
 import { Unit } from '../model/unit';
 import { DivisionService } from '../service/division.service';
 
+// Table Related.
 export interface UnitElement {
   name: string;
   num: number;
+}
+export interface UnitElementPatientList {
+  patientId: string;
+  name: string;
+  phoneNumber: number;
+  gender: string;
 }
 
 @Component({
@@ -27,6 +34,7 @@ export class DivisionComponent implements OnInit {
     "maxPatientCapacity": 0,
     "shortTermBedArray": [],
     "longTermBedArray": [],
+    "patientArray": [],
   };
   unitTotalBeds: number;
 
@@ -37,6 +45,11 @@ export class DivisionComponent implements OnInit {
   tableData: UnitElement[] = [];
   unitDiagrams: string[] = ['../../../assets/images/SpecialtyWard.png','../../../assets/images/IntensiveCareWard.png','../../../assets/images/NonIntensiveCareWard.png']
   unitDiagramSelected: string;
+
+  // Patient Table related items.
+  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "gender", "dischargeButton"];
+  tableDataPatient: UnitElementPatientList[] = [];
+
   constructor(private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
@@ -44,6 +57,9 @@ export class DivisionComponent implements OnInit {
     this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
       // Set unit.
       this.unit = unit;
+
+      // Testing Purposes: Set defaultPatientArray to patientArray of unit.
+      this.unit.patientArray = this.divisionsService.getDefaultPatientArray();
 
       // Set total bed count.
       this.unitTotalBeds = this.unit.numOfBedsShortTerm + this.unit.numOfBedsLongTerm;
@@ -59,6 +75,7 @@ export class DivisionComponent implements OnInit {
 
       // Format the tableData accordingly.
       this.formatTableData();
+      this.formatPatientTableData();
     });
 
     // Get the updated data for unit then set it as well in divisions service.
@@ -91,6 +108,27 @@ export class DivisionComponent implements OnInit {
     }
   }
 
+  formatPatientTableData() {
+    // Reset State of Patient Data.
+    this.tableDataPatient = [];
+    // Loop through each patient for each row on table, grab necessary data of patient into an object, push object into tableData to be displayed in table.
+    for(let patientIndex in this.unit.patientArray) {
+      let patient = this.unit.patientArray[patientIndex];
+      let itemObj = {
+        "patientId": patient.id,
+        "name": patient.firstName + " " + patient.lastName,
+        "phoneNumber": patient.phoneNumber,
+        "gender": patient.gender
+      }
+      this.tableDataPatient.push(itemObj);
+    }
+  }
+
+  handleDischargeButton(patientId: string): void {
+
+  }
+
+  // Deprecated: not allowing control of bed counts.
   handleButtonControl(name, movement) {
     switch(name){
       case "Short Term Beds Available":

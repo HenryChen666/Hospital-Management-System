@@ -4,6 +4,7 @@ import { Unit } from '../model/unit';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { Patient } from 'src/app/patients/model/patient';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,73 @@ export class DivisionService {
   // Unit Related.
   selectedDivisionUnits: Unit[] = [];
   selectedUnitInfo = new BehaviorSubject<Unit>(null);
+  defaultPatientArray: Patient[] = [ // For testing purposes.
+    {
+      "id": "1234",
+      "firstName": "James",
+      "lastName": "Lee",
+      "address": "Toronto, Canada",
+      "phoneNumber": 61380508244,
+      "dateOfBirth": 20011997,
+      "gender": "male",
+      "maritalStatus": "single",
+      "externalDoctorId": "123541",
+      "nextOfKin": "Mike Diep",
+      "divisionId": null
+    },
+    {
+      "id": "1234",
+      "firstName": "Ziming",
+      "lastName": "Wang",
+      "address": "Toronto, Canada",
+      "phoneNumber": 61380508244,
+      "dateOfBirth": 20011997,
+      "gender": "male",
+      "maritalStatus": "single",
+      "externalDoctorId": "123541",
+      "nextOfKin": "Mike Diep",
+      "divisionId": null
+    },
+    {
+      "id": "1234",
+      "firstName": "Henry",
+      "lastName": "Chang",
+      "address": "Toronto, Canada",
+      "phoneNumber": 61380508244,
+      "dateOfBirth": 20011997,
+      "gender": "male",
+      "maritalStatus": "single",
+      "externalDoctorId": "123541",
+      "nextOfKin": "Mike Diep",
+      "divisionId": null
+    },
+    {
+      "id": "1234",
+      "firstName": "Kenny",
+      "lastName": "Nguyen",
+      "address": "Toronto, Canada",
+      "phoneNumber": 61380508244,
+      "dateOfBirth": 20011997,
+      "gender": "male",
+      "maritalStatus": "single",
+      "externalDoctorId": "123541",
+      "nextOfKin": "Mike Diep",
+      "divisionId": null
+    },
+    {
+      "id": "1234",
+      "firstName": "Mike ",
+      "lastName": "Diep",
+      "address": "Toronto, Canada",
+      "phoneNumber": 61380508244,
+      "dateOfBirth": 20011997,
+      "gender": "male",
+      "maritalStatus": "single",
+      "externalDoctorId": "123541",
+      "nextOfKin": "Mike Diep",
+      "divisionId": null
+    }
+  ];
 
   constructor(private http: HttpClient, private firestore: AngularFirestore) { }
 
@@ -33,6 +101,11 @@ export class DivisionService {
 
   public getUnitsForDivision() {
     return this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).snapshotChanges();
+  }
+
+  // For Testing Purposes.
+  public getDefaultPatientArray() {
+    return this.defaultPatientArray;
   }
 
   // Set the selected Division and its Units.

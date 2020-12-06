@@ -7,6 +7,8 @@
     <mat-card-subtitle>Unit Status: {{unit.status}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src={{unitDiagramSelected}}>
+
+  <!-- Unit Status Table -->
   <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
   
     <!-- Name Column -->
@@ -32,6 +34,55 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Patient Table -->
+  <mat-card style="margin-top: 30px;"><h1 mat-h1>Patients in the Unit</h1></mat-card>
+  <table mat-table [dataSource]="tableDataPatient" class="mat-elevation-z8">
+  
+    <!-- Patient Id Column -->
+    <ng-container matColumnDef="patientId">
+      <th mat-header-cell *matHeaderCellDef> Patient Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.patientId}} </td>
+    </ng-container>
+  
+    <!-- Patient Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Patient Phone Number Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef> Patient Phone Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <!-- Gender Number Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+
+    <!-- Discharge Column -->
+    <ng-container matColumnDef="dischargeButton">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="primary" (click)="handleDischargeButton(element.patientId)">Discharge</button>
+      </td>
+    </ng-container>
+
+    <!-- Button Column -->
+    <!--<ng-container matColumnDef="button">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="primary" (click)="handleButtonControl(element.name, 'up')">Up</button>
+        <button mat-stroked-button color="primary" (click)="handleButtonControl(element.name, 'down')">Down</button>
+      </td>
+    </ng-container> -->
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsPatientTable"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsPatientTable;"></tr>
   </table>
 </div>
 
