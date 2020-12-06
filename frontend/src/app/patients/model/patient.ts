@@ -12,7 +12,9 @@ export class Patient {
     public maritalStatus: string,
     public externalDoctorId: string,
     public nextOfKin: any,
-    public divisionId: Division
+    public divisionId: Division,
+    public bedNumAssigned: string,
+    public bedTypeAssigned: string,
   ) {}
 }
 
