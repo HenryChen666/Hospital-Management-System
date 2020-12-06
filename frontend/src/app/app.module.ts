@@ -39,6 +39,7 @@ import {environment} from '../environments/environment';
 import { PatientAdmissionRequestDialogComponent } from './patients/patient/patient-admission-request-dialog/patient-admission-request-dialog.component';
 import { PatientAdmissionRequestDialogTwoComponent } from './patients/patient/patient-admission-request-dialog-two/patient-admission-request-dialog-two.component';
 import { RequestDialogComponent } from './request-list/request-moreinfo-dialog/request-dialog.component';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { RequestDialogComponent } from './request-list/request-moreinfo-dialog/r
     UpdatePatientModalComponent,
     PatientAdmissionRequestDialogComponent,
     PatientAdmissionRequestDialogTwoComponent,
-    RequestDialogComponent
+    RequestDialogComponent,
+    LogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

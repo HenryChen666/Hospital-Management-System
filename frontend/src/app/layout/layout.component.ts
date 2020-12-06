@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit {
       this.links = ['patients', 'profile'];
     }
     else{
-      this.links = ['patients', 'requestlist','registerpatient','divisions','profile'];
+      this.links = ['patients', 'requestlist','registerpatient','divisions','profile','log'];
     }
   }
 

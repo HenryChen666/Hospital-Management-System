@@ -8,6 +8,7 @@ import { RegisterPatientComponent } from './register-patient/register-patient.co
 import { ProfileComponent } from './profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
 import { DivisionsComponent } from './divisions/divisions.component';
+import {LogComponent} from './log/log.component'
 import { Route } from '@angular/compiler/src/core';
 
 const patientsRoutes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: 'requestlist', component: RequestListComponent},
       {path: 'registerpatient', component: RegisterPatientComponent},
       {path: 'divisions', component: DivisionsComponent},
+      {path: 'log', component: LogComponent},
       {path: 'profile', component: ProfileComponent},
     ]}
 ];
