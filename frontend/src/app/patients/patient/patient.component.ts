@@ -62,7 +62,7 @@ export class PatientComponent implements OnInit {
   phoneNumber: string;
   dateOfBirth: string;
   gender: string;
-  martialStatus: string;
+  maritalStatus: string;
   externalDoctorId: string;
   nextOfKin: string;
 
@@ -84,7 +84,7 @@ export class PatientComponent implements OnInit {
         .then((doc) => {
           if (doc.exists) {
             let patient = doc.data() as Patient;
-            console.log('Document data:',patient.id);
+            console.log('Document data:',patient.maritalStatus);
 
             this.selectedPatient = new Patient(
               patient.id,
@@ -94,7 +94,7 @@ export class PatientComponent implements OnInit {
               patient.phoneNumber,
               patient.dateOfBirth,
               patient.gender,
-              patient.martialStatus,
+              patient.maritalStatus,
               patient.externalDoctorId,
               patient.nextOfKin,
               null // DivisionId Occupied not set.  
@@ -135,7 +135,7 @@ export class PatientComponent implements OnInit {
         phoneNumber: this.selectedPatient.phoneNumber,
         dateOfBirth: this.selectedPatient.dateOfBirth,
         gender: this.selectedPatient.gender,
-        martialStatus: this.selectedPatient.martialStatus,
+        maritalStatus: this.selectedPatient.maritalStatus,
         externalDoctorId: this.selectedPatient.externalDoctorId,
         nextOfKin: this.selectedPatient.nextOfKin,
       },

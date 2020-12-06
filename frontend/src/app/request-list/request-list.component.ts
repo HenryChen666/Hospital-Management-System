@@ -56,10 +56,11 @@ export class RequestListComponent implements OnInit {
           // doc.data() will be undefined in this case
           console.log("No such document!");
       }
-  }).catch(function(error) {
+    }).catch(function(error) {
       console.log("Error getting document:", error);
-  });
+    });
   }
+
   discharge(id: string) {
     this.firestore
     .collection('request')
@@ -73,6 +74,7 @@ export class RequestListComponent implements OnInit {
       console.error('Error discharging patient', error);
     });
   }
+  
   openDialogInfo(patientId: string): void {
     // Get the selected request.
     let selectedRequest;
