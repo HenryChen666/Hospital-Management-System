@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
-
+import {MatSelectModule} from '@angular/material/select'; 
 import {
   AngularFirestore
 } from '@angular/fire/firestore';
@@ -14,6 +14,16 @@ import {
 import { Patient } from '../../model/patient';
 import { PatientComponent } from '../patient.component';
 
+// Interface used for select menus
+interface Gender {
+  value: string;
+  viewValue: string;
+}
+
+interface MartialStatus{
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-update-patient-modal',
   templateUrl: './update-patient-modal.component.html',
@@ -23,6 +33,22 @@ export class UpdatePatientModalComponent implements OnInit {
   updatePatientForm: FormGroup;
   selectedPatient: Patient;
   patient: PatientComponent;
+  genders: Gender[] = [
+    {value: 'Male', viewValue: "Male"},
+    {value: 'Female', viewValue: "Female"},
+    {value: 'Other', viewValue: "Other"},
+  ];
+
+  martialStatuses: MartialStatus[] = [
+    {value: 'Single', viewValue: 'Single'},
+    {value: 'Relationship', viewValue: 'Relationship'},
+    {value: 'Married', viewValue: 'Married'},
+    {value: 'Divorced', viewValue: 'Divorced'},
+    {value: 'Widowed', viewValue: 'Widowed'},
+
+  ]
+
+  selectedGender: string;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -111,4 +137,8 @@ export class UpdatePatientModalComponent implements OnInit {
         console.log('Document successfully updated!');
       });
   }
+  updateGender(gender: string): void{
+    console.log(`gender: ${gender}`)
+  }
+
 }
