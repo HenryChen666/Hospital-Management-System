@@ -2,27 +2,13 @@ import { Injectable } from '@angular/core';
 import { Division } from 'src/app/divisions/model/division';
 import { Unit } from 'src/app/divisions/model/unit';
 import { AngularFirestore } from '@angular/fire/firestore';
-import {Patient} from '../model/patient';
+import {Doctor, Patient} from '../model/patient';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientsService {
   selectedPatient: Patient;
-  doctorsArray: Object[] = [
-    {
-      "fName": "Frank",
-      "lName": "Wang"
-    },
-    {
-      "fName": "Jon",
-      "lName": "Snow"
-    },
-    {
-      "fName": "Arya",
-      "lName": "Stark"
-    }
-  ];
 
   // Dialog Related to Submitting a Patient Request
   rationaleRequest: string;
@@ -40,10 +26,6 @@ export class PatientsService {
     // tslint:disable-next-line:radix
     return this.patients.find(patient => patient.id === String(Number.parseInt(id)));
   }*/
-
-  public getAllDoctors(): Object[] {
-    return this.doctorsArray;
-  }
 
   public setSelectedPatient(patient: Patient): void {
     this.selectedPatient = patient;
@@ -71,7 +53,8 @@ export class PatientsService {
   }
 
   // Dialog 2/3 Related Requests for Requesting Patient Admission
-  public setDoctorRequest(doctor: Object): void {
+  public setDoctorRequest(doctor: Doctor): void {
+    console.log(doctor);
     this.doctorSelectedRequest = doctor;
   }
 
