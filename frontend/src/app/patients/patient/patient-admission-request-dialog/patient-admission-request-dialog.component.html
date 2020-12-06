@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Request Admission Part 1/2</h1>
+<h1 mat-dialog-title>Request Admission Part 1/3</h1>
 <div mat-dialog-content>
   <p>Please enter required fields for the patient request</p>
   <div>
@@ -16,16 +16,6 @@
         </mat-option>
       </mat-select>
       <mat-hint> 0 - Low / 10 - High</mat-hint>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="fill" class="formField">
-      <mat-label>Select a doctor</mat-label>
-      <mat-select required>
-        <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
-          {{ doctor.firstname + " " + doctor.lastname + " (" + doctor.username +")"}}
-        </mat-option>
-      </mat-select>
     </mat-form-field>
   </div>
   <div>

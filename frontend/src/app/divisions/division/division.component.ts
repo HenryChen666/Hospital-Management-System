@@ -24,7 +24,9 @@ export class DivisionComponent implements OnInit {
     "numOfBedsLongTerm": 0,
     "numOfPatients": 0,
     "numOfStaffMembers": 0,
-    "maxPatientCapacity": 0
+    "maxPatientCapacity": 0,
+    "shortTermBedArray": [],
+    "longTermBedArray": [],
   };
 
   // Table related items.

@@ -7,6 +7,8 @@ export class Unit {
     public numOfBedsLongTerm: number,
     public numOfPatients: number,
     public numOfStaffMembers: number,
-    public maxPatientCapacity: number
+    public maxPatientCapacity: number,
+    public shortTermBedArray: string[],
+    public longTermBedArray: string[]
   ){}
 }

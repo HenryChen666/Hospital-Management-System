@@ -17,6 +17,7 @@ import { PatientAdmissionRequestDialogTwoComponent } from './patient-admission-r
 import { Division } from 'src/app/divisions/model/division';
 import { DivisionService } from 'src/app/divisions/service/division.service';
 import { Unit } from 'src/app/divisions/model/unit';
+import { PatientAdmissionRequestDialogThreeComponent } from './patient-admission-request-dialog-three/patient-admission-request-dialog-three.component';
 
 
 // Dialog Request Patient Admission Related.
@@ -30,10 +31,16 @@ export interface DialogData {
 }
 export interface DialogDataTwo {
   selectedPatient: Patient,
-  doctorsArray: Object[],
   selectedDivisionRequest: Division,
   selectedUnit: Unit,
-  selectedDoctor: string
+  selectedDoctor: string,
+  bedTypeSelected: string,
+}
+export interface DialogDataThree {
+  selectedUnit: Unit,
+  selectedBedType: string,
+  numOfBeds: string[],
+  selectedBedNum: string
 }
 
 
@@ -186,21 +193,46 @@ export class PatientComponent implements OnInit {
           width: '75%',
           data: {
             selectedDivisionRequest: result.divisionSelected,
-            doctorsArray: this.PatientsService.getAllDoctors(),
             selectedUnit: this.PatientsService.getUnitSelectedRequest(),
             selectedDoctor: this.PatientsService.getDoctorSelectedRequest(),
-            selectedPatient: this.selectedPatient
-          }
+            selectedPatient: this.selectedPatient,
+            bedTypeSelected: this.PatientsService.getBedTypeSelected(),
+          },
         });
 
         dialogRef2.afterClosed().subscribe(result => { 
           // Set data.
           this.PatientsService.setDoctorRequest(result.selectedDoctor);
           this.PatientsService.setUnitSelectedRequest(result.selectedUnit);
+          this.PatientsService.setBedTypeSelected(result.bedTypeSelected);
 
-          // Send to request list.
-          this.PatientsService.sendPatientAdmissionRequest();
-        })
+          // Open the Third Dialog.
+          if(result.selectedUnit !== null) {
+            // Determine num of beds for type of bed.
+            if(result.bedTypeSelected === "Long Term") {
+              this.PatientsService.setBedNumArray(result.selectedUnit.longTermBedArray);
+            } else {
+              this.PatientsService.setBedNumArray(result.selectedUnit.shortTermBedArray);
+            }
+            console.log(this.PatientsService.getBedNumArray());
+
+            const dialogRef3 = this.dialog.open(PatientAdmissionRequestDialogThreeComponent, {
+              width: '75%',
+              data: {
+                selectedUnit: this.PatientsService.getUnitSelectedRequest(),
+                selectedBedType: this.PatientsService.getBedTypeSelected(),
+                numOfBeds: this.PatientsService.getBedNumArray(),
+                selectedBedNum: this.PatientsService.getBedNumberSelected()
+              }
+            })
+
+            dialogRef3.afterClosed().subscribe(result => {
+              this.PatientsService.setBedNumberSelected(result.selectedBedNum);
+              // Send to request list to firebase.
+              this.PatientsService.sendPatientAdmissionRequest();
+            })
+          }
+        });
 
       }
     });
