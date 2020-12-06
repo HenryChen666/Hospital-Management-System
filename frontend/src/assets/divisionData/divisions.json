@@ -9,7 +9,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 1020,
@@ -18,7 +19,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 1030,
@@ -27,7 +29,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 1040,
@@ -36,7 +39,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 1050,
@@ -45,7 +49,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 1060,
@@ -54,7 +59,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       }
     ]
   },
@@ -69,7 +75,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2020,
@@ -78,7 +85,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2030,
@@ -87,7 +95,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2040,
@@ -96,7 +105,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2050,
@@ -105,7 +115,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2060,
@@ -114,7 +125,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2070,
@@ -123,7 +135,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2080,
@@ -132,7 +145,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 2090,
@@ -141,7 +155,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       }
     ]
   },
@@ -156,7 +171,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 3020,
@@ -165,7 +181,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 3030,
@@ -174,7 +191,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       },
       {
         "id": 3040,
@@ -183,7 +201,8 @@
         "numOfBedsLongTerm": 5,
         "numOfPatients": 10,
         "numOfStaffMembers": 4,
-        "maxPatientCapacity":20
+        "maxPatientCapacity":20,
+        "patientArray": []
       }
     ]
   }
