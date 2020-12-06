@@ -90,5 +90,3 @@ export class RegisterPatientComponent implements OnInit {
 
   }
 }
-
-
