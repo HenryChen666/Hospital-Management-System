@@ -34,7 +34,7 @@ export class DivisionService {
       "bedTypeAssigned": "Long Term"
     },
     {
-      "id": "1234",
+      "id": "12",
       "firstName": "Ziming",
       "lastName": "Wang",
       "address": "Toronto, Canada",
@@ -168,8 +168,17 @@ export class DivisionService {
   }
 
   // Firestore related services.
-  public sendPatientDischarge(patientId: string): void {
-    
+  public sendPatientDischargeChange(unit: Unit, patient: Patient): void {
+    // Change state of unit for selected division.
+    for(let i=0; i<this.selectedDivision.units.length; i++) {
+      if(unit.id === this.selectedDivision.units[i].id) {
+        this.selectedDivisionUnits[i] = unit
+      }
+    }
+
+    // Send to firestore the new state of units for the division.
+    //this.firestore.collection('divisions').doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivision.units}, {merge: true});
+    this.firestore.collection('user').doc(patient.id).set(patient);
   }
 
 }

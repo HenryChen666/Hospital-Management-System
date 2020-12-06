@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Patient } from 'src/app/patients/model/patient';
 import { Division } from '../model/division';
 import { Unit } from '../model/unit';
 import { DivisionService } from '../service/division.service';
@@ -127,18 +128,37 @@ export class DivisionComponent implements OnInit {
   }
 
   handleDischargeButton(patientId: string): void {
+    let selectedPatient: Patient;
+    
     // Remove patient from patientArray of selectedUnit.
     for(let i=0; i < this.unit.patientArray.length; i++) {
       let patient = this.unit.patientArray[i];
       if(patientId === patient.id) {
-        // Put bed num back into appropriate bed type.
-        //if()
+        // Change state of patient.
+        selectedPatient = this.unit.patientArray[i];
+        selectedPatient.bedNumAssigned = null;
+        selectedPatient.bedTypeAssigned = null;
+        selectedPatient.divisionId = null;
+
+        // Put bed num back into array of appropriate bed type.
+        if(patient.bedTypeAssigned === "Long Term") {
+          this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm + 1;
+          this.unit.longTermBedArray.push(patient.bedNumAssigned);
+          this.unit.numOfPatients = this.unit.numOfPatients + 1;
+        } else {
+          this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm + 1;
+          this.unit.shortTermBedArray.push(patient.bedNumAssigned);
+          this.unit.numOfPatients = this.unit.numOfPatients + 1;
+        }
+
+        // Remove the patient from the Unit Patient Array.
         this.unit.patientArray.splice(i);
+
       }
     }
 
-    // Call service to send to firestore.
-    this.divisionsService.sendPatientDischarge(patientId);
+    // Call service to send to firestore the new state of the unit.
+    this.divisionsService.sendPatientDischargeChange(this.unit, selectedPatient);
   }
 
   // Deprecated: not allowing control of bed counts.
