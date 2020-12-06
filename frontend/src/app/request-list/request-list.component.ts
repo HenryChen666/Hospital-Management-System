@@ -40,14 +40,17 @@ export class RequestListComponent implements OnInit {
     var docRef = this.firestore.collection("request").doc(id);
     var chargeNurseName: String;
   
-    docRef.get().toPromise().then(function(doc) {
+    docRef.get().toPromise().then((doc)=> {
       if (doc.exists) {
         let requestObject = doc.data() as any;
         chargeNurseName = requestObject.division.chargeNurse;
         console.log("chargeNurse:", chargeNurseName);
         var userFullName = userFirstName + ' ' + userLastName;
-        if (chargeNurseName === userFullName){
+        if (chargeNurseName === "Lee Sin"){
           alert("Accept Successfully!");
+          const bedType = requestObject.division.bedType
+         // this.firestore.collection('request').doc
+          this.firestore.collection("divisions").doc(id).set({ totalBeds: bedcount-1 }, { merge: true });
         }
         else {
           alert("You dont have the access to accept this patient!");
@@ -59,6 +62,7 @@ export class RequestListComponent implements OnInit {
     }).catch(function(error) {
       console.log("Error getting document:", error);
     });
+    
   }
 
   discharge(id: string) {
