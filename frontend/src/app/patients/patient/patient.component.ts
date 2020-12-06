@@ -106,9 +106,8 @@ export class PatientComponent implements OnInit {
               patient.maritalStatus,
               patient.externalDoctorId,
               patient.nextOfKin,
-              null,
-              null,
-              null // DivisionId Occupied not set.  
+              null, // DivisionId Occupied not set.  
+              null // bedNum not set
             );
 
             this.PatientsService.setSelectedPatient(this.selectedPatient);
