@@ -119,22 +119,34 @@ export class DivisionService {
   }
 
   // Set the selected Division and its Units.
-  public setDivision(divisionObject): void {
-    // Check status of selected Division and set it in Firestore.
+  public setSelectedDivision(divisionObject): void {
+    // Count the beds for each unit and set as bedCount for the division, also check the Unit Status.
     let bedCount = 0;
     for(let unitIndex in divisionObject.units) {
       let unit = divisionObject.units[unitIndex];
+
       bedCount = unit.numOfBedsLongTerm + bedCount;
       bedCount = unit.numOfBedsShortTerm + bedCount;
+
+      // Check the status of each Unit.
+      if(unit.numOfBedsLongTerm > 0 || unit.numOfBedsShortTerm > 0) {
+        unit.status = "Incomplete";
+        divisionObject.units[unitIndex] = unit;
+      } else {
+        unit.status = "Complete";
+        divisionObject.units[unitIndex] = unit;
+      }
     }
+
+    // Set the Status of the Division based on it's bed counts.
     if(bedCount > 0) {
       divisionObject.status = "Incomplete"
     } else {
       divisionObject.status = "Complete"
     }
     divisionObject.totalBeds = bedCount;
-    this.firestore.collection("divisions").doc(divisionObject.firestoreId).set({ status: divisionObject.status }, { merge: true });
-    this.firestore.collection("divisions").doc(divisionObject.firestoreId).set({ totalBeds: bedCount }, { merge: true });
+
+    this.firestore.collection("divisions").doc(divisionObject.firestoreId).set( divisionObject, { merge: true } );
 
     // Set state of Application.
     this.selectedDivision = divisionObject;
@@ -143,12 +155,7 @@ export class DivisionService {
 
   // Set the selected Division Unit.
   public setSelectedDivisionUnit(unitObject): void {
-    // Check status of Unit.
-    if(unitObject.numOfBedsLongTerm > 0 || unitObject.numOfBedsShortTerm > 0) {
-      unitObject.status = "Incomplete"
-    } else {
-      unitObject.status = "Complete"
-    }
+    // Set the next state of the unitObject that is observable.
     this.selectedUnitInfo.next(unitObject);
   }
 

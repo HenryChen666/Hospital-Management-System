@@ -22,8 +22,8 @@
     <mat-form-field appearance="fill" class="formField">
       <mat-label>Select Division</mat-label>
       <mat-select [(ngModel)]="data.divisionSelected" name="divisions" required>
-        <mat-option *ngFor="let division of data.divisions" [value]="division">
-          {{division.category}}
+        <mat-option *ngFor="let division of data.divisions" [value]="division" [disabled]="division.status === 'Complete'">
+          {{division.category}} - {{division.status}} 
         </mat-option>
       </mat-select>
     </mat-form-field>

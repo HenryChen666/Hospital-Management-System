@@ -16,7 +16,7 @@ firebase.initializeApp({
   
 var db = firebase.firestore();
 
-var menu =[    {
+var menu =[      {
   "id": 1000,
   "category": "Intensive Care",
   "bipperExt": "7653",
@@ -34,6 +34,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -46,6 +47,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -58,6 +60,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -67,6 +70,7 @@ var menu =[    {
       "name": "Surgical (SICUs)",
       "numOfBedsShortTerm": 15,
       "numOfBedsLongTerm": 5,
+      "status": "Incomplete",
       "patientArray": [],
       "numOfPatients": 0,
       "numOfStaffMembers": 0,
@@ -82,6 +86,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -94,6 +99,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -118,6 +124,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -130,6 +137,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -142,6 +150,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -154,6 +163,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -166,6 +176,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -178,6 +189,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -190,6 +202,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -202,6 +215,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -214,6 +228,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -238,6 +253,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -250,6 +266,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -262,6 +279,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
@@ -274,6 +292,7 @@ var menu =[    {
       "numOfPatients": 0,
       "numOfStaffMembers": 4,
       "maxPatientCapacity":20,
+      "status": "Incomplete",
       "patientArray": [],
       "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116"],
       "longTermBedArray": ["1020","1022","1023","1024","1025"]

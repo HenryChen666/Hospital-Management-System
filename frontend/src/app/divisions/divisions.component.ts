@@ -82,8 +82,8 @@ export class DivisionsComponent implements OnInit {
     for(let i=0; i<this.divisions.length; i++) {
       if(this.divisions[i].id == divisionId) {
         this.selectedDivison =  this.divisions[i];
-        this.divisionsService.setDivision(this.divisions[i]);
-        this.divisionIdValue = this.selectedDivison.id;
+        this.divisionsService.setSelectedDivision(this.divisions[i]);
+        this.divisionIdValue = divisionId;
         this.isDivisionSelected = true;
         this.searchError = false;
 
@@ -103,9 +103,9 @@ export class DivisionsComponent implements OnInit {
   }
 
   handleSelectedUnit(unitObject): void {
-    this.selectedUnit = unitObject;
+    //this.selectedUnit = unitObject;
     this.divisionsService.setSelectedDivisionUnit(unitObject);
-    this.divisionIdValue = this.selectedUnit.id;
+    this.divisionIdValue = unitObject.id;
     this.searchError = false;
   }
 
@@ -141,7 +141,6 @@ export class DivisionsComponent implements OnInit {
   }
 
   validateSearch(isSearchError: Boolean): ValidatorFn {
-    console.log(isSearchError);
     return (control: AbstractControl): {[key: string]: any} | null => {
       const notValidId = isSearchError;
       return notValidId ? {notValidId: {value: isSearchError}} : null;
