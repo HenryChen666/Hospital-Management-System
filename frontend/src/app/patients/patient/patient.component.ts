@@ -211,24 +211,19 @@ export class PatientComponent implements OnInit {
           // Open the Third Dialog.
           if(result.selectedUnit !== null) {
             // Determine num of beds for type of bed.
-            let numOfBeds;
-            let numOfBedsArray = [];
             if(result.bedTypeSelected === "Long Term") {
-              numOfBeds = result.selectedUnit.numOfBedsLongTerm
+              this.PatientsService.setBedNumArray(result.selectedUnit.longTermBedArray);
             } else {
-              numOfBeds = result.selectedUnit.numOfBedsShortTerm
+              this.PatientsService.setBedNumArray(result.selectedUnit.shortTermBedArray);
             }
-            for(let i=0; i < numOfBeds; i++) {
-              numOfBedsArray.push(i.toString());
-            }
-            this.PatientsService.setBedNumArray(numOfBedsArray);
+            console.log(this.PatientsService.getBedNumArray());
 
             const dialogRef3 = this.dialog.open(PatientAdmissionRequestDialogThreeComponent, {
               width: '75%',
               data: {
                 selectedUnit: this.PatientsService.getUnitSelectedRequest(),
                 selectedBedType: this.PatientsService.getBedTypeSelected(),
-                numOfBeds: numOfBedsArray,
+                numOfBeds: this.PatientsService.getBedNumArray(),
                 selectedBedNum: this.PatientsService.getBedNumberSelected()
               }
             })

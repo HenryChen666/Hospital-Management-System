@@ -88,6 +88,10 @@ export class PatientsService {
     return this.bedNumberSelected;
   }
 
+  public getBedNumArray(): string[] {
+    return this.bedNumArray;
+  }
+
   public setBedTypeSelected(bedType: string): void {
     this.bedTypeSelected = bedType;
   }

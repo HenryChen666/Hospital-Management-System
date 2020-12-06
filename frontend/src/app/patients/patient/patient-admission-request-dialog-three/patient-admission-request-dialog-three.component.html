@@ -5,8 +5,8 @@
     <mat-form-field appearance="fill" class="formField">
       <mat-label>Bed Number</mat-label>
       <mat-select [(ngModel)]="data.selectedBedNum" name="bedNum" required>
-        <mat-option *ngFor="let bedIndex of data.numOfBeds" [value]="data.numOfBeds[bedIndex]">
-          {{data.numOfBeds[bedIndex]}}
+        <mat-option *ngFor="let bedIndex of data.numOfBeds" [value]="bedIndex">
+          {{bedIndex}}
         </mat-option>
       </mat-select>
     </mat-form-field>
