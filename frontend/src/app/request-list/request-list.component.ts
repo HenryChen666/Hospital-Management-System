@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from '../patients/model/patient';
+import { Doctor, Patient } from '../patients/model/patient';
 import { RequestListService } from './request-list-service/request-list-service.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthenticationService} from '../security/authentication.service';
@@ -39,31 +39,86 @@ export class RequestListComponent implements OnInit {
   }
 
   accept(id: string){
-    var userFirstName = this.loginService.getFirstname;
-    var userLastName = this.loginService.getLastname;
-    var chargeNurseName: String;
-    var bedNumberSelected: String;
-    var bedTypeSelected: String;
+    // Get user information.
+    var userFirstName = this.loginService.getFirstname();
+    var userLastName = this.loginService.getLastname();
+    var userFullName = userFirstName + ' ' + userLastName;
+    // For testing purpose
+    userFullName = "Lee Sin";
+    console.log("User Information: " + userFullName);
+
+    // Get request data based on patientId.
     var docRef = this.firestore.collection("request").doc(id);
     docRef.get().toPromise().then((doc)=> {
       if (doc.exists) {
+
+        // Set all of the requested Items.
         let requestObject = doc.data() as any;
-        chargeNurseName = requestObject.division.chargeNurse;
+        let requestedBedNum:string = requestObject.bedNumberSelected;
+        let requestedBedType:string = requestObject.bedTypeSelected;
+        let requestedDivision:Division = requestObject.division;
+        let requestedDoctor:Doctor = requestObject.doctor;
+        let requestedPatient:Patient = requestObject.patient;
+        let requestedUnit:Unit = requestObject.unit;
+
+        // Get the Charge Nurse.
+        let chargeNurseName:String = requestObject.division.chargeNurse;
         console.log("chargeNurse:", chargeNurseName);
-        var userFullName = userFirstName + ' ' + userLastName;
-        if (chargeNurseName === "Lee Sin"){
+
+        // Condition that the user is the Charge Nurse.
+        if (userFullName === chargeNurseName){
           alert("Accept Successfully!");
-          //var totalBeds = requestObject.totalBeds -1 
-          //this.firestore.collection('request').doc(id).set({totalBeds:totalBeds},{merge:true});
+
+          // Get the Division that the Charge Nurse is associated to.
           var bedRef = this.firestore.collection("divisions", ref =>ref.where('chargeNurse' ,"==", chargeNurseName));
-          bedRef.get().toPromise().then(ref =>{
+          bedRef.get().toPromise().then(ref=>{
             ref.forEach((data)=>{
-              //console.log("work");
-              let divisionObject = data.data() as any;
-              var totalBeds = divisionObject.totalBeds;           
-              this.firestore.collection('divisions').doc(data.id).set({totalBeds:totalBeds-1},{merge: true});  
-              //console.log(data.id,"=>",divisionObject.units.length); 
-              for(let unit of divisionObject.units) {
+
+              // Get the Division Object and Array of Units.
+              let divisionObject = data.data() as Division;
+              let units: Unit[] = divisionObject.units;
+              console.log("Old Units")
+              console.log(units);
+
+              // 1. Put the Patient in the patientArray of the division unit requested.
+              // 2. Increase the patient count in the unit by 1
+              // 3. Decrement bed num by 1 of specific type
+              // 4. Then splice the bed num specified.
+              // 5. Set units: Unit[] state to new one.
+              for(let i=0; i<units.length; i++) {
+                if(requestedUnit.id === units[i].id) {
+                  // This is step 1.
+                  units[i].patientArray.push(requestedPatient);
+                  // This is step 2.
+                  units[i].numOfPatients = units[i].numOfPatients + 1;
+                  // This is step 3 and 4.
+                  if(requestedBedType === "Long Term") {
+                    units[i].numOfBedsLongTerm = units[i].numOfBedsLongTerm - 1;
+                    for(let j=0; j<units[i].longTermBedArray.length; j++) {
+                      let bedNum = units[i].longTermBedArray[j];
+                      if(requestedBedNum === bedNum) {
+                        console.log("spliced long term bed num: " + bedNum);
+                        console.log("spliced long term bed num: " + bedNum);
+                        units[i].longTermBedArray.splice(j,1);
+                      }
+                    }
+                  } else if(requestedBedType === "Short Term") {
+                    units[i].numOfBedsShortTerm = units[i].numOfBedsShortTerm - 1;
+                    for(let j=0; j<units[i].shortTermBedArray.length; j++) {
+                      let bedNum = units[i].shortTermBedArray[j];
+                      if(requestedBedNum === bedNum) {
+                        console.log("spliced short term bed num: " + bedNum);
+                        units[i].shortTermBedArray.splice(j,1);
+                      }
+                    }
+                  }
+                }
+              }
+              
+              console.log("New Units")
+              console.log(units);
+
+              /*for(let unit of divisionObject.units) {
                 //console.log("test",unit)
                 var numOfPatients = unit.numOfPatients;
                 //console.log("patientnum",numOfPatients);
@@ -139,12 +194,10 @@ export class RequestListComponent implements OnInit {
                   }
                   this.firestore.collection("divsions").doc(data.id).set({unit:new_unit}) 
                 }               
-              }
+              }*/
             })
           })
-    
-        }
-        else {
+        } else {
           alert("You dont have the access to accept this patient!");
         }
       } else {
