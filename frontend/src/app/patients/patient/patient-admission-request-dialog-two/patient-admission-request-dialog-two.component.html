@@ -4,8 +4,8 @@
     <mat-form-field appearance="fill" class="formField">
       <mat-label>Select Unit</mat-label>
       <mat-select [(ngModel)]="data.selectedUnit" name="unit" required>
-        <mat-option *ngFor="let unit of data.selectedDivisionRequest.units" [value]="unit">
-          {{unit.name}}
+        <mat-option *ngFor="let unit of data.selectedDivisionRequest.units" [value]="unit" [disabled]="unit.status === 'Complete'">
+          {{unit.name}} - {{unit.status}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -14,7 +14,7 @@
     <mat-form-field appearance="fill" class="formField">
       <mat-label>Select a doctor</mat-label>
       <mat-select [(ngModel)]="data.selectedDoctor" name="doctor" required>
-        <mat-option *ngIf="isRetrievingDoctor === true" disabled>
+        <mat-option *ngIf="isRetrievingDoctor" disabled>
           Please wait, retrieving doctors...
         </mat-option>
         <mat-option *ngFor="let doctor of doctors" [value]="doctor">
