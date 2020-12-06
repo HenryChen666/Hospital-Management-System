@@ -47,7 +47,9 @@ export class DivisionsComponent implements OnInit {
     "numOfBedsLongTerm": 0,
     "numOfBedsShortTerm": 0,
     "numOfPatients": 0,
-    "numOfStaffMembers": 0
+    "numOfStaffMembers": 0,
+    "shortTermBedArray": [],
+    "longTermBedArray": []
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }

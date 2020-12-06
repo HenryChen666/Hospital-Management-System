@@ -1,4 +1,22 @@
-  {
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
+
+// Initialize Cloud Firestore through Firebase
+firebase.initializeApp({
+    apiKey: "AIzaSyBeLaCWv-XsOfO7YhetGERAL_ZCsr9JvcY",
+    authDomain: "seg-3102-project.firebaseapp.com",
+    databaseURL: "https://seg-3102-project.firebaseio.com",
+    projectId: "seg-3102-project",
+    storageBucket: "seg-3102-project.appspot.com",
+    messagingSenderId: "275420424712",
+    appId: "1:275420424712:web:22b29097d9f048ab04ffbd",
+    measurementId: "G-J9LR7K1Y6S"
+  });
+  
+var db = firebase.firestore();
+
+var menu =[  {
     "id": 1000,
     "category": "Intensive Care",
     "bipperExt": "7653",
@@ -242,4 +260,23 @@
         "longTermBedArray": ["1020","1022","1023","1024","1025"]
       }
     ]
-  }
+  }]
+
+menu.forEach(function(obj) {
+    db.collection("divisions").add({
+        id: obj.id,
+        category: obj.category,
+        bipperExt: obj.bipperExt,
+        chargeNurse: obj.chargeNurse,
+        location: obj.location,
+        status: obj.status,
+        telephoneExt: obj.telephoneExt,
+        totalBeds: obj.totalBeds,
+        units: obj.units,
+    }).then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+});
