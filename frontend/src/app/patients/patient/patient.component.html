@@ -42,7 +42,7 @@
       <button class="btn btn-primary" (click)="request()">
         Request Patient Admission
       </button>
-      <button class="btn btn-primary" (click)="prescribe()">
+      <button *ngIf="loggedRole === 'ROLE_DOCTOR'"  class="btn btn-primary" (click)="prescribe()">
         Prescribe Medication
       </button>
     </div>

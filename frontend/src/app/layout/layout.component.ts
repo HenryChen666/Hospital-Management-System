@@ -27,10 +27,10 @@ export class LayoutComponent implements OnInit {
       this.links = ['patients', 'registerpatient','profile'];
     }
     else if(this.loginService.getRole() == "ROLE_PO"){
-      this.links = ['patients', 'profile'];
+      this.links = ['patients', 'log','profile'];
     }
     else{
-      this.links = ['patients', 'requestlist','registerpatient','divisions','profile','log'];
+      this.links = ['patients', 'requestlist','registerpatient','divisions','profile'];
     }
   }
 
