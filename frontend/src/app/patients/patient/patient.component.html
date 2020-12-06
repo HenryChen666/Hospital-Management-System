@@ -4,47 +4,37 @@
   </div>
   <div *ngIf="selectedPatient">
     <h2>Here are details of Patient {{ selectedPatient.id }}</h2>
-    <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Date of Birth</th>
-            <th>Gender</th>
-            <th>Marital Status</th>
-            <th>External Doctor ID</th>
-            <th>Next of Kin</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ selectedPatient.id }}</td>
-            <td>{{ selectedPatient.firstName }}</td>
-            <td>{{ selectedPatient.lastName }}</td>
-            <td>{{ selectedPatient.address }}</td>
-            <td>{{ selectedPatient.phoneNumber }}</td>
-            <td>{{ selectedPatient.dateOfBirth }}</td>
-            <td>{{ selectedPatient.gender }}</td>
-            <td>{{ selectedPatient.maritalStatus }}</td>
-            <td>{{ selectedPatient.externalDoctorId }}</td>
-            <td>{{ selectedPatient.nextOfKin }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="flex-container">
+      <div class="container">
+        <table class="table">
+          <tbody>
+            <tr><th>ID</th><td>{{ selectedPatient.id }}</td></tr>
+            <tr><th>First Name</th><td>{{ selectedPatient.firstName }}</td></tr>
+            <tr><th>Last Name</th><td>{{ selectedPatient.lastName }}</td></tr>
+            <tr><th>Address</th><td>{{ selectedPatient.address }}</td></tr>
+            <tr><th>Phone Number</th><td>{{ selectedPatient.phoneNumber }}</td></tr>
+            <tr><th>Date of Birth</th><td>{{ selectedPatient.dateOfBirth }}</td></tr>
+            <tr><th>Gender</th><td>{{ selectedPatient.gender }}</td></tr>
+            <tr><th>Marital Status</th><td>{{ selectedPatient.maritalStatus }}</td></tr>
+            <tr><th>External Doctor ID</th><td>{{ selectedPatient.externalDoctorId }}</td></tr>
+            <tr><th>Next of Kin</th><td>{{ selectedPatient.nextOfKin }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-row" id="btn-patients">
+        <button class="btn btn-primary" (click)="update()">Update</button>
+        <button class="btn btn-primary" (click)="discharge()">Discharge</button>
+        <button class="btn btn-primary" (click)="request()">
+          Request Patient Admission
+        </button>
+        <button *ngIf="loggedRole === 'ROLE_DOCTOR'"  class="btn btn-primary" (click)="prescribe()">
+          Prescribe Medication
+        </button>
+        <button class="btn btn-primary" (click)="showPrescription()">
+          Show Prescriptions
+        </button>
+      </div>
     </div>
-    <div class="row" id="btn-patients">
-      <button class="btn btn-primary" (click)="update()">Update</button>
-      <button class="btn btn-primary" (click)="discharge()">Discharge</button>
-      <button class="btn btn-primary" (click)="request()">
-        Request Patient Admission
-      </button>
-      <button *ngIf="loggedRole === 'ROLE_DOCTOR'"  class="btn btn-primary" (click)="prescribe()">
-        Prescribe Medication
-      </button>
-    </div>
+    
   </div>
 </div>

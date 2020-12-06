@@ -41,6 +41,7 @@ import { PatientAdmissionRequestDialogTwoComponent } from './patients/patient/pa
 import { RequestDialogComponent } from './request-list/request-moreinfo-dialog/request-dialog.component';
 import { LogComponent } from './log/log.component';
 import { PatientAdmissionRequestDialogThreeComponent } from './patients/patient/patient-admission-request-dialog-three/patient-admission-request-dialog-three.component';
+import { PrescriptionListModalComponent } from './patients/patient/prescription-list-modal/prescription-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PatientAdmissionRequestDialogThreeComponent } from './patients/patient/
     PatientAdmissionRequestDialogTwoComponent,
     RequestDialogComponent,
     LogComponent,
-    PatientAdmissionRequestDialogThreeComponent
+    PatientAdmissionRequestDialogThreeComponent,
+    PrescriptionListModalComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

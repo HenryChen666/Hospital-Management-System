@@ -1,12 +1,111 @@
 .search-wrapper{
-  display: flex;
+display: flex;
+align-items: center;
 }
 
 .search-btn{
   margin-left: 1vw;
 }
 
-table {
-  margin-top: 10px;
-  width: 100%;
+mat-form-field{
+  margin-left: 2rem;
 }
+/* button {
+    background-color: #6772e5;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 7px 14px;
+  }
+  .button:hover {
+    background-color: #5469d4;
+  }
+  .button-label {
+    color: #fff;
+  } */
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td{
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 12pt;
+    position: relative;
+  }
+  
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+    padding-right: 20px;
+  }
+  
+  .flex-child {
+    flex: 1;
+  }  
+  
+  .flex-child:first-child {
+    margin-right: 20px;
+  } 
+
+  .container{
+    margin-bottom: 2rem;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+
+  #all-patient-wrapper {
+    border: 0.2px solid rgb(100, 100, 100);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    padding: 1rem 2rem;
+    margin-top: 5vh;        
+    /* width: fit-content; */
+  }

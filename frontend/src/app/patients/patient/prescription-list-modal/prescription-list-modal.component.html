@@ -1,0 +1,28 @@
+<mat-card>
+    <div id="select-patient-wrapper">
+
+        <h2>Patient {{ data.id }} Prescription</h2>
+        <div class="flex-container">
+          <div class="container">
+            <table class="table">
+              <tbody>
+                <tr><th>Drug Number</th><td>{{ data.drugNumber }}</td></tr>
+                <tr><th>Drug Name</th><td>{{ data.drugName }}</td></tr>
+                <tr><th>Units by Day</th><td>{{ data.unitsByDay }}</td></tr>
+                <tr><th>Number of Administration per Day</th><td>{{ data.administrationByDay }}</td></tr>
+                <tr><th>Listing of each administration time with numbers of units administered</th><td>{{ data.administrationListings }}</td></tr>
+                <tr><th>Method of administration</th><td>{{ data.administrationMethod }}</td></tr>
+                <tr><th>Start Date</th><td>{{ data.startDate }}</td></tr>
+                <tr><th>End Date</th><td>{{ data.endDate }}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div> 
+</mat-card>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>
+      Close
+    </button>
+  </mat-dialog-actions>
+  

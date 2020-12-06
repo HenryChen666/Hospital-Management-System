@@ -3,10 +3,8 @@
   }
   
   .container {
-    border: 0.2px solid rgb(100, 100, 100);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     padding: 0.5vw 0.5vw;
-    margin-top: 5vh;
+    margin-top: 5vh; 
   }
   
   .table {
@@ -16,4 +14,12 @@
   td {
     text-align: center;
   }
-  
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }

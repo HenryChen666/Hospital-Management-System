@@ -6,6 +6,7 @@ import { RegisterDbService } from '../firestore/register-db.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePatientModalComponent } from '../patient/update-patient-modal/update-patient-modal.component';
 import { PrescribeMedicationModalComponent } from '../patient/prescribe-medication-modal/prescribe-medication-modal.component';
+import {PrescriptionListModalComponent} from '../patient/prescription-list-modal/prescription-list-modal.component';
 import {
   AngularFirestore,
   DocumentChangeAction,
@@ -19,6 +20,7 @@ import { DivisionService } from 'src/app/divisions/service/division.service';
 import { Unit } from 'src/app/divisions/model/unit';
 import { PatientAdmissionRequestDialogThreeComponent } from './patient-admission-request-dialog-three/patient-admission-request-dialog-three.component';
 
+import { stringify } from 'querystring';
 
 // Dialog Request Patient Admission Related.
 export interface DialogData {
@@ -249,14 +251,6 @@ export class PatientComponent implements OnInit {
   prescribe(): void {
     //this.router.navigate(['./', value], { relativeTo: this.route });
     let dialogRef = this.dialog.open(PrescribeMedicationModalComponent, {
-      //Drug’s number
-      // • Drug Name
-      // • Units by day
-      // • Number of administration per day
-      // • Listing of each administration time of day with number of units administered
-      //  ©S. Somé
-      // • Method of administration
-      // • Start and finish date
       data: {
         id: this.selectedPatient.id,
         firstName: this.selectedPatient.firstName,
@@ -277,5 +271,50 @@ export class PatientComponent implements OnInit {
   //get user role
   get loggedRole(): string {
     return this.loginService.getRole();
+  }
+  showPrescription(): void{
+    var prescriptions: any;
+    var docRef = this.firestore.collection("prescriptions").doc(this.selectedPatient.id.toString());
+    docRef.get().toPromise().then(function(doc){
+      if (doc.exists) {
+          console.log("Prescription Doc Exists:", doc.data());
+          prescriptions = doc.data();
+          console.log(prescriptions)
+
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          prescriptions = {
+            drugNumber: "N/A",
+            drugName: "N/A",
+            unitsByDay: "N/A",
+            administrationByDay: "N/A",
+            administrationListings: "N/A",
+            administrationMethod: "N/A",
+            startDate: "N/A",
+            endDate: "N/A",
+          }
+          console.log(prescriptions)
+      }
+      }).then(()=>{    
+        let dialogRef = this.dialog.open(PrescriptionListModalComponent, {
+          data: {
+            id: this.selectedPatient.id.toString(),
+            drugNumber: prescriptions.drugNumber,
+            drugName: prescriptions.drugName,
+            unitsByDay: prescriptions.unitsByDay,
+            administrationByDay: prescriptions.administrationByDay,
+            administrationListings: prescriptions.administrationListings,
+            administrationMethod: prescriptions.administrationMethod,
+            startDate: prescriptions.startDate,
+            endDate: prescriptions.endDate,
+          }
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          console.log(`Dialog result: ${result}`);
+        });
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
   }
 }
