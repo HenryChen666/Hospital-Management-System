@@ -28,9 +28,10 @@ export class DivisionComponent implements OnInit {
     "shortTermBedArray": [],
     "longTermBedArray": [],
   };
+  unitTotalBeds: number;
 
   // Table related items.
-  displayedColumns: string[] = ['name', 'num', 'button'];
+  displayedColumns: string[] = ['name', 'num'];
   tableNames: string[] = ['Short Term Beds Available', 'Long Term Beds Available', 'Number of Patients in Unit', 'Number of Staff Members in Unit', 'Max Patient Capacity'];
   unitNames: string[] = ['numOfBedsShortTerm', 'numOfBedsLongTerm', 'numOfPatients', 'numOfStaffMembers', 'maxPatientCapacity'];
   tableData: UnitElement[] = [];
@@ -41,7 +42,13 @@ export class DivisionComponent implements OnInit {
   ngOnInit(): void {
     // Get selected division unit.
     this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
+      // Set unit.
       this.unit = unit;
+
+      // Set total bed count.
+      this.unitTotalBeds = this.unit.numOfBedsShortTerm + this.unit.numOfBedsLongTerm;
+
+      // Determining Diagram to show based on Unit Id.
       if(this.unit.id > 3000) {
         this.unitDiagramSelected = this.unitDiagrams[0];
       } else if (this.unit.id < 3000 && this.unit.id > 2000) {
@@ -49,6 +56,8 @@ export class DivisionComponent implements OnInit {
       } else {
         this.unitDiagramSelected = this.unitDiagrams[1];
       }
+
+      // Format the tableData accordingly.
       this.formatTableData();
     });
 
