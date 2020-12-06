@@ -26,14 +26,13 @@ export class LogComponent implements OnInit {
     this.getLog().subscribe(data => {
        this.log = data.map(e => {
         let logTime = e.payload.doc.data() as any;
-        console.log(logTime.time.toDate())
         return {
           
           ...(e.payload.doc.data() as object),
           time: logTime.time.toDate(),
         } as Model;
       });
-      console.log(this.log) });  
+  });  
 
   }
 

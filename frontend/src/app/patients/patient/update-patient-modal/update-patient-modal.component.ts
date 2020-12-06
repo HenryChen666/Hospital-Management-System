@@ -64,7 +64,8 @@ export class UpdatePatientModalComponent implements OnInit {
     private fb: FormBuilder,
     private firestore: AngularFirestore,
     private dialog: MatDialogModule,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.updatePatientForm = this.fb.group({
       firstName: [data.firstName, Validators.required],
@@ -114,24 +115,8 @@ export class UpdatePatientModalComponent implements OnInit {
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
-      .then(function () {
-        console.log('Document successfully updated!');
-      });
-    this.firestore
-      .collection('request')
-      .doc(id)
-      .update({
-        firstName: this.updatePatientForm.value.firstName,
-        lastName: this.updatePatientForm.value.lastName,
-        address: this.updatePatientForm.value.address,
-        phoneNumber: this.updatePatientForm.value.phoneNumber,
-        dateOfBirth: this.updatePatientForm.value.dateOfBirth,
-        gender: this.updatePatientForm.value.gender,
-        maritalStatus: this.updatePatientForm.value.maritalStatus,
-        externalDoctorId: this.updatePatientForm.value.externalDoctorId,
-        nextOfKin: this.updatePatientForm.value.nextOfKin,
-      })
-      .then(function () {
+      .then(() => {
+        this.router.navigate(["patients"]);
         console.log('Document successfully updated!');
       });
   }
