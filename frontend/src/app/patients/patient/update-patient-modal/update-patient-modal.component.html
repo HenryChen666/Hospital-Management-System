@@ -62,10 +62,10 @@
       <div class="form-group">
         <mat-form-field appearance="fill" class="select-form">
           <mat-label>Martial Status</mat-label>
-          <select matNativeControl formControlName="martialStatus" name="martialStatus">
+          <select matNativeControl formControlName="maritalStatus" name="maritalStatus">
             <option value="" selected></option>
-            <option *ngFor="let martialStatus of martialStatuses" [value]="martialStatus.value">
-              {{martialStatus.viewValue}}
+            <option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus.value">
+              {{maritalStatus.viewValue}}
             </option>
           </select>
         </mat-form-field>

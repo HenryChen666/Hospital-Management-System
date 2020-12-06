@@ -74,27 +74,25 @@
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">
-            <mat-label>Gender</mat-label>
-            <input matInput type="text" formControlName="gender" class="form-control" required
-                [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
-            <mat-error>
-            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
-                <div *ngIf="f.gender.errors.required">Gender is required</div>
-            </div>
-        </mat-error>
-        </mat-form-field>
+                <mat-label>Gender</mat-label>
+                <select matNativeControl formControlName="gender" name="gender" class="form-control">
+                <option value="" selected></option>
+                <option *ngFor="let gender of genders" [value]="gender.value">
+                    {{gender.viewValue}}
+                </option>
+                </select>
+            </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">
-            <mat-label>Marital Status</mat-label>
-            <input matInput type="text" formControlName="maritalStatus" class="form-control" required
-                [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }" />
-            <mat-error>
-            <div *ngIf="submitted && f.maritalStatus.errors" class="invalid-feedback">
-                <div *ngIf="f.maritalStatus.errors.required">Marital Status is required</div>
-            </div>
-        </mat-error>
-        </mat-form-field>
+                <mat-label>Martial Status</mat-label>
+                <select matNativeControl formControlName="maritalStatus" name="maritalStatus" class="form-control">
+                <option value="" selected></option>
+                <option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus.value">
+                    {{maritalStatus.viewValue}}
+                </option>
+                </select>
+            </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">

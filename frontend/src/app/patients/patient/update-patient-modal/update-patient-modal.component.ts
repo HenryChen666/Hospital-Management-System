@@ -20,7 +20,7 @@ interface Gender {
   viewValue: string;
 }
 
-interface MartialStatus{
+interface MaritalStatus{
   value: string;
   viewValue: string;
 }
@@ -39,7 +39,7 @@ export class UpdatePatientModalComponent implements OnInit {
     {value: 'Other', viewValue: "Other"},
   ];
 
-  martialStatuses: MartialStatus[] = [
+  maritalStatuses: MaritalStatus[] = [
     {value: 'Single', viewValue: 'Single'},
     {value: 'Relationship', viewValue: 'Relationship'},
     {value: 'Married', viewValue: 'Married'},
@@ -47,8 +47,6 @@ export class UpdatePatientModalComponent implements OnInit {
     {value: 'Widowed', viewValue: 'Widowed'},
 
   ]
-
-  selectedGender: string;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -59,7 +57,7 @@ export class UpdatePatientModalComponent implements OnInit {
       phoneNumber: string;
       dateOfBirth: string;
       gender: string;
-      martialStatus: string;
+      maritalStatus: string;
       externalDoctorId: string;
       nextOfKin: any;
     },
@@ -82,7 +80,7 @@ export class UpdatePatientModalComponent implements OnInit {
       ],
       dateOfBirth: [data.dateOfBirth, Validators.required],
       gender: [data.gender, Validators.required],
-      martialStatus: [data.martialStatus, Validators.required],
+      maritalStatus: [data.maritalStatus, Validators.required],
       externalDoctorId: [data.externalDoctorId, Validators.required],
       nextOfKin: [data.nextOfKin, Validators.required],
     });
@@ -112,7 +110,7 @@ export class UpdatePatientModalComponent implements OnInit {
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
         gender: this.updatePatientForm.value.gender,
-        martialStatus: this.updatePatientForm.value.martialStatus,
+        maritalStatus: this.updatePatientForm.value.maritalStatus,
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })
@@ -129,7 +127,7 @@ export class UpdatePatientModalComponent implements OnInit {
         phoneNumber: this.updatePatientForm.value.phoneNumber,
         dateOfBirth: this.updatePatientForm.value.dateOfBirth,
         gender: this.updatePatientForm.value.gender,
-        martialStatus: this.updatePatientForm.value.martialStatus,
+        maritalStatus: this.updatePatientForm.value.maritalStatus,
         externalDoctorId: this.updatePatientForm.value.externalDoctorId,
         nextOfKin: this.updatePatientForm.value.nextOfKin,
       })

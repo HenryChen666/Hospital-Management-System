@@ -4,6 +4,17 @@ import {AngularFirestore, DocumentChangeAction, DocumentReference} from '@angula
 import { Router } from '@angular/router';
 import { identifierName } from '@angular/compiler';
 
+// Interface used for select menus
+interface Gender {
+  value: string;
+  viewValue: string;
+}
+
+interface MaritalStatus{
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-register-patient',
   templateUrl: './register-patient.component.html',
@@ -13,9 +24,21 @@ export class RegisterPatientComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+  genders: Gender[] = [
+    {value: 'Male', viewValue: "Male"},
+    {value: 'Female', viewValue: "Female"},
+    {value: 'Other', viewValue: "Other"},
+  ];
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private route: Router) { 
+  maritalStatuses: MaritalStatus[] = [
+    {value: 'Single', viewValue: 'Single'},
+    {value: 'Relationship', viewValue: 'Relationship'},
+    {value: 'Married', viewValue: 'Married'},
+    {value: 'Divorced', viewValue: 'Divorced'},
+    {value: 'Widowed', viewValue: 'Widowed'},
+  ]
   
+  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private route: Router) { 
   }
 
   ngOnInit() {
