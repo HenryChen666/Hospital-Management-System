@@ -14,6 +14,9 @@
       <th>Marital Status</th>
       <th>External Doctor ID</th>
       <th>Next of Kin</th>
+      <th>Accept</th>
+      <th>Decline</th>
+      <th>Get More Info</th>
     </tr>
     </thead>
     <tbody>
@@ -33,22 +36,7 @@
       <td><button mat-stroked-button color="primary" name="info" (click)="openDialogInfo(datas.id)">More Info</button></td>
     </tr>
     </tbody>
-  
   </table>
   
-  <table mat-table>
-    <tbody *ngFor = "let datas of patients">
-      <tr><th>ID</th><td>{{ datas.id }}</td></tr>
-      <tr><th>First Name</th><td>{{ datas.firstName }}</td></tr>
-      <tr><th>Last Name</th><td>{{ datas.lastName }}</td></tr>
-      <tr><th>Address</th><td>{{ datas.address }}</td></tr>
-      <tr><th>Phone Number</th><td>{{ datas.phoneNumber }}</td></tr>
-      <tr><th>Date of Birth</th><td>{{ datas.dateOfBirth }}</td></tr>
-      <tr><th>Gender</th><td>{{ datas.gender }}</td></tr>
-      <tr><th>Marital Status</th><td>{{ datas.maritalStatus }}</td></tr>
-      <tr><th>External Doctor ID</th><td>{{ datas.externalDoctorId }}</td></tr>
-      <tr><th>Next of Kin</th><td>{{ datas.nextOfKin }}</td></tr>
-    </tbody>
-  </table>
   </div>
 </mat-card>
