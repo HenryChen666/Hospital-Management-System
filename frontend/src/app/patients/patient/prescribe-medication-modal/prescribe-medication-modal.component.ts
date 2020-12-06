@@ -47,13 +47,13 @@ export class PrescribeMedicationModalComponent implements OnInit {
     this.prescriptionForm = this.fb.group({
       id: this.data.id,
       drugNumber: [this.data.drugNumber, Validators.required],
-      drugName: ['', Validators.required],
-      unitsByDay: ['', Validators.required],
-      administrationByDay: ['', Validators.required],
-      administrationListings: ['', Validators.required],
-      administrationMethod: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      drugName: [this.data.drugName, Validators.required],
+      unitsByDay: [this.data.unitsByDay, Validators.required],
+      administrationByDay: [this.data.administrationByDay, Validators.required],
+      administrationListings: [this.data.administrationListings, Validators.required],
+      administrationMethod: [this.data.administrationMethod, Validators.required],
+      startDate: [this.data.startDate, Validators.required],
+      endDate: [this.data.endDate, Validators.required],
     });
   }
   ngOnInit(): void {
