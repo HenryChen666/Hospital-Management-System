@@ -29,7 +29,8 @@ export class DivisionService {
       "maritalStatus": "single",
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
-      "divisionId": null
+      "divisionId": null,
+      "bedNumAssigned": "1012"
     },
     {
       "id": "1234",
@@ -42,7 +43,8 @@ export class DivisionService {
       "maritalStatus": "single",
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
-      "divisionId": null
+      "divisionId": null,
+      "bedNumAssigned": "1013"
     },
     {
       "id": "1234",
@@ -55,7 +57,8 @@ export class DivisionService {
       "maritalStatus": "single",
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
-      "divisionId": null
+      "divisionId": null,
+      "bedNumAssigned": "1014"
     },
     {
       "id": "1234",
@@ -68,7 +71,8 @@ export class DivisionService {
       "maritalStatus": "single",
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
-      "divisionId": null
+      "divisionId": null,
+      "bedNumAssigned": "1015"
     },
     {
       "id": "1234",
@@ -81,7 +85,8 @@ export class DivisionService {
       "maritalStatus": "single",
       "externalDoctorId": "123541",
       "nextOfKin": "Mike Diep",
-      "divisionId": null
+      "divisionId": null,
+      "bedNumAssigned": "1016"
     }
   ];
 
@@ -155,6 +160,12 @@ export class DivisionService {
           this.firestore.collection("divisions").doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivisionUnits }, { merge: true });
         }
       }
+  }
+
+  // Firestore related services.
+  public sendPatientDischarge(patientId: string): void {
+    // Remove patient from patientArray of selectedUnit.
+    
   }
 
 }

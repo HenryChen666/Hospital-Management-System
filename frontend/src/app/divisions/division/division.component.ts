@@ -14,6 +14,7 @@ export interface UnitElementPatientList {
   name: string;
   phoneNumber: number;
   gender: string;
+  bedNumAssigned: string;
 }
 
 @Component({
@@ -47,7 +48,7 @@ export class DivisionComponent implements OnInit {
   unitDiagramSelected: string;
 
   // Patient Table related items.
-  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "gender", "dischargeButton"];
+  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "gender", "bedNumAssigned", "dischargeButton"];
   tableDataPatient: UnitElementPatientList[] = [];
 
   constructor(private divisionsService: DivisionService) { }
@@ -118,14 +119,15 @@ export class DivisionComponent implements OnInit {
         "patientId": patient.id,
         "name": patient.firstName + " " + patient.lastName,
         "phoneNumber": patient.phoneNumber,
-        "gender": patient.gender
+        "gender": patient.gender,
+        "bedNumAssigned": patient.bedNumAssigned
       }
       this.tableDataPatient.push(itemObj);
     }
   }
 
   handleDischargeButton(patientId: string): void {
-
+    this.divisionsService.sendPatientDischarge(patientId);
   }
 
   // Deprecated: not allowing control of bed counts.

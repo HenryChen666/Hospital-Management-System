@@ -64,6 +64,12 @@
       <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
     </ng-container>
 
+    <!-- Bed Number Assigned Column -->
+    <ng-container matColumnDef="bedNumAssigned">
+      <th mat-header-cell *matHeaderCellDef> Bed Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.bedNumAssigned}} </td>
+    </ng-container>
+
     <!-- Discharge Column -->
     <ng-container matColumnDef="dischargeButton">
       <th mat-header-cell *matHeaderCellDef> </th>
