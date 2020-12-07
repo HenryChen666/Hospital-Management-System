@@ -4,7 +4,7 @@ import { Unit } from '../model/unit';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
-import { Patient } from 'src/app/patients/model/patient';
+import { Doctor, Patient } from 'src/app/patients/model/patient';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,8 @@ export class DivisionService {
       "nextOfKin": "Mike Diep",
       "divisionId": null,
       "bedNumAssigned": "1012",
-      "bedTypeAssigned": "Long Term"
+      "bedTypeAssigned": "Long Term",
+      "doctor": null
     },
     {
       "id": "12",
@@ -46,7 +47,8 @@ export class DivisionService {
       "nextOfKin": "Mike Diep",
       "divisionId": null,
       "bedNumAssigned": "1013",
-      "bedTypeAssigned": "Long Term"
+      "bedTypeAssigned": "Long Term",
+      "doctor": null
     },
     {
       "id": "1234",
@@ -61,7 +63,8 @@ export class DivisionService {
       "nextOfKin": "Mike Diep",
       "divisionId": null,
       "bedNumAssigned": "1014",
-      "bedTypeAssigned": "Long Term"
+      "bedTypeAssigned": "Long Term",
+      "doctor": null
     },
     {
       "id": "1234",
@@ -76,7 +79,8 @@ export class DivisionService {
       "nextOfKin": "Mike Diep",
       "divisionId": null,
       "bedNumAssigned": "1015",
-      "bedTypeAssigned": "Long Term"
+      "bedTypeAssigned": "Long Term",
+      "doctor": null
     },
     {
       "id": "1234",
@@ -91,7 +95,8 @@ export class DivisionService {
       "nextOfKin": "Mike Diep",
       "divisionId": null,
       "bedNumAssigned": "1016",
-      "bedTypeAssigned": "Long Term"
+      "bedTypeAssigned": "Long Term",
+      "doctor": null
     }
   ];
 
