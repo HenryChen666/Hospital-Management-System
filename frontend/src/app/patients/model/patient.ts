@@ -15,6 +15,7 @@ export class Patient {
     public divisionId: Division,
     public bedNumAssigned: string,
     public bedTypeAssigned: string,
+    public doctor: Doctor
   ) {}
 }
 

@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RequestDialogComponent } from './request-moreinfo-dialog/request-dialog.component';
 import { templateJitUrl } from '@angular/compiler';
 import { stringify } from 'querystring';
+import { request } from 'http';
 
 // Dialog More Info data Related.
 export interface DialogDataMoreInfo {
@@ -44,8 +45,7 @@ export class RequestListComponent implements OnInit {
     var userLastName = this.loginService.getLastname();
     var userFullName = userFirstName + ' ' + userLastName;
     // For testing purpose
-    userFullName = "Lee Sin";
-    console.log("User Information: " + userFullName);
+    userFullName = "Ziming Wang";
 
     // Get request data based on patientId.
     var docRef = this.firestore.collection("request").doc(id);
@@ -61,13 +61,11 @@ export class RequestListComponent implements OnInit {
         let requestedPatient:Patient = requestObject.patient;
         let requestedUnit:Unit = requestObject.unit;
 
-        // Get the Charge Nurse.
+        // Get the Charge Nurse of the Division.
         let chargeNurseName:String = requestObject.division.chargeNurse;
-        console.log("chargeNurse:", chargeNurseName);
 
         // Condition that the user is the Charge Nurse.
         if (userFullName === chargeNurseName){
-          alert("Accept Successfully!");
 
           // Get the Division that the Charge Nurse is associated to.
           var bedRef = this.firestore.collection("divisions", ref =>ref.where('chargeNurse' ,"==", chargeNurseName));
@@ -79,10 +77,9 @@ export class RequestListComponent implements OnInit {
               let units: Unit[] = divisionObject.units;
 
               // 1. Put the Patient in the patientArray of the division unit requested.
-              // 2. Increase the patient count in the unit by 1
-              // 3. Decrement bed num by 1 of specific type
-              // 4. Then splice the bed num specified.
-              // 5. Set units: Unit[] state to new one.
+              // 2. Increase the patient count in the unit by 1.
+              // 3. Decrement bed num by 1 of specific type.
+              // 4. Then splice the bed num specified of the specific type.
               for(let i=0; i<units.length; i++) {
                 if(requestedUnit.id === units[i].id) {
                   // This is step 1.
@@ -114,8 +111,20 @@ export class RequestListComponent implements OnInit {
               divisionObject.units = units;
               // 7. Decrement total beds available for division.
               divisionObject.totalBeds = (Number(divisionObject.totalBeds)-1).toString();
-              // 8. Send to firestore new division.
-              //this.firestore.collection('divisions').doc(requestedDivision.firestoreId).set(divisionObject, {merge: true});
+              // 8. Set patient data.
+              requestedPatient.bedTypeAssigned = requestedBedType;
+              requestedPatient.bedNumAssigned = requestedBedNum;
+              requestedPatient.doctor = requestedDoctor;
+              requestedPatient.divisionId = requestedDivision
+              console.log(requestedPatient);
+
+              // 8. Send to firestore new division and patient.
+              this.firestore.collection('divisions').doc(requestedDivision.firestoreId).set(divisionObject, {merge: true});
+              this.firestore.collection('patients').doc(requestedPatient.id.toString()).set(requestedPatient, {merge: true});
+              this.firestore.collection('request').doc(requestedPatient.id.toString()).delete();
+
+              //9. Send Alert
+              alert("Accept Patient Successfully!");
 
               /*for(let unit of divisionObject.units) {
                 //console.log("test",unit)
