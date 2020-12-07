@@ -103,7 +103,7 @@ export class DivisionsComponent implements OnInit {
   }
 
   handleSelectedUnit(unitObject): void {
-    //this.selectedUnit = unitObject;
+    this.selectedUnit = unitObject;
     this.divisionsService.setSelectedDivisionUnit(unitObject);
     this.divisionIdValue = unitObject.id;
     this.searchError = false;

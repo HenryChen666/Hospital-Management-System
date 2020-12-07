@@ -44,7 +44,7 @@ export class RequestListComponent implements OnInit {
     var userLastName = this.loginService.getLastname();
     var userFullName = userFirstName + ' ' + userLastName;
     // For testing purpose
-    userFullName = "Ziming Wang";
+    userFullName = "Lee Sin";
 
     // Get request data based on patientId.
     var docRef = this.firestore.collection("request").doc(id);
