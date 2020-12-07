@@ -61,7 +61,7 @@ export class DivisionComponent implements OnInit {
       this.unit = unit;
 
       // Testing Purposes: Set defaultPatientArray to patientArray of unit.
-      this.unit.patientArray = this.divisionsService.getDefaultPatientArray();
+      //this.unit.patientArray = this.divisionsService.getDefaultPatientArray();
 
       // Set total bed count.
       this.unitTotalBeds = this.unit.numOfBedsShortTerm + this.unit.numOfBedsLongTerm;
@@ -134,24 +134,25 @@ export class DivisionComponent implements OnInit {
     for(let i=0; i < this.unit.patientArray.length; i++) {
       let patient = this.unit.patientArray[i];
       if(patientId === patient.id) {
-        // Change state of patient.
+
+        // 1. Change state of patient.
         selectedPatient = this.unit.patientArray[i];
         selectedPatient.bedNumAssigned = null;
         selectedPatient.bedTypeAssigned = null;
         selectedPatient.divisionId = null;
 
-        // Put bed num back into array of appropriate bed type.
+        // 2. Put bed num back into array of appropriate bed type.
         if(patient.bedTypeAssigned === "Long Term") {
           this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm + 1;
           this.unit.longTermBedArray.push(patient.bedNumAssigned);
-          this.unit.numOfPatients = this.unit.numOfPatients + 1;
+          this.unit.numOfPatients = this.unit.numOfPatients - 1;
         } else {
           this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm + 1;
           this.unit.shortTermBedArray.push(patient.bedNumAssigned);
-          this.unit.numOfPatients = this.unit.numOfPatients + 1;
+          this.unit.numOfPatients = this.unit.numOfPatients - 1;
         }
 
-        // Remove the patient from the Unit Patient Array.
+        // 3. Remove the patient from the Unit Patient Array.
         this.unit.patientArray.splice(i);
 
       }

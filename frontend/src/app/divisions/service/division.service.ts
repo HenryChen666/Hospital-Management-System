@@ -184,13 +184,13 @@ export class DivisionService {
     // Change state of unit for selected division.
     for(let i=0; i<this.selectedDivision.units.length; i++) {
       if(unit.id === this.selectedDivision.units[i].id) {
-        this.selectedDivisionUnits[i] = unit
+        this.selectedDivisionUnits[i] = unit;
       }
     }
 
     // Send to firestore the new state of units for the division.
-    //this.firestore.collection('divisions').doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivision.units}, {merge: true});
-    this.firestore.collection('user').doc(patient.id).set(patient);
+    this.firestore.collection('divisions').doc(this.selectedDivision.firestoreId).set({ units: this.selectedDivision.units}, {merge: true});
+    this.firestore.collection('user').doc(patient.id.toString()).set(patient);
   }
 
 }
