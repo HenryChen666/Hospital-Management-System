@@ -31,10 +31,10 @@ export class RequestListComponent implements OnInit {
     
   ngOnInit(): void {
     this.requestListService.getRequestedPatientList().subscribe((res)=> {
-      this.requestedPatientList = res;
-      for(let patient in this.requestedPatientList) {
-        this.patients.push(this.requestedPatientList[patient].patient);
-      }
+      this.patients = [];
+      res.map((res)=> {
+        this.patients.push(res.payload.doc.data().patient);
+      });
     });
   }
 
