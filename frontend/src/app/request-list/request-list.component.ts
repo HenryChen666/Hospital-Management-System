@@ -9,7 +9,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { RequestDialogComponent } from './request-moreinfo-dialog/request-dialog.component';
 import { templateJitUrl } from '@angular/compiler';
 import { stringify } from 'querystring';
-import { request } from 'http';
 
 // Dialog More Info data Related.
 export interface DialogDataMoreInfo {
