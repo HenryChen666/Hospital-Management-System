@@ -16,11 +16,12 @@ firebase.initializeApp({
   
 var db = firebase.firestore();
 
-var menu =[      {
+var menu =[     {
   "id": 1000,
   "category": "Intensive Care",
   "bipperExt": "7653",
-  "chargeNurse": "Lee Sin",
+  "chargeNurse": "nurse100",
+  "chargeNurseName": "James Lee",
   "location": "Block A",
   "status": "incomplete",
   "telephoneExt":"3000",
@@ -110,7 +111,8 @@ var menu =[      {
   "id": 2000,
   "category": "Non Intensive Care",
   "bipperExt": "5346",
-  "chargeNurse": "Ziming Wang",
+  "chargeNurse": "nurse200",
+  "chargeNurseName": "Ziming Wang",
   "location": "Block B",
   "status": "incomplete",
   "telephoneExt":"2000",
@@ -239,7 +241,8 @@ var menu =[      {
   "id": 3000,
   "category": "Specialty",
   "bipperExt": "8923",
-  "chargeNurse": "James Lee",
+  "chargeNurse": "nurse300",
+  "chargeNurseName": "Kenny Nguyen",
   "location": "Block A",
   "status": "incomplete",
   "telephoneExt":"3000",
@@ -298,7 +301,7 @@ var menu =[      {
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
     }
   ]
-}]
+}];
 
 menu.forEach(function(obj) {
     db.collection("divisions").add({
@@ -306,6 +309,7 @@ menu.forEach(function(obj) {
         category: obj.category,
         bipperExt: obj.bipperExt,
         chargeNurse: obj.chargeNurse,
+        chargeNurseName: obj.chargeNurseName,
         location: obj.location,
         status: obj.status,
         telephoneExt: obj.telephoneExt,

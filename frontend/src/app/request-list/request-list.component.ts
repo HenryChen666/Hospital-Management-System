@@ -43,6 +43,7 @@ export class RequestListComponent implements OnInit {
     var userFirstName = this.loginService.getFirstname();
     var userLastName = this.loginService.getLastname();
     var userFullName = userFirstName + ' ' + userLastName;
+    var userName = this.loginService.getUser();
     // For testing purpose - manually set the userFullName to satisfy condition that the charge nurse can admit patient to nurse's division.
     //userFullName = "Lee Sin";
 
@@ -61,10 +62,10 @@ export class RequestListComponent implements OnInit {
         let requestedUnit:Unit = requestObject.unit;
 
         // Get the Charge Nurse of the Division.
-        let chargeNurseName:String = requestObject.division.chargeNurse;
+        let chargeNurseUserName:String = requestObject.division.chargeNurse;
 
         // Condition that the user is the Charge Nurse.
-        if (userFullName === chargeNurseName){
+        if (userName === chargeNurseUserName){
 
           // Get the Division that the Charge Nurse is associated to.
           var bedRef = this.firestore.collection("divisions", ref =>ref.where('chargeNurse' ,"==", chargeNurseName));

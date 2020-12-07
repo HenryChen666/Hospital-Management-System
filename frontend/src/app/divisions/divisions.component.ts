@@ -24,6 +24,7 @@ export class DivisionsComponent implements OnInit {
     "category": "Please select a division",
     "firestoreId": null,
     "chargeNurse": "...",
+    "chargeNurseName": "...",
     "location": "...",
     "telephoneExt": "...",
     "bipperExt": "...",
@@ -83,7 +84,7 @@ export class DivisionsComponent implements OnInit {
       if(this.divisions[i].id == divisionId) {
         this.selectedDivison =  this.divisions[i];
         this.divisionsService.setSelectedDivision(this.divisions[i]);
-        this.divisionIdValue = divisionId;
+        this.divisionIdValue = this.selectedDivison.id;
         this.isDivisionSelected = true;
         this.searchError = false;
 
@@ -105,7 +106,7 @@ export class DivisionsComponent implements OnInit {
   handleSelectedUnit(unitObject): void {
     this.selectedUnit = unitObject;
     this.divisionsService.setSelectedDivisionUnit(unitObject);
-    this.divisionIdValue = unitObject.id;
+    this.divisionIdValue = this.selectedUnit.id;
     this.searchError = false;
   }
 
@@ -141,6 +142,7 @@ export class DivisionsComponent implements OnInit {
   }
 
   validateSearch(isSearchError: Boolean): ValidatorFn {
+    console.log(isSearchError);
     return (control: AbstractControl): {[key: string]: any} | null => {
       const notValidId = isSearchError;
       return notValidId ? {notValidId: {value: isSearchError}} : null;

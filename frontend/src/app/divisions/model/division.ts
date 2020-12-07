@@ -5,6 +5,7 @@ export class Division {
     public id: number,
     public firestoreId: string,
     public chargeNurse: string,
+    public chargeNurseName: string,
     public telephoneExt: string,
     public bipperExt: string,
     public totalBeds: string,
