@@ -65,10 +65,13 @@ export class RequestListComponent implements OnInit {
         let chargeNurseUserName:String = requestObject.division.chargeNurse;
 
         // Condition that the user is the Charge Nurse.
+        // nurse100 - Intensive care, nurse200 - Non Intensive Care, nurse 300 - Specialty
+        // Are the proper userName to admit patients to their division.
+        // userName = "nurse100";
         if (userName === chargeNurseUserName){
 
           // Get the Division that the Charge Nurse is associated to.
-          var bedRef = this.firestore.collection("divisions", ref =>ref.where('chargeNurse' ,"==", chargeNurseName));
+          var bedRef = this.firestore.collection("divisions", ref =>ref.where('chargeNurse' ,"==", chargeNurseUserName));
           bedRef.get().toPromise().then(ref=>{
             ref.forEach((data)=>{
 
