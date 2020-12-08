@@ -301,6 +301,32 @@ var menu =[     {
       "longTermBedArray": ["1020","1022","1023","1024","1025"]
     }
   ]
+},
+{
+  "id": 4000,
+  "category": "Out-Patient-Clinic",
+  "bipperExt": "7654",
+  "chargeNurse": "nurse300",
+  "chargeNurseName": "Henry Cheng",
+  "location": "Block D",
+  "status": "incomplete",
+  "telephoneExt":"4000",
+  "totalBeds": "61",
+  "units": [
+    {
+      "id": 4010,
+      "name": "Out-Patient",
+      "numOfBedsShortTerm": 20,
+      "numOfBedsLongTerm": 0,
+      "numOfPatients": 0,
+      "numOfStaffMembers": 4,
+      "maxPatientCapacity":20,
+      "status": "Incomplete",
+      "patientArray": [],
+      "shortTermBedArray": ["1011","1012","1013","1014","1015","1016","1017","1018","1019","1110","1112","1113","1114","1115","1116","1117","1118","1119","1210","1211"],
+      "longTermBedArray": []
+    }
+  ]
 }];
 
 menu.forEach(function(obj) {
