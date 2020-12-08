@@ -14,7 +14,7 @@ To get the frontend running locally:
 - `npm install` to install all required dependencies 
 - `npm start` to start the local server (this project uses create-react-app)
 
-Local web server will use port 3000. You can configure port in scripts section of `./frontend/package.json`
+Local web server will use port 4200. You can configure port in scripts section of `./frontend/package.json`
 
 
 To get the backend running locally:
