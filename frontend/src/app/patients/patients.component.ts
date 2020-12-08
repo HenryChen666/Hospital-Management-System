@@ -30,6 +30,9 @@ export class PatientsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(this.loginService.getUser() === null){
+      this.router.navigate(["auth"]);
+    }
     this.store.getPatients().subscribe(data => {
       this.patients = data.map(e => {
         return {
@@ -37,7 +40,6 @@ export class PatientsComponent implements OnInit {
           ...(e.payload.doc.data() as object)
         } as Patient;
       });
-      console.log(this.patients);
     });
   }
   

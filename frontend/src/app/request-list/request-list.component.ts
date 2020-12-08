@@ -7,6 +7,7 @@ import {Unit} from '../divisions/model/unit';
 import {Division} from '../divisions/model/division';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestDialogComponent } from './request-moreinfo-dialog/request-dialog.component';
+import {Router} from '@angular/router';
 
 // Dialog More Info data Related.
 export interface DialogDataMoreInfo {
@@ -22,9 +23,12 @@ export class RequestListComponent implements OnInit {
     requestedPatientList: any[] = [];
     patients: Patient[] = [];
 
-    constructor(private requestListService: RequestListService, private firestore: AngularFirestore, private loginService: AuthenticationService,private dialog: MatDialog) { }
+    constructor(private requestListService: RequestListService, private firestore: AngularFirestore, private loginService: AuthenticationService,private dialog: MatDialog, private router: Router) { }
     
   ngOnInit(): void {
+    if(this.loginService.getUser() === null){
+      this.router.navigate(["auth"]);
+    }
     this.requestListService.getRequestedPatientList().subscribe((res)=> {
       this.requestedPatientList = res;
       for(let patient in this.requestedPatientList) {
