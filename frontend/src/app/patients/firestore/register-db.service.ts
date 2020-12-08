@@ -18,14 +18,14 @@ export class RegisterDbService {
   updatePatient(patient: Patient): Promise<void> {
     const patientId = patient.id;
     delete patient.id;
-    return this.firestore.collection('user').doc(patientId).update(patient);
+    return this.firestore.collection('patients').doc(patientId).update(patient);
   }
 
   getRequestedPatients(): Observable<DocumentChangeAction<unknown>[]> {
     return this.firestore.collection('request').snapshotChanges()
   }
   getPatients(): Observable<DocumentChangeAction<unknown>[]> {
-    return this.firestore.collection('user').snapshotChanges()
+    return this.firestore.collection('patients').snapshotChanges()
   }
 
 }

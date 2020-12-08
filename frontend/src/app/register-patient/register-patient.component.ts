@@ -93,7 +93,7 @@ export class RegisterPatientComponent implements OnInit {
       const nextOfKin = this.registerForm.get('nextOfKin').value;
 
       this.route.navigate(['/user', firstName, lastName, phoneNumber, address,dateOfBirth,gender,maritalStatus,externalDoctor,nextOfKin]);
-      this.firestore.collection('user').doc(identifier.toString()).set({
+      this.firestore.collection('patients').doc(identifier.toString()).set({
         id: identifier,
         firstName: firstName,
         lastName: lastName,
@@ -103,7 +103,11 @@ export class RegisterPatientComponent implements OnInit {
         gender: gender,
         maritalStatus: maritalStatus,
         externalDoctor: externalDoctor,
-        nextOfKin: nextOfKin      
+        nextOfKin: nextOfKin,
+        divisionId: null,
+        bedNumAssigned: null,
+        bedTypeAssigned: null,
+        doctor: null,      
       })
       
       this.registerForm.reset()

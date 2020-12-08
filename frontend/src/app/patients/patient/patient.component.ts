@@ -86,7 +86,7 @@ export class PatientComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const id = params.id;
 
-      var docRef = this.firestore.collection('user').doc(id);
+      var docRef = this.firestore.collection('patients').doc(id);
       docRef
         .get()
         .toPromise()
@@ -106,7 +106,10 @@ export class PatientComponent implements OnInit {
               patient.maritalStatus,
               patient.externalDoctorId,
               patient.nextOfKin,
-              null // DivisionId Occupied not set.  
+              null, // DivisionId Occupied not set.  
+              null, // bedNum not set.
+              null, // Bed Type not set.
+              null, // Doctor not assigned.
             );
 
             this.PatientsService.setSelectedPatient(this.selectedPatient);

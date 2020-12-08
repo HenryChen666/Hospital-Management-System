@@ -24,6 +24,7 @@ export class DivisionsComponent implements OnInit {
     "category": "Please select a division",
     "firestoreId": null,
     "chargeNurse": "...",
+    "chargeNurseName": "...",
     "location": "...",
     "telephoneExt": "...",
     "bipperExt": "...",
@@ -49,7 +50,8 @@ export class DivisionsComponent implements OnInit {
     "numOfPatients": 0,
     "numOfStaffMembers": 0,
     "shortTermBedArray": [],
-    "longTermBedArray": []
+    "longTermBedArray": [],
+    "patientArray": []
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private divisionsService: DivisionService) { }
@@ -81,7 +83,7 @@ export class DivisionsComponent implements OnInit {
     for(let i=0; i<this.divisions.length; i++) {
       if(this.divisions[i].id == divisionId) {
         this.selectedDivison =  this.divisions[i];
-        this.divisionsService.setDivision(this.divisions[i]);
+        this.divisionsService.setSelectedDivision(this.divisions[i]);
         this.divisionIdValue = this.selectedDivison.id;
         this.isDivisionSelected = true;
         this.searchError = false;

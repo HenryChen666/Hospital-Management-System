@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Patient } from 'src/app/patients/model/patient';
 import { Division } from '../model/division';
 import { Unit } from '../model/unit';
 import { DivisionService } from '../service/division.service';
 
+// Table Related.
 export interface UnitElement {
   name: string;
   num: number;
+}
+export interface UnitElementPatientList {
+  patientId: string;
+  name: string;
+  phoneNumber: number;
+  bedTypeAssigned: string;
+  bedNumAssigned: string;
 }
 
 @Component({
@@ -27,21 +36,37 @@ export class DivisionComponent implements OnInit {
     "maxPatientCapacity": 0,
     "shortTermBedArray": [],
     "longTermBedArray": [],
+    "patientArray": [],
   };
+  unitTotalBeds: number;
 
   // Table related items.
-  displayedColumns: string[] = ['name', 'num', 'button'];
+  displayedColumns: string[] = ['name', 'num'];
   tableNames: string[] = ['Short Term Beds Available', 'Long Term Beds Available', 'Number of Patients in Unit', 'Number of Staff Members in Unit', 'Max Patient Capacity'];
   unitNames: string[] = ['numOfBedsShortTerm', 'numOfBedsLongTerm', 'numOfPatients', 'numOfStaffMembers', 'maxPatientCapacity'];
   tableData: UnitElement[] = [];
   unitDiagrams: string[] = ['../../../assets/images/SpecialtyWard.png','../../../assets/images/IntensiveCareWard.png','../../../assets/images/NonIntensiveCareWard.png']
   unitDiagramSelected: string;
+
+  // Patient Table related items.
+  displayedColumnsPatientTable: string[] = ["patientId", "name", "phoneNumber", "bedTypeAssigned", "bedNumAssigned", "dischargeButton"];
+  tableDataPatient: UnitElementPatientList[] = [];
+
   constructor(private divisionsService: DivisionService) { }
 
   ngOnInit(): void {
     // Get selected division unit.
     this.divisionsService.getSelectedDivisionUnit().subscribe((unit) => {
+      // Set unit.
       this.unit = unit;
+
+      // Testing Purposes: Set defaultPatientArray to patientArray of unit.
+      //this.unit.patientArray = this.divisionsService.getDefaultPatientArray();
+
+      // Set total bed count.
+      this.unitTotalBeds = this.unit.numOfBedsShortTerm + this.unit.numOfBedsLongTerm;
+
+      // Determining Diagram to show based on Unit Id.
       if(this.unit.id > 3000) {
         this.unitDiagramSelected = this.unitDiagrams[0];
       } else if (this.unit.id < 3000 && this.unit.id > 2000) {
@@ -49,7 +74,10 @@ export class DivisionComponent implements OnInit {
       } else {
         this.unitDiagramSelected = this.unitDiagrams[1];
       }
+
+      // Format the tableData accordingly.
       this.formatTableData();
+      this.formatPatientTableData();
     });
 
     // Get the updated data for unit then set it as well in divisions service.
@@ -82,6 +110,59 @@ export class DivisionComponent implements OnInit {
     }
   }
 
+  formatPatientTableData() {
+    // Reset State of Patient Data.
+    this.tableDataPatient = [];
+    // Loop through each patient for each row on table, grab necessary data of patient into an object, push object into tableData to be displayed in table.
+    for(let patientIndex in this.unit.patientArray) {
+      let patient = this.unit.patientArray[patientIndex];
+      let itemObj = {
+        "patientId": patient.id,
+        "name": patient.firstName + " " + patient.lastName,
+        "phoneNumber": patient.phoneNumber,
+        "bedTypeAssigned": patient.bedTypeAssigned,
+        "bedNumAssigned": patient.bedNumAssigned
+      }
+      this.tableDataPatient.push(itemObj);
+    }
+  }
+
+  handleDischargeButton(patientId: string): void {
+    let selectedPatient: Patient;
+    
+    // Remove patient from patientArray of selectedUnit.
+    for(let i=0; i < this.unit.patientArray.length; i++) {
+      let patient = this.unit.patientArray[i];
+      if(patientId === patient.id) {
+
+        // 1. Change state of patient.
+        selectedPatient = this.unit.patientArray[i];
+        selectedPatient.bedNumAssigned = null;
+        selectedPatient.bedTypeAssigned = null;
+        selectedPatient.divisionId = null;
+
+        // 2. Put bed num back into array of appropriate bed type.
+        if(patient.bedTypeAssigned === "Long Term") {
+          this.unit.numOfBedsLongTerm = this.unit.numOfBedsLongTerm + 1;
+          this.unit.longTermBedArray.push(patient.bedNumAssigned);
+          this.unit.numOfPatients = this.unit.numOfPatients - 1;
+        } else {
+          this.unit.numOfBedsShortTerm = this.unit.numOfBedsShortTerm + 1;
+          this.unit.shortTermBedArray.push(patient.bedNumAssigned);
+          this.unit.numOfPatients = this.unit.numOfPatients - 1;
+        }
+
+        // 3. Remove the patient from the Unit Patient Array.
+        this.unit.patientArray.splice(i);
+
+      }
+    }
+
+    // Call service to send to firestore the new state of the unit.
+    this.divisionsService.sendPatientDischargeChange(this.unit, selectedPatient);
+  }
+
+  // Deprecated: not allowing control of bed counts.
   handleButtonControl(name, movement) {
     switch(name){
       case "Short Term Beds Available":

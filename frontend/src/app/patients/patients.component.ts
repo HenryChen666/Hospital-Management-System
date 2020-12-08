@@ -56,7 +56,7 @@ export class PatientsComponent implements OnInit {
   }
 
   delete(id: string){
-    this.firestore.collection('user').doc(id.toString()).delete();
+    this.firestore.collection('patients').doc(id.toString()).delete();
     this.firestore.collection('request').doc(id.toString()).delete();
   }
 }
