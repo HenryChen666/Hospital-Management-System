@@ -1,6 +1,31 @@
 # Yellow Jackets
 
+## Built With
+* [Angular]
+* [Spring-Boot]
+* [Firebase]
+
+## Installation
+
+To get the frontend running locally:
+
+- Clone this repo
+- navigate to /frontend directory
+- `npm install` to install all required dependencies 
+- `npm start` to start the local server (this project uses create-react-app)
+
+Local web server will use port 3000. You can configure port in scripts section of `./frontend/package.json`
+
+
+To get the backend running locally:
+
+- Clone this repo
+- navigate to /backend directory
+- `./gradlew bootRun` to run the Spring Boot Server
+
 ### Divisions/Wards
+
+ALL FUNCTIONAL REQUIREMENTS COMPLETED
 
 The application contains 3 different Divisions - Specialty, Intensive Care, and Non Intensive Care.
 
