@@ -7,6 +7,14 @@
 
 ## Installation
 
+Please start the server side first and wait until it's fully loaded then start the frontend.
+
+To get the backend running locally:
+
+- Clone this repo
+- navigate to /backend directory
+- `./gradlew bootRun` to run the Spring Boot Server
+
 To get the frontend running locally:
 
 - Clone this repo
@@ -16,14 +24,10 @@ To get the frontend running locally:
 
 Local web server will use port 4200. You can configure port in scripts section of `./frontend/package.json`
 
-
-To get the backend running locally:
-
-- Clone this repo
-- navigate to /backend directory
-- `./gradlew bootRun` to run the Spring Boot Server
-
 ### Default Users
+
+The users below are default users and the nurse's below are all charge nurses therefore facilitating that you do not have to register a whole bunch of users to test the application.
+
 Doctor100
 ```
 username: doctor100
@@ -64,7 +68,7 @@ Other user type roles need to be registered manuallly
 
 ### Divisions/Wards
 
-ALL FUNCTIONAL REQUIREMENTS COMPLETED
+ALL FUNCTIONAL REQUIREMENTS COMPLETED - Below are more in depth description in case a functional requirement is not obvious and how you can trigger them.
 
 The application contains 3 different Divisions - Specialty, Intensive Care, and Non Intensive Care.
 
