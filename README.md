@@ -23,6 +23,45 @@ To get the backend running locally:
 - navigate to /backend directory
 - `./gradlew bootRun` to run the Spring Boot Server
 
+### Default Users
+Doctor100
+```
+username: doctor100
+password: doctor
+```
+
+Doctor200
+```
+username: doctor200
+password: doctor
+```
+
+Doctor300
+```
+username: doctor300
+password: doctor
+```
+
+Nurse100
+```
+username: nurse100
+password: nurse
+```
+
+Nurse200
+```
+username: nurse200
+password: nurse
+```
+
+Nurse300
+```
+username: nurse300
+password: nurse
+```
+
+Other user type roles need to be registered manuallly
+
 ### Divisions/Wards
 
 ALL FUNCTIONAL REQUIREMENTS COMPLETED
