@@ -1,4 +1,11 @@
-# Yellow Jackets
+# Yellow Jackets Group 11
+
+Henry Chen | 300082076
+James Lee | 8862411
+Kenny Nguyen | 8642034
+Mike Diep | 8334439
+Ziming Wang |8843923
+
 
 ## Built With
 * [Angular]
